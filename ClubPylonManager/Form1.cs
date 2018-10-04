@@ -27,5 +27,10 @@ namespace ClubPylonManager
 
             }
         }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e) {
+            ContestForm form = new ContestForm();
+            form.ShowDialog(this);
+        }
     }
 }
