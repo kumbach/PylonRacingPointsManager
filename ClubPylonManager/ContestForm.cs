@@ -17,14 +17,13 @@ namespace ClubPylonManager
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void cancelButton_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void saveButton_Click(object sender, EventArgs e)
         {
-
         }
     }
 }
