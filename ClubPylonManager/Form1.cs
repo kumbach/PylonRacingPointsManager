@@ -32,5 +32,11 @@ namespace ClubPylonManager
             ContestForm form = new ContestForm();
             form.ShowDialog(this);
         }
+
+        private void CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Console.WriteLine("Blah=" + e.RowIndex);
+
+        }
     }
 }

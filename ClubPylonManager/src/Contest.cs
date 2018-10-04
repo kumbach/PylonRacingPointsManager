@@ -8,6 +8,10 @@
         public string Pilots { get; set; }
         public string Notes { get; set; }
 
+        public Contest() {
+
+        }
+
         public Contest(string date, string location, string raceClass, string status, string rounds, string pilots, string notes) {
             this.ContestDate = date;
             this.Location = location;
