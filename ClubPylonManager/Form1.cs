@@ -21,11 +21,7 @@ namespace ClubPylonManager
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) {
-            if (MessageBox.Show("Really exit?", "Club Pylon Manager", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-            {
-                Application.Exit();
-
-            }
+            Application.Exit();
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -33,9 +29,10 @@ namespace ClubPylonManager
             form.ShowDialog(this);
         }
 
-        private void CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void GridDoubleClick(object sender, MouseEventArgs e)
         {
-            Console.WriteLine("Blah=" + e.RowIndex);
+            ContestForm form = new ContestForm();
+            form.ShowDialog(this);
 
         }
     }

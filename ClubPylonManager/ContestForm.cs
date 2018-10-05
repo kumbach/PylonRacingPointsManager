@@ -29,5 +29,33 @@ namespace ClubPylonManager
             this.Close();
         }
 
+        private void roundsNumeric_ValueChanged(object sender, EventArgs e)
+        {
+            int newRowCount = Convert.ToInt32(((NumericUpDown) sender).Value);
+            
+
+            if (newRowCount < scoreboardGrid.RowCount)
+            {
+                
+                scoreboardGrid.Rows.RemoveAt(3);
+            }
+            else if (newRowCount > scoreboardGrid.RowCount)
+            {
+                scoreboardGrid.Rows.Add(newRowCount - scoreboardGrid.RowCount);
+            }
+
+        }
+
+        private void pilotsNumeric_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown control = (NumericUpDown)sender;
+            Console.WriteLine($"Pilots={control.Value}");
+
+        }
+
+        private void scoreboardGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -41,26 +41,20 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.scoreboardGrid = new System.Windows.Forms.DataGridView();
+            this.PIlot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.roundsTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.pilotsTextBox = new System.Windows.Forms.TextBox();
-            this.dateErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.locationErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.raceClassErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.PIlot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pilotsNumeric = new System.Windows.Forms.NumericUpDown();
+            this.roundsNumeric = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contestBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scoreboardGrid)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dateErrorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.locationErrorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.raceClassErrorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pilotsNumeric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roundsNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -84,11 +78,11 @@
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.textBox1, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.scoreboardGrid, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.roundsTextBox, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.label6, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.pilotsTextBox, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.pilotsNumeric, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.roundsNumeric, 3, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -213,20 +207,25 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Scoreboard";
             // 
-            // dataGridView1
+            // scoreboardGrid
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PIlot,
-            this.Column1,
-            this.Column2});
-            this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 6);
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 119);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(762, 296);
-            this.dataGridView1.TabIndex = 11;
+            this.scoreboardGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.scoreboardGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PIlot});
+            this.tableLayoutPanel1.SetColumnSpan(this.scoreboardGrid, 6);
+            this.scoreboardGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scoreboardGrid.Location = new System.Drawing.Point(11, 119);
+            this.scoreboardGrid.Name = "scoreboardGrid";
+            this.scoreboardGrid.RowHeadersVisible = false;
+            this.scoreboardGrid.Size = new System.Drawing.Size(762, 296);
+            this.scoreboardGrid.TabIndex = 11;
+            this.scoreboardGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.scoreboardGrid_CellContentClick);
+            // 
+            // PIlot
+            // 
+            this.PIlot.HeaderText = "Pilot";
+            this.PIlot.MaxInputLength = 50;
+            this.PIlot.Name = "PIlot";
             // 
             // panel1
             // 
@@ -261,15 +260,6 @@
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
-            // roundsTextBox
-            // 
-            this.roundsTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.contestBindingSource, "Rounds", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N0"));
-            this.roundsTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roundsTextBox.Location = new System.Drawing.Point(491, 24);
-            this.roundsTextBox.Name = "roundsTextBox";
-            this.roundsTextBox.Size = new System.Drawing.Size(104, 20);
-            this.roundsTextBox.TabIndex = 13;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -279,42 +269,53 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "Rounds";
             // 
-            // pilotsTextBox
+            // pilotsNumeric
             // 
-            this.pilotsTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.contestBindingSource, "Pilots", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N0"));
-            this.pilotsTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pilotsTextBox.Location = new System.Drawing.Point(601, 24);
-            this.pilotsTextBox.Name = "pilotsTextBox";
-            this.pilotsTextBox.Size = new System.Drawing.Size(104, 20);
-            this.pilotsTextBox.TabIndex = 16;
+            this.pilotsNumeric.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contestBindingSource, "Pilots", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N0"));
+            this.pilotsNumeric.Location = new System.Drawing.Point(601, 24);
+            this.pilotsNumeric.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            this.pilotsNumeric.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.pilotsNumeric.Name = "pilotsNumeric";
+            this.pilotsNumeric.Size = new System.Drawing.Size(104, 20);
+            this.pilotsNumeric.TabIndex = 17;
+            this.pilotsNumeric.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.pilotsNumeric.ValueChanged += new System.EventHandler(this.pilotsNumeric_ValueChanged);
             // 
-            // dateErrorProvider
+            // roundsNumeric
             // 
-            this.dateErrorProvider.ContainerControl = this;
-            this.dateErrorProvider.DataSource = this.contestBindingSource;
-            // 
-            // locationErrorProvider
-            // 
-            this.locationErrorProvider.ContainerControl = this;
-            // 
-            // raceClassErrorProvider
-            // 
-            this.raceClassErrorProvider.ContainerControl = this;
-            // 
-            // PIlot
-            // 
-            this.PIlot.HeaderText = "Pilot";
-            this.PIlot.Name = "PIlot";
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Round 1";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Round 2";
-            this.Column2.Name = "Column2";
+            this.roundsNumeric.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contestBindingSource, "Rounds", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N0"));
+            this.roundsNumeric.Location = new System.Drawing.Point(491, 24);
+            this.roundsNumeric.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.roundsNumeric.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.roundsNumeric.Name = "roundsNumeric";
+            this.roundsNumeric.Size = new System.Drawing.Size(104, 20);
+            this.roundsNumeric.TabIndex = 18;
+            this.roundsNumeric.Value = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.roundsNumeric.ValueChanged += new System.EventHandler(this.roundsNumeric_ValueChanged);
             // 
             // ContestForm
             // 
@@ -330,11 +331,10 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contestBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scoreboardGrid)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dateErrorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.locationErrorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.raceClassErrorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pilotsNumeric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roundsNumeric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -352,20 +352,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView scoreboardGrid;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.TextBox roundsTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox pilotsTextBox;
         private System.Windows.Forms.BindingSource contestBindingSource;
-        private System.Windows.Forms.ErrorProvider dateErrorProvider;
-        private System.Windows.Forms.ErrorProvider locationErrorProvider;
-        private System.Windows.Forms.ErrorProvider raceClassErrorProvider;
+        private System.Windows.Forms.NumericUpDown pilotsNumeric;
+        private System.Windows.Forms.NumericUpDown roundsNumeric;
         private System.Windows.Forms.DataGridViewTextBoxColumn PIlot;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
