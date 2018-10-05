@@ -11,21 +11,20 @@ using System.Windows.Forms;
 namespace ClubPylonManager
 {
     public partial class ContestForm : Form {
-        public ContestForm()
+        public ContestForm(Contest contest)
         {
             InitializeComponent();
             contestBindingSource.AddNew();
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
+        private void cancelButton_Click(object sender, EventArgs e) {
+            DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            
-            Console.WriteLine("date=" + ((Contest)contestBindingSource.Current).ContestDate);
+            DialogResult = DialogResult.OK;
             this.Close();
         }
 
