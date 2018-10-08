@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label7 = new System.Windows.Forms.Label();
             this.raceClassCombo = new System.Windows.Forms.ComboBox();
             this.contestBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
@@ -42,18 +41,17 @@
             this.noteTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.scoreboardGrid = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PIlot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.pilotsNumeric = new System.Windows.Forms.NumericUpDown();
             this.roundsNumeric = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contestBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreboardGrid)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pilotsNumeric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.roundsNumeric)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,14 +59,13 @@
             // 
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.ColumnCount = 6;
+            this.tableLayoutPanel1.ColumnCount = 5;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.label7, 4, 0);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.raceClassCombo, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
@@ -81,7 +78,6 @@
             this.tableLayoutPanel1.Controls.Add(this.scoreboardGrid, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.label6, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.pilotsNumeric, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.roundsNumeric, 3, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -98,16 +94,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 461);
             this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(601, 8);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(104, 13);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Pilots";
             // 
             // raceClassCombo
             // 
@@ -194,7 +180,7 @@
             // 
             // noteTextBox
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.noteTextBox, 6);
+            this.tableLayoutPanel1.SetColumnSpan(this.noteTextBox, 5);
             this.noteTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.contestBindingSource, "Notes", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.noteTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.noteTextBox.Location = new System.Drawing.Point(11, 72);
@@ -214,10 +200,13 @@
             // 
             // scoreboardGrid
             // 
+            this.scoreboardGrid.AllowUserToResizeColumns = false;
+            this.scoreboardGrid.AllowUserToResizeRows = false;
             this.scoreboardGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.scoreboardGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
             this.PIlot});
-            this.tableLayoutPanel1.SetColumnSpan(this.scoreboardGrid, 6);
+            this.tableLayoutPanel1.SetColumnSpan(this.scoreboardGrid, 5);
             this.scoreboardGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scoreboardGrid.Location = new System.Drawing.Point(11, 119);
             this.scoreboardGrid.Name = "scoreboardGrid";
@@ -225,10 +214,20 @@
             this.scoreboardGrid.Size = new System.Drawing.Size(762, 296);
             this.scoreboardGrid.TabIndex = 11;
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column1.HeaderText = "Place";
+            this.Column1.MinimumWidth = 60;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 60;
+            // 
             // PIlot
             // 
+            this.PIlot.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PIlot.HeaderText = "Pilot";
             this.PIlot.MaxInputLength = 50;
+            this.PIlot.MinimumWidth = 160;
             this.PIlot.Name = "PIlot";
             // 
             // panel1
@@ -273,31 +272,6 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "Rounds";
             // 
-            // pilotsNumeric
-            // 
-            this.pilotsNumeric.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contestBindingSource, "Pilots", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, "0", "N0"));
-            this.pilotsNumeric.Location = new System.Drawing.Point(601, 24);
-            this.pilotsNumeric.Maximum = new decimal(new int[] {
-            120,
-            0,
-            0,
-            0});
-            this.pilotsNumeric.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.pilotsNumeric.Name = "pilotsNumeric";
-            this.pilotsNumeric.ReadOnly = true;
-            this.pilotsNumeric.Size = new System.Drawing.Size(104, 20);
-            this.pilotsNumeric.TabIndex = 17;
-            this.pilotsNumeric.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.pilotsNumeric.ValueChanged += new System.EventHandler(this.pilotsNumeric_ValueChanged);
-            // 
             // roundsNumeric
             // 
             this.roundsNumeric.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contestBindingSource, "Rounds", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, "0", "N0"));
@@ -338,7 +312,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.contestBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreboardGrid)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pilotsNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.roundsNumeric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -362,10 +335,9 @@
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.BindingSource contestBindingSource;
-        private System.Windows.Forms.NumericUpDown pilotsNumeric;
         private System.Windows.Forms.NumericUpDown roundsNumeric;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn PIlot;
     }
 }

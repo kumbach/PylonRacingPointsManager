@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows.Forms;
 
 namespace ClubPylonManager
@@ -27,7 +28,19 @@ namespace ClubPylonManager
 
         private void SetupScoreboardColumns()
         {
+            DataGridViewTextBoxColumn[] columns = new DataGridViewTextBoxColumn[getContest().Rounds];
+            for (int i = 1; i <= getContest().Rounds; ++i)
+            {
+                var column = new DataGridViewTextBoxColumn();
+                column.HeaderText = $"Round {i}";
+                column.MaxInputLength = 7;
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                column.Width = 70;
+                column.MinimumWidth = 70;
 
+                columns[i - 1] = column;
+            }
+            scoreboardGrid.Columns.AddRange(columns);
         }
 
         private void PopulateComboBoxes()
@@ -50,24 +63,32 @@ namespace ClubPylonManager
 
         private void roundsNumeric_ValueChanged(object sender, EventArgs e)
         {
-            int newRowCount = Convert.ToInt32(((NumericUpDown) sender).Value);
-
-
-            if (newRowCount < scoreboardGrid.RowCount)
+            var control = (NumericUpDown) sender;
+            var diff = scoreboardGrid.Columns.Count - 2 - control.Value;
+            if (diff < 0)
             {
-                scoreboardGrid.Rows.RemoveAt(3);
+                for (int i = scoreboardGrid.ColumnCount - 2 + 1; i <= control.Value; ++i)
+                {
+                    var column = new DataGridViewTextBoxColumn();
+                    column.HeaderText = $"Round {i}";
+                    column.MaxInputLength = 7;
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    column.Width = 70;
+                    column.MinimumWidth = 70;
+
+                    scoreboardGrid.Columns.Add(column);
+                }
             }
-            else if (newRowCount > scoreboardGrid.RowCount)
+            else
             {
-                scoreboardGrid.Rows.Add(newRowCount - scoreboardGrid.RowCount);
+                while (scoreboardGrid.ColumnCount - 2 > control.Value)
+                {
+                    scoreboardGrid.Columns.RemoveAt(scoreboardGrid.ColumnCount - 1);
+                }
+
             }
         }
 
-        private void pilotsNumeric_ValueChanged(object sender, EventArgs e)
-        {
-            NumericUpDown control = (NumericUpDown) sender;
-            Console.WriteLine($"Pilots={control.Value}");
-        }
 
         public Contest getContest()
         {
