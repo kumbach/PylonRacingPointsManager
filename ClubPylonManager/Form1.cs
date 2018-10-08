@@ -28,9 +28,7 @@ namespace ClubPylonManager
             fileSaveAsMenuItem.Enabled = fileOpen;
 
             contestNewMenuItem.Enabled = fileOpen;
-            contestEditMenuItem.Enabled = fileOpen;
-            contestDuplicateMenuItem.Enabled = fileOpen;
-            contestDeleteMenuItem.Enabled = fileOpen;
+            SetEditMenuState();
 
             pilotRosterToolStripMenuItem.Enabled = fileOpen;
             locationsToolStripMenuItem.Enabled = fileOpen;
@@ -54,14 +52,10 @@ namespace ClubPylonManager
             SetMenuState();
         }
 
-        private void GridDoubleClick(object sender, MouseEventArgs e)
-        {
-        }
-
 
         private void contestNewMenuItem_Click(object sender, EventArgs e)
         {
-            ContestForm form = new ContestForm(clubFile);
+            ContestForm form = new ContestForm(clubFile, new Contest());
             var result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {
@@ -136,9 +130,18 @@ namespace ClubPylonManager
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow item in this.contestGridView.SelectedRows)
+            var count = contestGridView.SelectedRows.Count;
+
+            string title = count == 1? "Delete Contest" : "Delete Contests";
+            string message = count == 1 ? "Delete the selected contest?" : $"Delete the {count} selected contests?";
+
+            if (MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) ==
+                DialogResult.Yes)
             {
-                contestGridView.Rows.RemoveAt(item.Index);
+                foreach (DataGridViewRow item in this.contestGridView.SelectedRows)
+                {
+                    contestGridView.Rows.RemoveAt(item.Index);
+                }
             }
         }
 
@@ -148,5 +151,42 @@ namespace ClubPylonManager
             contestBindingSource.DataSource = null;
             SetMenuState();
         }
+
+        private void contestEditMenuItem_Click(object sender, EventArgs e)
+        {
+            EditSelectedContest();
+        }
+
+        private void RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            SetEditMenuState();
+        }
+
+        private void SetEditMenuState()
+        {
+            contestEditMenuItem.Enabled = contestGridView.SelectedRows.Count == 1;
+            contestDuplicateMenuItem.Enabled = contestGridView.SelectedRows.Count == 1;
+
+            contestDeleteMenuItem.Enabled = contestGridView.SelectedRows.Count > 0;
+        }
+
+        private void GridDoubleClicked(object sender, EventArgs e)
+        {
+            EditSelectedContest();
+        }
+
+        private void EditSelectedContest()
+        {
+            Contest contest = (Contest)contestGridView.SelectedRows[0].DataBoundItem;
+            ContestForm form = new ContestForm(clubFile, contest);
+            var result = form.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                //contestBindingSource.Add(form.getContest());
+                //clubFile.AddContest(form.getContest());
+            }
+        }
+
+
     }
 }

@@ -30,16 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             this.rosterGridView = new System.Windows.Forms.DataGridView();
+            this.dataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
-            this.dataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.rosterGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataBindingSource)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // rosterGridView
@@ -57,6 +57,10 @@
             this.rosterGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.rosterGridView.Size = new System.Drawing.Size(478, 409);
             this.rosterGridView.TabIndex = 0;
+            // 
+            // dataBindingSource
+            // 
+            this.dataBindingSource.DataSource = typeof(ClubPylonManager.RaceClass);
             // 
             // tableLayoutPanel1
             // 
@@ -104,15 +108,11 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // dataBindingSource
-            // 
-            this.dataBindingSource.DataSource = typeof(ClubPylonManager.RaceClass);
-            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             // 
             // RaceClassesForm
@@ -127,10 +127,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Race Classes";
             ((System.ComponentModel.ISupportInitialize)(this.rosterGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataBindingSource)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
