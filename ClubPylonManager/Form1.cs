@@ -10,6 +10,7 @@ namespace ClubPylonManager
         public Form1()
         {
             InitializeComponent();
+            clubFile = new ClubFile();
             SetMenuState();
         }
 
@@ -23,11 +24,12 @@ namespace ClubPylonManager
             fileSaveMenuItem.Enabled = fileOpen;
             fileSaveAsMenuItem.Enabled = fileOpen;
 
-            copyMenuItem.Enabled = fileOpen;
-            pasteMenuItem.Enabled = fileOpen;
-            deleteMenuItem.Enabled = fileOpen;
-
             contestNewMenuItem.Enabled = fileOpen;
+
+            pilotRosterToolStripMenuItem.Enabled = fileOpen;
+            locationsToolStripMenuItem.Enabled = fileOpen;
+            raceClassesToolStripMenuItem.Enabled = fileOpen;
+            settingsToolStripMenuItem.Enabled = fileOpen;
 
             contestMenuItem.Enabled = fileOpen;
             seasonMenuItem.Enabled = fileOpen;
@@ -54,17 +56,28 @@ namespace ClubPylonManager
             Console.WriteLine(json);
         }
 
-        private void contestNewMenuItem_Click(object sender, EventArgs e) {
-            Contest contest = clubFile.NewContest();
-
-            ContestForm form = new ContestForm(contest);
+        private void contestNewMenuItem_Click(object sender, EventArgs e)
+        {
+            ContestForm form = new ContestForm(clubFile);
             var result = form.ShowDialog(this);
-            if (result == DialogResult.OK) {
-                clubFile.AddContest(contest);
-                contestBindingSource.Add(contest);
-                Console.WriteLine($"Result={result}");
+            if (result == DialogResult.OK)
+            {
+                clubFile.AddContest(form.getContest());
+                contestBindingSource.Add(form.getContest());
             }
 
+        }
+
+        private void pilotRosterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new RosterForm(clubFile);
+            form.ShowDialog();
+        }
+
+        private void locationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new Locations(clubFile);
+            form.ShowDialog();
         }
     }
 }

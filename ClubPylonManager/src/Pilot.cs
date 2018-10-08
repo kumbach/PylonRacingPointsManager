@@ -1,7 +1,8 @@
 ﻿namespace ClubPylonManager {
     public class Pilot {
-        private string name { set; get; }
-        private string status { set; get; }
+        public string Name { set; get; }
+        public string PilotNumber { set; get; }
+        public bool MembershipPaid { get; set; }
     }
 
 }

@@ -39,7 +39,7 @@
             this.contestDatePicker = new System.Windows.Forms.DateTimePicker();
             this.locationCombo = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.noteTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.scoreboardGrid = new System.Windows.Forms.DataGridView();
             this.PIlot = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,7 +76,7 @@
             this.tableLayoutPanel1.Controls.Add(this.contestDatePicker, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.locationCombo, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.noteTextBox, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.scoreboardGrid, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 7);
@@ -111,7 +111,7 @@
             // 
             // raceClassCombo
             // 
-            this.raceClassCombo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.contestBindingSource, "RaceClass", true));
+            this.raceClassCombo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.contestBindingSource, "RaceClass", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.raceClassCombo.DataSource = this.contestBindingSource;
             this.raceClassCombo.DisplayMember = "RaceClass";
             this.raceClassCombo.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -124,6 +124,7 @@
             // 
             // contestBindingSource
             // 
+            this.contestBindingSource.AllowNew = true;
             this.contestBindingSource.DataSource = typeof(ClubPylonManager.Contest);
             // 
             // label3
@@ -155,14 +156,18 @@
             // 
             // contestDatePicker
             // 
-            this.contestDatePicker.CustomFormat = "";
-            this.contestDatePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contestBindingSource, "ContestDate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "d"));
+            this.contestDatePicker.CausesValidation = false;
+            this.contestDatePicker.CustomFormat = "yyyy-MMM-dd";
+            this.contestDatePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contestBindingSource, "ContestDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "d"));
             this.contestDatePicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contestDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.contestDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.contestDatePicker.Location = new System.Drawing.Point(11, 24);
+            this.contestDatePicker.MaxDate = new System.DateTime(2050, 12, 31, 0, 0, 0, 0);
+            this.contestDatePicker.MinDate = new System.DateTime(1965, 1, 1, 0, 0, 0, 0);
             this.contestDatePicker.Name = "contestDatePicker";
             this.contestDatePicker.Size = new System.Drawing.Size(144, 20);
             this.contestDatePicker.TabIndex = 5;
+            this.contestDatePicker.Value = new System.DateTime(2028, 1, 1, 0, 0, 0, 0);
             // 
             // locationCombo
             // 
@@ -187,15 +192,15 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Note";
             // 
-            // textBox1
+            // noteTextBox
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.textBox1, 6);
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.contestBindingSource, "Notes", true));
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(11, 72);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(762, 20);
-            this.textBox1.TabIndex = 9;
+            this.tableLayoutPanel1.SetColumnSpan(this.noteTextBox, 6);
+            this.noteTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.contestBindingSource, "Notes", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.noteTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.noteTextBox.Location = new System.Drawing.Point(11, 72);
+            this.noteTextBox.Name = "noteTextBox";
+            this.noteTextBox.Size = new System.Drawing.Size(762, 20);
+            this.noteTextBox.TabIndex = 9;
             // 
             // label5
             // 
@@ -219,7 +224,6 @@
             this.scoreboardGrid.RowHeadersVisible = false;
             this.scoreboardGrid.Size = new System.Drawing.Size(762, 296);
             this.scoreboardGrid.TabIndex = 11;
-            this.scoreboardGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.scoreboardGrid_CellContentClick);
             // 
             // PIlot
             // 
@@ -271,7 +275,7 @@
             // 
             // pilotsNumeric
             // 
-            this.pilotsNumeric.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contestBindingSource, "Pilots", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N0"));
+            this.pilotsNumeric.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contestBindingSource, "Pilots", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, "0", "N0"));
             this.pilotsNumeric.Location = new System.Drawing.Point(601, 24);
             this.pilotsNumeric.Maximum = new decimal(new int[] {
             120,
@@ -284,6 +288,7 @@
             0,
             0});
             this.pilotsNumeric.Name = "pilotsNumeric";
+            this.pilotsNumeric.ReadOnly = true;
             this.pilotsNumeric.Size = new System.Drawing.Size(104, 20);
             this.pilotsNumeric.TabIndex = 17;
             this.pilotsNumeric.Value = new decimal(new int[] {
@@ -295,7 +300,7 @@
             // 
             // roundsNumeric
             // 
-            this.roundsNumeric.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contestBindingSource, "Rounds", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "0", "N0"));
+            this.roundsNumeric.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contestBindingSource, "Rounds", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, "0", "N0"));
             this.roundsNumeric.Location = new System.Drawing.Point(491, 24);
             this.roundsNumeric.Maximum = new decimal(new int[] {
             20,
@@ -308,6 +313,7 @@
             0,
             0});
             this.roundsNumeric.Name = "roundsNumeric";
+            this.roundsNumeric.ReadOnly = true;
             this.roundsNumeric.Size = new System.Drawing.Size(104, 20);
             this.roundsNumeric.TabIndex = 18;
             this.roundsNumeric.Value = new decimal(new int[] {
@@ -323,7 +329,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.contestBindingSource, "Location", true));
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "ContestForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -350,7 +355,7 @@
         private System.Windows.Forms.DateTimePicker contestDatePicker;
         private System.Windows.Forms.ComboBox locationCombo;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox noteTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView scoreboardGrid;
         private System.Windows.Forms.Panel panel1;

@@ -11,10 +11,24 @@ using System.Windows.Forms;
 namespace ClubPylonManager
 {
     public partial class ContestForm : Form {
-        public ContestForm(Contest contest)
+        private readonly ClubFile _clubFile;
+
+        public ContestForm(ClubFile clubFile)
         {
+            _clubFile = clubFile;
             InitializeComponent();
+            PopulateComboBoxes();
             contestBindingSource.AddNew();
+        }
+
+        private void PopulateComboBoxes()
+        {
+            foreach (var location in _clubFile.Locations) {
+                locationCombo.Items.Add(location);
+            }
+            foreach (var raceClass in _clubFile.RaceClasses) {
+                raceClassCombo.Items.Add(raceClass);
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e) {
@@ -52,9 +66,9 @@ namespace ClubPylonManager
 
         }
 
-        private void scoreboardGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public Contest getContest()
         {
-
+            return (Contest) contestBindingSource.Current;
         }
     }
 }

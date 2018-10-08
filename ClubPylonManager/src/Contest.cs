@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ClubPylonManager {
     public class Contest {
         private const int DefaultNumPilots = 10;
         private const int DefaultNumRounds = 8;
 
-        public string ContestDate { get; set; }
+        public DateTime ContestDate { get; set; }
         public string Location { get; set; }
         public string RaceClass { get; set; }
         public string Status { get; set; }
@@ -14,11 +15,11 @@ namespace ClubPylonManager {
         public string Notes { get; set; }
         public List<Scoreboard> Scoreboard { get; set; }
 
-        public Contest() : this("", "", "", "", DefaultNumRounds, DefaultNumPilots, "I am new here.") {
+        public Contest() : this(DateTime.Now, "", "", "Open", DefaultNumRounds, DefaultNumPilots, "") {
 
         }
 
-        public Contest(string date, string location, string raceClass, string status, int rounds, int pilots, string notes) {
+        public Contest(DateTime date, string location, string raceClass, string status, int rounds, int pilots, string notes) {
             this.ContestDate = date;
             this.Location = location;
             this.RaceClass = raceClass;
