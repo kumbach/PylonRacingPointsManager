@@ -17,18 +17,15 @@ namespace ClubPylonManager
         {
             _clubFile = clubFile;
             InitializeComponent();
+
             PopulateComboBoxes();
             contestBindingSource.AddNew();
         }
 
         private void PopulateComboBoxes()
         {
-            foreach (var location in _clubFile.Locations) {
-                locationCombo.Items.Add(location);
-            }
-            foreach (var raceClass in _clubFile.RaceClasses) {
-                raceClassCombo.Items.Add(raceClass);
-            }
+            locationCombo.DataSource = _clubFile.Locations;
+            raceClassCombo.DataSource = _clubFile.RaceClasses;
         }
 
         private void cancelButton_Click(object sender, EventArgs e) {

@@ -2,7 +2,7 @@
 
 namespace ClubPylonManager
 {
-    public class Location
+    public class RaceClass
     {
         public string name { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace ClubPylonManager
 {
-    partial class Locations
+    partial class RaceClassesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -34,13 +34,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.locationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.rosterGridView)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // rosterGridView
@@ -48,16 +47,15 @@
             this.rosterGridView.AutoGenerateColumns = false;
             this.rosterGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rosterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
             this.nameDataGridViewTextBoxColumn});
-            this.rosterGridView.DataSource = this.locationBindingSource;
+            this.rosterGridView.DataSource = this.dataBindingSource;
             this.rosterGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rosterGridView.Location = new System.Drawing.Point(3, 3);
             this.rosterGridView.MultiSelect = false;
             this.rosterGridView.Name = "rosterGridView";
             this.rosterGridView.RowHeadersVisible = false;
             this.rosterGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.rosterGridView.Size = new System.Drawing.Size(478, 520);
+            this.rosterGridView.Size = new System.Drawing.Size(478, 409);
             this.rosterGridView.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -72,8 +70,8 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(484, 561);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(484, 450);
+            this.tableLayoutPanel1.TabIndex = 2;
             // 
             // panel1
             // 
@@ -81,7 +79,7 @@
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.saveButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 529);
+            this.panel1.Location = new System.Drawing.Point(3, 418);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(478, 29);
             this.panel1.TabIndex = 1;
@@ -106,39 +104,33 @@
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // Column1
+            // dataBindingSource
             // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.DataPropertyName = "Name";
-            this.Column1.HeaderText = "Name";
-            this.Column1.Name = "Column1";
-            // 
-            // locationBindingSource
-            // 
-            this.locationBindingSource.DataSource = typeof(ClubPylonManager.Location);
+            this.dataBindingSource.DataSource = typeof(ClubPylonManager.RaceClass);
             // 
             // nameDataGridViewTextBoxColumn
             // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             // 
-            // Locations
+            // RaceClassesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 561);
+            this.ClientSize = new System.Drawing.Size(484, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximumSize = new System.Drawing.Size(500, 600);
-            this.Name = "Locations";
+            this.Name = "RaceClassesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Locations";
+            this.Text = "Race Classes";
             ((System.ComponentModel.ISupportInitialize)(this.rosterGridView)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.locationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -146,12 +138,11 @@
         #endregion
 
         private System.Windows.Forms.DataGridView rosterGridView;
+        private System.Windows.Forms.BindingSource dataBindingSource;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.BindingSource locationBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
     }
 }

@@ -332,7 +332,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "ContestForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "ContestForm";
+            this.Text = "Contest Entry";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contestBindingSource)).EndInit();
