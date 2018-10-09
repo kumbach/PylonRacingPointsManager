@@ -24,6 +24,7 @@ namespace ClubPylonManager
             }
 
             SetupScoreboardColumns();
+            PopulateScoreboard();
         }
 
         private void SetupScoreboardColumns()
@@ -59,9 +60,39 @@ namespace ClubPylonManager
         {
             var contest = GetContest();
             contest.Scoreboard.Clear();
+            for (int i = 0; i < scoreboardGrid.RowCount; ++i)
+            {
+                if (RowIsBlank(i))
+                {
+                    continue;
+                }
+                var scoreboard = new Scoreboard();
+                int placeValue = 0;
+                int.TryParse((string) scoreboardGrid.Rows[i].Cells[0].Value, out placeValue);
+                scoreboard.Place = placeValue;
+                scoreboard.Pilot = (string)scoreboardGrid.Rows[i].Cells[1].Value;
+                for (int cell = 2; cell < scoreboardGrid.ColumnCount; ++cell)
+                {
+                    scoreboard.HeatTimes.Add((string)scoreboardGrid.Rows[i].Cells[cell].Value);
+                }
+                contest.Scoreboard.Add(scoreboard);
 
+            }
             DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private bool RowIsBlank(int row)
+        {
+            for (int i = 0; i < scoreboardGrid.ColumnCount; ++i)
+            {
+                if (!string.IsNullOrEmpty((string) scoreboardGrid.Rows[row].Cells[i].Value))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private void roundsNumeric_ValueChanged(object sender, EventArgs e)
@@ -92,6 +123,25 @@ namespace ClubPylonManager
             }
         }
 
+        private void PopulateScoreboard()
+        {
+            int row = 0;
+            var scoreboardRows = GetContest().Scoreboard;
+            scoreboardGrid.Rows.Add(scoreboardRows.Count);
+            foreach (var scoreboard in scoreboardRows)
+            {
+                scoreboardGrid.Rows[row].Cells[0].Value = "" + scoreboard.Place;
+                scoreboardGrid.Rows[row].Cells[1].Value = scoreboard.Pilot;
+
+                for (int round = 0; round < GetContest().Rounds; ++round)
+                {
+                    scoreboardGrid.Rows[row].Cells[round + 2].Value = scoreboard.HeatTimes[round];
+                }
+
+                ++row;
+            }
+
+        }
 
         public Contest GetContest()
         {
