@@ -45,6 +45,8 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PIlot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.deleteRowButton = new System.Windows.Forms.Button();
+            this.clearRowButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -114,7 +116,6 @@
             // 
             this.contestBindingSource.AllowNew = true;
             this.contestBindingSource.DataSource = typeof(ClubPylonManager.Contest);
-            this.contestBindingSource.CurrentChanged += new System.EventHandler(this.contestBindingSource_CurrentChanged);
             // 
             // label3
             // 
@@ -228,6 +229,7 @@
             this.scoreboardGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.scoreboardGrid.Size = new System.Drawing.Size(802, 296);
             this.scoreboardGrid.TabIndex = 11;
+            this.scoreboardGrid.SelectionChanged += new System.EventHandler(this.SelectionChanged);
             // 
             // Column1
             // 
@@ -252,6 +254,8 @@
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.SetColumnSpan(this.panel1, 4);
+            this.panel1.Controls.Add(this.deleteRowButton);
+            this.panel1.Controls.Add(this.clearRowButton);
             this.panel1.Controls.Add(this.saveButton);
             this.panel1.Controls.Add(this.cancelButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -259,6 +263,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(534, 29);
             this.panel1.TabIndex = 12;
+            // 
+            // deleteRowButton
+            // 
+            this.deleteRowButton.Location = new System.Drawing.Point(321, 2);
+            this.deleteRowButton.Name = "deleteRowButton";
+            this.deleteRowButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteRowButton.TabIndex = 3;
+            this.deleteRowButton.Text = "Delete Row";
+            this.deleteRowButton.UseVisualStyleBackColor = true;
+            this.deleteRowButton.Click += new System.EventHandler(this.deleteRowButton_Click);
+            // 
+            // clearRowButton
+            // 
+            this.clearRowButton.Location = new System.Drawing.Point(239, 3);
+            this.clearRowButton.Name = "clearRowButton";
+            this.clearRowButton.Size = new System.Drawing.Size(75, 23);
+            this.clearRowButton.TabIndex = 2;
+            this.clearRowButton.Text = "Clear Row";
+            this.clearRowButton.UseVisualStyleBackColor = true;
+            this.clearRowButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // saveButton
             // 
@@ -363,5 +387,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn PIlot;
         private System.Windows.Forms.BindingSource scoreboardBindingSource;
+        private System.Windows.Forms.Button clearRowButton;
+        private System.Windows.Forms.Button deleteRowButton;
     }
 }

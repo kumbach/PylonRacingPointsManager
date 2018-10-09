@@ -27,6 +27,11 @@ namespace ClubPylonManager
             PopulateScoreboard();
         }
 
+        public Contest GetContest()
+        {
+            return (Contest)contestBindingSource.Current;
+        }
+
         private void SetupScoreboardColumns()
         {
             DataGridViewTextBoxColumn[] columns = new DataGridViewTextBoxColumn[GetContest().Rounds];
@@ -147,13 +152,41 @@ namespace ClubPylonManager
 
         }
 
-        public Contest GetContest()
+        private void button1_Click(object sender, EventArgs e)
         {
-            return (Contest) contestBindingSource.Current;
+            if (scoreboardGrid.SelectedCells.Count == 0) {
+                return;
+            }
+
+            int row = scoreboardGrid.SelectedCells[0].RowIndex;
+            for (int i = 0; i < scoreboardGrid.ColumnCount; ++i) {
+                scoreboardGrid.Rows[row].Cells[i].Value = "";
+            }
         }
 
-        private void contestBindingSource_CurrentChanged(object sender, EventArgs e)
+        private void SelectionChanged(object sender, EventArgs e)
         {
+            int row = scoreboardGrid.SelectedCells[0].RowIndex;
+            bool enabled = row < scoreboardGrid.RowCount - 1;
+            clearRowButton.Enabled = enabled;
+            deleteRowButton.Enabled = enabled;
+        }
+
+        private void deleteRowButton_Click(object sender, EventArgs e)
+        {
+            if (scoreboardGrid.SelectedCells.Count == 0)
+            {
+                return;
+            }
+
+            else if (scoreboardGrid.Rows.Count == 1)
+            {
+                button1_Click(sender, e);
+                return;
+            }
+
+            int row = scoreboardGrid.SelectedCells[0].RowIndex;
+            scoreboardGrid.Rows.RemoveAt(row);
 
         }
     }
