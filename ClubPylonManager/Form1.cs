@@ -5,9 +5,10 @@ using Newtonsoft.Json;
 
 namespace ClubPylonManager
 {
-    public partial class Form1 : Form
-    {
-        private ClubFile clubFile;
+    public partial class Form1 : Form {
+        public const string AppName = "Club Pylon Manager";
+
+        private ClubFile _clubFile;
 
         public Form1()
         {
@@ -17,7 +18,7 @@ namespace ClubPylonManager
 
         private void SetMenuState()
         {
-            bool fileOpen = clubFile != null;
+            bool fileOpen = _clubFile != null;
             contestGridView.Enabled = fileOpen;
 
             fileNewMenuItem.Enabled = true;
@@ -47,63 +48,69 @@ namespace ClubPylonManager
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            clubFile = new ClubFile();
-            clubFile.Filename = @"d:\temp\2018.json";
+            _clubFile = new ClubFile();
+            this.Text = $"{AppName} - Untitled.json";
             SetMenuState();
         }
 
 
         private void contestNewMenuItem_Click(object sender, EventArgs e)
         {
-            ContestForm form = new ContestForm(clubFile, new Contest());
+            ContestForm form = new ContestForm(_clubFile, new Contest());
             var result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {
                 contestBindingSource.Add(form.GetContest());
             }
+
         }
 
         private void pilotRosterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new RosterForm(clubFile);
+            var form = new RosterForm(_clubFile);
             form.ShowDialog();
         }
 
         private void locationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new Locations(clubFile);
+            var form = new Locations(_clubFile);
             form.ShowDialog();
         }
 
         private void raceClassesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = new RaceClassesForm(clubFile);
+            var form = new RaceClassesForm(_clubFile);
             form.ShowDialog();
         }
 
         private void fileOpenMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "Club Pylon Manager Files|*.json";
+            openFileDialog1.Filter = $"{AppName} Files|*.json";
             openFileDialog1.Title = "Select a File";
 
             if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 var filename = openFileDialog1.FileName;
                 string json = File.ReadAllText(filename);
-                clubFile = JsonConvert.DeserializeObject<ClubFile>(json);
-                clubFile.Filename = filename;
+                _clubFile = JsonConvert.DeserializeObject<ClubFile>(json);
+                _clubFile.Filename = filename;
                 SetMenuState();
-                contestBindingSource.DataSource = clubFile.Contests;
+                contestBindingSource.DataSource = _clubFile.Contests;
 
-                this.Text = "Club Pylon Manager - " + filename;
+                this.Text = $"{AppName} - {filename}";
             }
         }
 
         private void fileSaveMenuItem_Click(object sender, EventArgs e)
         {
-            string json = JsonConvert.SerializeObject(clubFile, Formatting.Indented);
-            string filename = clubFile.Filename;
+            if (_clubFile.IsUnNamed()) {
+                fileSaveAsMenuItem_Click(sender, e);
+                return;
+            }
+
+            string json = JsonConvert.SerializeObject(_clubFile, Formatting.Indented);
+            string filename = _clubFile.Filename;
 
             File.WriteAllText(filename, json);
         }
@@ -111,18 +118,18 @@ namespace ClubPylonManager
         private void fileSaveAsMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "Club Pylon Manager Files|*.json";
-            saveFileDialog1.Title = "Save an Club Pylon Manager File";
+            saveFileDialog1.Filter = $"{AppName} Files|*.json";
+            saveFileDialog1.Title = $"Save an {AppName} File";
             saveFileDialog1.ShowDialog();
 
             if (saveFileDialog1.FileName != "")
             {
                 string filename = saveFileDialog1.FileName;
-                clubFile.Filename = filename;
-                string json = JsonConvert.SerializeObject(clubFile, Formatting.Indented);
+                _clubFile.Filename = filename;
+                string json = JsonConvert.SerializeObject(_clubFile, Formatting.Indented);
 
                 File.WriteAllText(filename, json);
-                this.Text = "Club Pylon Manager - " + filename;
+                this.Text = $"{AppName} - {filename}";
             }
         }
 
@@ -145,7 +152,9 @@ namespace ClubPylonManager
 
         private void fileCloseMenuItem_Click(object sender, EventArgs e)
         {
-            clubFile = null;
+            _clubFile = null;
+            this.Text = AppName;
+
             contestBindingSource.DataSource = null;
             SetMenuState();
         }
@@ -183,7 +192,7 @@ namespace ClubPylonManager
             var contest = (Contest) contestGridView.SelectedRows[0].DataBoundItem;
             var index = contestGridView.CurrentRow.Index;
 
-            ContestForm form = new ContestForm(clubFile, contest);
+            ContestForm form = new ContestForm(_clubFile, contest);
             var result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {
@@ -207,7 +216,7 @@ namespace ClubPylonManager
             string json = JsonConvert.SerializeObject(contest);
             var dupContest = JsonConvert.DeserializeObject<Contest>(json);
 
-            ContestForm form = new ContestForm(clubFile, dupContest);
+            ContestForm form = new ContestForm(_clubFile, dupContest);
             var result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {

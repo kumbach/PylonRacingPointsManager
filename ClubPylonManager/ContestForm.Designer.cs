@@ -42,14 +42,14 @@
             this.noteTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.scoreboardGrid = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PIlot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.roundsNumeric = new System.Windows.Forms.NumericUpDown();
             this.scoreboardBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PIlot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contestBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreboardGrid)).BeginInit();
@@ -114,6 +114,7 @@
             // 
             this.contestBindingSource.AllowNew = true;
             this.contestBindingSource.DataSource = typeof(ClubPylonManager.Contest);
+            this.contestBindingSource.CurrentChanged += new System.EventHandler(this.contestBindingSource_CurrentChanged);
             // 
             // label3
             // 
@@ -228,6 +229,24 @@
             this.scoreboardGrid.Size = new System.Drawing.Size(802, 296);
             this.scoreboardGrid.TabIndex = 11;
             // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Column1.HeaderText = "Place";
+            this.Column1.MaxInputLength = 2;
+            this.Column1.MinimumWidth = 60;
+            this.Column1.Name = "Column1";
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Column1.Width = 60;
+            // 
+            // PIlot
+            // 
+            this.PIlot.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PIlot.HeaderText = "Pilot";
+            this.PIlot.MinimumWidth = 160;
+            this.PIlot.Name = "PIlot";
+            this.PIlot.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
             // panel1
             // 
             this.panel1.AutoSize = true;
@@ -299,24 +318,6 @@
             // 
             this.scoreboardBindingSource.DataMember = "Scoreboard";
             this.scoreboardBindingSource.DataSource = this.contestBindingSource;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Column1.HeaderText = "Place";
-            this.Column1.MaxInputLength = 2;
-            this.Column1.MinimumWidth = 60;
-            this.Column1.Name = "Column1";
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Column1.Width = 60;
-            // 
-            // PIlot
-            // 
-            this.PIlot.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PIlot.HeaderText = "Pilot";
-            this.PIlot.MinimumWidth = 160;
-            this.PIlot.Name = "PIlot";
-            this.PIlot.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // ContestForm
             // 

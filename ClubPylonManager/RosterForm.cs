@@ -36,6 +36,8 @@ namespace ClubPylonManager
             {
                 clubFile.ClubRoster.Add(pilot);
             }
+            clubFile.SetDirty();
+
             this.Close();
         }
 

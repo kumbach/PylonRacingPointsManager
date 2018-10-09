@@ -67,8 +67,7 @@ namespace ClubPylonManager
                     continue;
                 }
                 var scoreboard = new Scoreboard();
-                int placeValue = 0;
-                int.TryParse((string) scoreboardGrid.Rows[i].Cells[0].Value, out placeValue);
+                int.TryParse((string) scoreboardGrid.Rows[i].Cells[0].Value, out var placeValue);
                 scoreboard.Place = placeValue;
                 scoreboard.Pilot = (string)scoreboardGrid.Rows[i].Cells[1].Value;
                 for (int cell = 2; cell < scoreboardGrid.ColumnCount; ++cell)
@@ -79,6 +78,7 @@ namespace ClubPylonManager
 
             }
             DialogResult = DialogResult.OK;
+            _clubFile.SetDirty();
             this.Close();
         }
 
@@ -127,6 +127,10 @@ namespace ClubPylonManager
         {
             int row = 0;
             var scoreboardRows = GetContest().Scoreboard;
+            if (scoreboardRows.Count == 0) {
+                return;
+            }
+
             scoreboardGrid.Rows.Add(scoreboardRows.Count);
             foreach (var scoreboard in scoreboardRows)
             {
@@ -146,6 +150,11 @@ namespace ClubPylonManager
         public Contest GetContest()
         {
             return (Contest) contestBindingSource.Current;
+        }
+
+        private void contestBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -28,6 +28,8 @@ namespace ClubPylonManager
             {
                 _clubFile.RaceClasses.Add(location);
             }
+
+            _clubFile.SetDirty();
             this.Close();
         }
 

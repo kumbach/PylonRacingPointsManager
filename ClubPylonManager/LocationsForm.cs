@@ -38,6 +38,7 @@ namespace ClubPylonManager
             {
                 _clubFile.Locations.Add(location);
             }
+            _clubFile.SetDirty();
             this.Close();
         }
 
