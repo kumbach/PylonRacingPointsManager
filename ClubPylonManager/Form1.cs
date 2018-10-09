@@ -59,8 +59,7 @@ namespace ClubPylonManager
             var result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {
-                contestBindingSource.Add(form.getContest());
-                //clubFile.AddContest(form.getContest());
+                contestBindingSource.Add(form.GetContest());
             }
         }
 
@@ -124,7 +123,6 @@ namespace ClubPylonManager
 
                 File.WriteAllText(filename, json);
                 this.Text = "Club Pylon Manager - " + filename;
-
             }
         }
 
@@ -132,7 +130,7 @@ namespace ClubPylonManager
         {
             var count = contestGridView.SelectedRows.Count;
 
-            string title = count == 1? "Delete Contest" : "Delete Contests";
+            string title = count == 1 ? "Delete Contest" : "Delete Contests";
             string message = count == 1 ? "Delete the selected contest?" : $"Delete the {count} selected contests?";
 
             if (MessageBox.Show(message, title, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) ==
@@ -177,16 +175,45 @@ namespace ClubPylonManager
 
         private void EditSelectedContest()
         {
-            Contest contest = (Contest)contestGridView.SelectedRows[0].DataBoundItem;
+            if (contestGridView.CurrentRow == null)
+            {
+                return;
+            }
+
+            var contest = (Contest) contestGridView.SelectedRows[0].DataBoundItem;
+            var index = contestGridView.CurrentRow.Index;
+
             ContestForm form = new ContestForm(clubFile, contest);
             var result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {
-                //contestBindingSource.Add(form.getContest());
-                //clubFile.AddContest(form.getContest());
+                contestBindingSource.RemoveAt(index);
+                contestBindingSource.Insert(index, form.GetContest());
+                contestGridView.ClearSelection();
+
+                contestGridView.Rows[index].Selected = true;
             }
         }
 
+        private void contestDuplicateMenuItem_Click(object sender, EventArgs e)
+        {
+            if (contestGridView.CurrentRow == null)
+            {
+                return;
+            }
 
+            var contest = (Contest)contestGridView.SelectedRows[0].DataBoundItem;
+
+            string json = JsonConvert.SerializeObject(contest);
+            var dupContest = JsonConvert.DeserializeObject<Contest>(json);
+
+            ContestForm form = new ContestForm(clubFile, dupContest);
+            var result = form.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                contestBindingSource.Add(form.GetContest());
+            }
+
+        }
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.raceClassCombo = new System.Windows.Forms.ComboBox();
             this.contestBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -42,7 +43,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.scoreboardGrid = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PIlot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PIlot = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
@@ -60,12 +61,11 @@
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.ColumnCount = 5;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.raceClassCombo, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
@@ -92,7 +92,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 461);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(824, 461);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // raceClassCombo
@@ -102,9 +102,9 @@
             this.raceClassCombo.DisplayMember = "RaceClass";
             this.raceClassCombo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.raceClassCombo.FormattingEnabled = true;
-            this.raceClassCombo.Location = new System.Drawing.Point(381, 24);
+            this.raceClassCombo.Location = new System.Drawing.Point(341, 24);
             this.raceClassCombo.Name = "raceClassCombo";
-            this.raceClassCombo.Size = new System.Drawing.Size(104, 21);
+            this.raceClassCombo.Size = new System.Drawing.Size(124, 21);
             this.raceClassCombo.TabIndex = 7;
             this.raceClassCombo.ValueMember = "RaceClass";
             // 
@@ -116,7 +116,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(381, 8);
+            this.label3.Location = new System.Drawing.Point(341, 8);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 13);
             this.label3.TabIndex = 2;
@@ -134,7 +134,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(161, 8);
+            this.label2.Location = new System.Drawing.Point(121, 8);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 1;
@@ -144,14 +144,14 @@
             // 
             this.contestDatePicker.CausesValidation = false;
             this.contestDatePicker.CustomFormat = "yyyy-MMM-dd";
-            this.contestDatePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contestBindingSource, "ContestDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "d"));
+            this.contestDatePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contestBindingSource, "ContestDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.contestDatePicker.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contestDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.contestDatePicker.Location = new System.Drawing.Point(11, 24);
             this.contestDatePicker.MaxDate = new System.DateTime(2050, 12, 31, 0, 0, 0, 0);
             this.contestDatePicker.MinDate = new System.DateTime(1965, 1, 1, 0, 0, 0, 0);
             this.contestDatePicker.Name = "contestDatePicker";
-            this.contestDatePicker.Size = new System.Drawing.Size(144, 20);
+            this.contestDatePicker.Size = new System.Drawing.Size(104, 20);
             this.contestDatePicker.TabIndex = 5;
             this.contestDatePicker.Value = new System.DateTime(2028, 1, 1, 0, 0, 0, 0);
             // 
@@ -162,7 +162,8 @@
             this.locationCombo.DisplayMember = "Location";
             this.locationCombo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.locationCombo.FormattingEnabled = true;
-            this.locationCombo.Location = new System.Drawing.Point(161, 24);
+            this.locationCombo.Location = new System.Drawing.Point(121, 24);
+            this.locationCombo.MaxLength = 40;
             this.locationCombo.Name = "locationCombo";
             this.locationCombo.Size = new System.Drawing.Size(214, 21);
             this.locationCombo.TabIndex = 6;
@@ -185,7 +186,7 @@
             this.noteTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.noteTextBox.Location = new System.Drawing.Point(11, 72);
             this.noteTextBox.Name = "noteTextBox";
-            this.noteTextBox.Size = new System.Drawing.Size(762, 20);
+            this.noteTextBox.Size = new System.Drawing.Size(802, 20);
             this.noteTextBox.TabIndex = 9;
             // 
             // label5
@@ -202,6 +203,15 @@
             // 
             this.scoreboardGrid.AllowUserToResizeColumns = false;
             this.scoreboardGrid.AllowUserToResizeRows = false;
+            this.scoreboardGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.scoreboardGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.scoreboardGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.scoreboardGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -209,26 +219,31 @@
             this.tableLayoutPanel1.SetColumnSpan(this.scoreboardGrid, 5);
             this.scoreboardGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scoreboardGrid.Location = new System.Drawing.Point(11, 119);
+            this.scoreboardGrid.MultiSelect = false;
             this.scoreboardGrid.Name = "scoreboardGrid";
             this.scoreboardGrid.RowHeadersVisible = false;
-            this.scoreboardGrid.Size = new System.Drawing.Size(762, 296);
+            this.scoreboardGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.scoreboardGrid.Size = new System.Drawing.Size(802, 296);
             this.scoreboardGrid.TabIndex = 11;
             // 
             // Column1
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column1.HeaderText = "Place";
+            this.Column1.MaxInputLength = 2;
             this.Column1.MinimumWidth = 60;
             this.Column1.Name = "Column1";
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Column1.Width = 60;
             // 
             // PIlot
             // 
             this.PIlot.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.PIlot.HeaderText = "Pilot";
-            this.PIlot.MaxInputLength = 50;
             this.PIlot.MinimumWidth = 160;
             this.PIlot.Name = "PIlot";
+            this.PIlot.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.PIlot.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // panel1
             // 
@@ -240,7 +255,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(11, 421);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(584, 29);
+            this.panel1.Size = new System.Drawing.Size(534, 29);
             this.panel1.TabIndex = 12;
             // 
             // saveButton
@@ -266,7 +281,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(491, 8);
+            this.label6.Location = new System.Drawing.Point(471, 8);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 13);
             this.label6.TabIndex = 14;
@@ -274,8 +289,9 @@
             // 
             // roundsNumeric
             // 
-            this.roundsNumeric.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contestBindingSource, "Rounds", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, "0", "N0"));
-            this.roundsNumeric.Location = new System.Drawing.Point(491, 24);
+            this.roundsNumeric.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.contestBindingSource, "Rounds", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N0"));
+            this.roundsNumeric.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roundsNumeric.Location = new System.Drawing.Point(471, 24);
             this.roundsNumeric.Maximum = new decimal(new int[] {
             20,
             0,
@@ -287,8 +303,7 @@
             0,
             0});
             this.roundsNumeric.Name = "roundsNumeric";
-            this.roundsNumeric.ReadOnly = true;
-            this.roundsNumeric.Size = new System.Drawing.Size(104, 20);
+            this.roundsNumeric.Size = new System.Drawing.Size(74, 20);
             this.roundsNumeric.TabIndex = 18;
             this.roundsNumeric.Value = new decimal(new int[] {
             8,
@@ -301,7 +316,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.ClientSize = new System.Drawing.Size(824, 461);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "ContestForm";
@@ -335,9 +350,9 @@
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button cancelButton;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.BindingSource contestBindingSource;
         private System.Windows.Forms.NumericUpDown roundsNumeric;
+        private System.Windows.Forms.BindingSource contestBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PIlot;
+        private System.Windows.Forms.DataGridViewComboBoxColumn PIlot;
     }
 }

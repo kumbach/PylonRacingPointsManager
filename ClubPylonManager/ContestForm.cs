@@ -20,7 +20,7 @@ namespace ClubPylonManager
             }
             else
             {
-                contestBindingSource.DataSource = contest;
+                contestBindingSource.Add(contest.Clone());
             }
 
             SetupScoreboardColumns();
@@ -28,8 +28,8 @@ namespace ClubPylonManager
 
         private void SetupScoreboardColumns()
         {
-            DataGridViewTextBoxColumn[] columns = new DataGridViewTextBoxColumn[getContest().Rounds];
-            for (int i = 1; i <= getContest().Rounds; ++i)
+            DataGridViewTextBoxColumn[] columns = new DataGridViewTextBoxColumn[GetContest().Rounds];
+            for (int i = 1; i <= GetContest().Rounds; ++i)
             {
                 var column = new DataGridViewTextBoxColumn();
                 column.HeaderText = $"Round {i}";
@@ -57,6 +57,9 @@ namespace ClubPylonManager
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            var contest = GetContest();
+            contest.Scoreboard.Clear();
+
             DialogResult = DialogResult.OK;
             this.Close();
         }
@@ -90,7 +93,7 @@ namespace ClubPylonManager
         }
 
 
-        public Contest getContest()
+        public Contest GetContest()
         {
             return (Contest) contestBindingSource.Current;
         }

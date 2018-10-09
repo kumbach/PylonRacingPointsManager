@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ClubPylonManager {
     public class Contest {
@@ -28,6 +29,12 @@ namespace ClubPylonManager {
             this.Pilots = pilots;
             this.Notes = notes;
             this.Scoreboard = new List<Scoreboard>();
+        }
+
+        public Contest Clone()
+        {
+            string json = JsonConvert.SerializeObject(this);
+            return JsonConvert.DeserializeObject<Contest>(json);
         }
     }
 }
