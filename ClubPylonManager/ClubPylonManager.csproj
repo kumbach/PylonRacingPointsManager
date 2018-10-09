@@ -81,6 +81,7 @@
     <Compile Include="RosterForm.Designer.cs">
       <DependentUpon>RosterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\CellValidationDetail.cs" />
     <Compile Include="src\ClubFile.cs" />
     <Compile Include="src\Contest.cs" />
     <Compile Include="src\RaceClass.cs" />

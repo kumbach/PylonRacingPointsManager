@@ -9,7 +9,7 @@ namespace ClubPylonManager {
 
         [JsonIgnore]
         public bool Dirty { get; set; }
-
+        
         public string FileVersion { get; } = "1.0";
         public List<Pilot> ClubRoster { get; set; }
         public List<RaceClass> RaceClasses { get; set; }
