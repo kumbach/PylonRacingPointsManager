@@ -53,16 +53,32 @@ namespace ClubPylonManager
             SetMenuState();
         }
 
-
         private void contestNewMenuItem_Click(object sender, EventArgs e)
         {
-            ContestForm form = new ContestForm(_clubFile, new Contest());
-            var result = form.ShowDialog(this);
-            if (result == DialogResult.OK)
+            if (_clubFile.ClubRoster.Count == 0)
             {
-                contestBindingSource.Add(form.GetContest());
+                ContestForm contestForm = new ContestForm(_clubFile, new Contest());
+                var result = contestForm.ShowDialog(this);
+                if (result == DialogResult.OK)
+                {
+                    contestBindingSource.Add(contestForm.GetContest());
+                }
+
+                return;
             }
 
+            var form = new PilotSelectForm(_clubFile);
+            var r = form.ShowDialog();
+
+            if (r != DialogResult.Cancel)
+            {
+                ContestForm contestForm = new ContestForm(_clubFile, new Contest(form.SelectedPilots()));
+                var result = contestForm.ShowDialog(this);
+                if (result == DialogResult.OK)
+                {
+                    contestBindingSource.Add(contestForm.GetContest());
+                }
+            }
         }
 
         private void pilotRosterToolStripMenuItem_Click(object sender, EventArgs e)

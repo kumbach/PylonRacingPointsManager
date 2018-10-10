@@ -64,6 +64,7 @@ namespace ClubPylonManager
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contestGridView = new System.Windows.Forms.DataGridView();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.contestDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.locationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.raceClassDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,7 +73,6 @@ namespace ClubPylonManager
             this.pilotsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contestBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contestGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contestBindingSource)).BeginInit();
@@ -194,26 +194,26 @@ namespace ClubPylonManager
             // contestNewMenuItem
             // 
             this.contestNewMenuItem.Name = "contestNewMenuItem";
-            this.contestNewMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.contestNewMenuItem.Size = new System.Drawing.Size(133, 22);
             this.contestNewMenuItem.Text = "Add...";
             this.contestNewMenuItem.Click += new System.EventHandler(this.contestNewMenuItem_Click);
             // 
             // contestEditMenuItem
             // 
             this.contestEditMenuItem.Name = "contestEditMenuItem";
-            this.contestEditMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.contestEditMenuItem.Size = new System.Drawing.Size(133, 22);
             this.contestEditMenuItem.Text = "Edit...";
             this.contestEditMenuItem.Click += new System.EventHandler(this.contestEditMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(130, 6);
             // 
             // contestDuplicateMenuItem
             // 
             this.contestDuplicateMenuItem.Name = "contestDuplicateMenuItem";
-            this.contestDuplicateMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.contestDuplicateMenuItem.Size = new System.Drawing.Size(133, 22);
             this.contestDuplicateMenuItem.Text = "Duplicate...";
             this.contestDuplicateMenuItem.Click += new System.EventHandler(this.contestDuplicateMenuItem_Click);
             this.contestDuplicateMenuItem.DoubleClick += new System.EventHandler(this.GridDoubleClicked);
@@ -221,12 +221,12 @@ namespace ClubPylonManager
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(130, 6);
             // 
             // contestDeleteMenuItem
             // 
             this.contestDeleteMenuItem.Name = "contestDeleteMenuItem";
-            this.contestDeleteMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.contestDeleteMenuItem.Size = new System.Drawing.Size(133, 22);
             this.contestDeleteMenuItem.Text = "Delete...";
             this.contestDeleteMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -348,6 +348,16 @@ namespace ClubPylonManager
             this.contestGridView.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.RowStateChanged);
             this.contestGridView.DoubleClick += new System.EventHandler(this.GridDoubleClicked);
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
+            this.flowLayoutPanel1.TabIndex = 1;
+            // 
             // contestDateDataGridViewTextBoxColumn
             // 
             this.contestDateDataGridViewTextBoxColumn.DataPropertyName = "ContestDate";
@@ -407,16 +417,6 @@ namespace ClubPylonManager
             // contestBindingSource
             // 
             this.contestBindingSource.DataSource = typeof(ClubPylonManager.Contest);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
-            this.flowLayoutPanel1.TabIndex = 1;
             // 
             // Form1
             // 

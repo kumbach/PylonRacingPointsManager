@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.raceClassCombo = new System.Windows.Forms.ComboBox();
             this.contestBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -45,6 +46,7 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PIlot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.deleteRowButton = new System.Windows.Forms.Button();
             this.clearRowButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -52,6 +54,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.roundsNumeric = new System.Windows.Forms.NumericUpDown();
             this.scoreboardBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pilotsLinkLabel = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contestBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreboardGrid)).BeginInit();
@@ -83,6 +86,7 @@
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.label6, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.roundsNumeric, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.pilotsLinkLabel, 4, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -210,7 +214,7 @@
             this.scoreboardGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -221,6 +225,14 @@
             this.Column1,
             this.PIlot});
             this.tableLayoutPanel1.SetColumnSpan(this.scoreboardGrid, 5);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.scoreboardGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.scoreboardGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scoreboardGrid.Location = new System.Drawing.Point(11, 119);
             this.scoreboardGrid.MultiSelect = false;
@@ -230,6 +242,7 @@
             this.scoreboardGrid.Size = new System.Drawing.Size(802, 296);
             this.scoreboardGrid.TabIndex = 11;
             this.scoreboardGrid.SelectionChanged += new System.EventHandler(this.SelectionChanged);
+            this.scoreboardGrid.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.SortCompare);
             // 
             // Column1
             // 
@@ -253,7 +266,8 @@
             // 
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.SetColumnSpan(this.panel1, 4);
+            this.tableLayoutPanel1.SetColumnSpan(this.panel1, 5);
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.deleteRowButton);
             this.panel1.Controls.Add(this.clearRowButton);
             this.panel1.Controls.Add(this.saveButton);
@@ -261,8 +275,18 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(11, 421);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(534, 29);
+            this.panel1.Size = new System.Drawing.Size(802, 29);
             this.panel1.TabIndex = 12;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(446, 7);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(337, 13);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Heat Entry: M:SS.HH, NT, DC, DNS, DNF, MA, CRA, OUT";
             // 
             // deleteRowButton
             // 
@@ -343,6 +367,18 @@
             this.scoreboardBindingSource.DataMember = "Scoreboard";
             this.scoreboardBindingSource.DataSource = this.contestBindingSource;
             // 
+            // pilotsLinkLabel
+            // 
+            this.pilotsLinkLabel.AutoSize = true;
+            this.pilotsLinkLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pilotsLinkLabel.Location = new System.Drawing.Point(551, 21);
+            this.pilotsLinkLabel.Name = "pilotsLinkLabel";
+            this.pilotsLinkLabel.Size = new System.Drawing.Size(262, 27);
+            this.pilotsLinkLabel.TabIndex = 19;
+            this.pilotsLinkLabel.TabStop = true;
+            this.pilotsLinkLabel.Text = "Select Pilots";
+            this.pilotsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.pilotsLinkLabel_LinkClicked);
+            // 
             // ContestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -358,6 +394,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.contestBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreboardGrid)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.roundsNumeric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreboardBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -384,10 +421,12 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown roundsNumeric;
         private System.Windows.Forms.BindingSource contestBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PIlot;
         private System.Windows.Forms.BindingSource scoreboardBindingSource;
         private System.Windows.Forms.Button clearRowButton;
         private System.Windows.Forms.Button deleteRowButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PIlot;
+        private System.Windows.Forms.LinkLabel pilotsLinkLabel;
     }
 }

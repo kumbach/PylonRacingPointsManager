@@ -2,36 +2,47 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace ClubPylonManager {
-    public partial class ContestForm : Form {
+namespace ClubPylonManager
+{
+    public partial class ContestForm : Form
+    {
         private readonly ClubFile _clubFile;
+        private string[] _heatCodes = {"NT", "DC", "DNS", "DNF", "MA", "CRA", "OUT"};
+        private Regex _regex = new Regex("^[0-2]:[0-5][0-9]\\.[0-9][0-9]$");
 
-        public ContestForm(ClubFile clubFile, Contest contest) {
+        public ContestForm(ClubFile clubFile, Contest contest)
+        {
             _clubFile = clubFile;
             InitializeComponent();
 
             PopulateComboBoxes();
-            if (contest == null) {
+            if (contest == null)
+            {
                 contestBindingSource.AddNew();
             }
-            else {
+            else
+            {
                 contestBindingSource.Add(contest.Clone());
             }
 
             SetupScoreboardColumns();
             PopulateScoreboard();
-            ValidateScoreboard();
         }
 
-        public Contest GetContest() {
+        public Contest GetContest()
+        {
             return (Contest) contestBindingSource.Current;
         }
 
-        private void SetupScoreboardColumns() {
+        private void SetupScoreboardColumns()
+        {
             DataGridViewTextBoxColumn[] columns = new DataGridViewTextBoxColumn[GetContest().Rounds];
-            for (int i = 1; i <= GetContest().Rounds; ++i) {
+            for (int i = 1; i <= GetContest().Rounds; ++i)
+            {
                 var column = new DataGridViewTextBoxColumn();
                 column.HeaderText = $"Round {i}";
                 column.MaxInputLength = 7;
@@ -45,49 +56,61 @@ namespace ClubPylonManager {
             scoreboardGrid.Columns.AddRange(columns);
         }
 
-        private void PopulateComboBoxes() {
+        private void PopulateComboBoxes()
+        {
             locationCombo.DataSource = _clubFile.Locations;
             raceClassCombo.DataSource = _clubFile.RaceClasses;
         }
 
-        private void cancelButton_Click(object sender, EventArgs e) {
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
             DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
-        private void saveButton_Click(object sender, EventArgs e) {
+        private void saveButton_Click(object sender, EventArgs e)
+        {
             var contest = GetContest();
             ClearValidationErrors();
 
-            if (ValidateScoreboard()) {
+            if (ValidateScoreboard())
+            {
                 contest.Status = "Valid";
             }
-            else {
+            else
+            {
                 contest.Status = "Incomplete";
                 if (MessageBox.Show("The scoreboard is incomplete or has entry errors. \n\n" +
                                     "You can still save it but it won't be included in any reports.\n\n" +
                                     "Save it?", Form1.AppName, MessageBoxButtons.YesNo,
                         MessageBoxIcon.Exclamation) ==
-                    DialogResult.Yes) {
+                    DialogResult.Yes)
+                {
                     contest.Status = "Incomplete";
                 }
-                else {
+                else
+                {
                     return;
                 }
             }
 
             contest.Scoreboard.Clear();
-            for (int i = 0; i < scoreboardGrid.RowCount; ++i) {
-                if (RowIsBlank(i)) {
+            contest.Pilots = scoreboardGrid.RowCount - 1;
+            for (int i = 0; i < scoreboardGrid.RowCount; ++i)
+            {
+                if (RowIsBlank(i))
+                {
                     continue;
                 }
 
                 var scoreboard = new Scoreboard();
                 int.TryParse((string) scoreboardGrid.Rows[i].Cells[0].Value, out var placeValue);
-                scoreboard.Place = placeValue;
+                scoreboard.Place = placeValue.ToString();
                 scoreboard.Pilot = (string) scoreboardGrid.Rows[i].Cells[1].Value;
-                for (int cell = 2; cell < scoreboardGrid.ColumnCount; ++cell) {
-                    scoreboard.HeatTimes.Add((string) scoreboardGrid.Rows[i].Cells[cell].Value);
+                for (int cell = 2; cell < scoreboardGrid.ColumnCount; ++cell)
+                {
+                    scoreboard.HeatTimes.Add(((string) scoreboardGrid.Rows[i].Cells[cell].Value ?? "").Trim()
+                        .ToUpper());
                 }
 
                 contest.Scoreboard.Add(scoreboard);
@@ -98,57 +121,146 @@ namespace ClubPylonManager {
             this.Close();
         }
 
-        private bool ValidateScoreboard() {
-            // duplicate pilots
-            // duplicate place
-            // empty cells
-            // score cells: #:##.##, NT, DC, DNS, DNF, MA, OUT
+        private bool ValidateScoreboard()
+        {
             List<CellValidationDetail> errors = new List<CellValidationDetail>();
             ValidatePlace(errors);
             ValidatePilots(errors);
+            ValidateHeats(errors);
             ShowValidationErrors(errors);
-            return false;
+            return errors.Count == 0;
         }
 
-        private void ValidatePlace(List<CellValidationDetail> errors) {
+        private void ValidateHeats(List<CellValidationDetail> errors)
+        {
+            for (int row = 0; row < scoreboardGrid.RowCount; ++row)
+            {
+                if (RowIsBlank(row))
+                {
+                    continue;
+                }
+
+                for (var col = 2; col < scoreboardGrid.ColumnCount; ++col)
+                {
+                    string cellValue = (string) scoreboardGrid.Rows[row].Cells[col].Value ?? "";
+                    cellValue = cellValue.Trim().ToUpper();
+
+                    if (cellValue.Length == 0)
+                    {
+                        errors.Add(new CellValidationDetail(row, col, "Heat time is required"));
+                        continue;
+                    }
+
+                    if (_regex.Match(cellValue).Success)
+                    {
+                        continue;
+                    }
+
+                    if (_heatCodes.Contains(cellValue))
+                    {
+                        continue;
+                    }
+
+                    errors.Add(new CellValidationDetail(row, col, "Heat time or code is invalid.\nRefer to Heat Entry tip below."));
+                }
+            }
         }
 
-        private void ValidatePilots(List<CellValidationDetail> errors) {
+        private void ValidatePlace(List<CellValidationDetail> errors)
+        {
+            Dictionary<string, List<int>> placeToCountMap = new Dictionary<string, List<int>>();
+            int rows = scoreboardGrid.RowCount;
+
+            for (int row = 0; row < rows; ++row)
+            {
+                if (RowIsBlank(row))
+                {
+                    continue;
+                }
+
+                int.TryParse((string) scoreboardGrid.Rows[row].Cells[0].Value, out var place);
+                if (place < 1 || place >= scoreboardGrid.RowCount)
+                {
+                    errors.Add(new CellValidationDetail(row, 0,
+                        $"Place must be between 1 and {scoreboardGrid.RowCount - 1}"));
+                    continue;
+                }
+
+                string key = (string) scoreboardGrid.Rows[row].Cells[0].Value ?? "";
+                key = key.Trim().ToLower();
+                if (placeToCountMap.ContainsKey(key))
+                {
+                    var rowList = placeToCountMap[key];
+                    rowList.Add(row);
+                }
+                else
+                {
+                    var rowList = new List<int> {row};
+                    placeToCountMap.Add(key, rowList);
+                }
+            }
+
+            foreach (var key in placeToCountMap.Keys)
+            {
+                var rowList = placeToCountMap[key];
+                foreach (var row in rowList)
+                {
+                    if (rowList.Count > 1)
+                    {
+                        errors.Add(new CellValidationDetail(row, 0, "Duplicate place"));
+                    }
+                }
+            }
+        }
+
+        private void ValidatePilots(List<CellValidationDetail> errors)
+        {
             Dictionary<string, List<int>> pilotToCountMap = new Dictionary<string, List<int>>();
-            for (int row = 0; row < scoreboardGrid.RowCount; ++row) {
-                if (RowIsBlank(row)) {
+            for (int row = 0; row < scoreboardGrid.RowCount; ++row)
+            {
+                if (RowIsBlank(row))
+                {
                     continue;
                 }
 
                 string name = (string) scoreboardGrid.Rows[row].Cells[1].Value ?? "";
                 name = name.Trim().ToLower();
 
-                if (pilotToCountMap.ContainsKey(name)) {
+                if (pilotToCountMap.ContainsKey(name))
+                {
                     var rowList = pilotToCountMap[name];
                     rowList.Add(row);
                 }
-                else {
+                else
+                {
                     var rowList = new List<int> {row};
                     pilotToCountMap.Add(name, rowList);
                 }
             }
 
-            foreach (var key in pilotToCountMap.Keys) {
+            foreach (var key in pilotToCountMap.Keys)
+            {
                 var rowList = pilotToCountMap[key];
-                foreach (var row in rowList) {
-                    if (key.Length == 0) {
+                foreach (var row in rowList)
+                {
+                    if (key.Length == 0)
+                    {
                         errors.Add(new CellValidationDetail(row, 1, "Pilot name is required"));
                     }
-                    else if (rowList.Count > 1) {
-                        errors.Add(new CellValidationDetail(row, 1, "Duplicate pilot"));
+                    else if (rowList.Count > 1)
+                    {
+                        errors.Add(new CellValidationDetail(row, 1, "Duplicate pilot entry"));
                     }
                 }
             }
         }
 
-        private bool RowIsBlank(int row) {
-            for (int i = 0; i < scoreboardGrid.ColumnCount; ++i) {
-                if (!string.IsNullOrEmpty((string) scoreboardGrid.Rows[row].Cells[i].Value)) {
+        private bool RowIsBlank(int row)
+        {
+            for (int i = 0; i < scoreboardGrid.ColumnCount; ++i)
+            {
+                if (!string.IsNullOrEmpty((string) scoreboardGrid.Rows[row].Cells[i].Value))
+                {
                     return false;
                 }
             }
@@ -156,11 +268,14 @@ namespace ClubPylonManager {
             return true;
         }
 
-        private void roundsNumeric_ValueChanged(object sender, EventArgs e) {
+        private void roundsNumeric_ValueChanged(object sender, EventArgs e)
+        {
             var control = (NumericUpDown) sender;
             var diff = scoreboardGrid.Columns.Count - 2 - control.Value;
-            if (diff < 0) {
-                for (int i = scoreboardGrid.ColumnCount - 2 + 1; i <= control.Value; ++i) {
+            if (diff < 0)
+            {
+                for (int i = scoreboardGrid.ColumnCount - 2 + 1; i <= control.Value; ++i)
+                {
                     var column = new DataGridViewTextBoxColumn();
                     column.HeaderText = $"Round {i}";
                     column.MaxInputLength = 7;
@@ -171,26 +286,32 @@ namespace ClubPylonManager {
                     scoreboardGrid.Columns.Add(column);
                 }
             }
-            else {
-                while (scoreboardGrid.ColumnCount - 2 > control.Value) {
+            else
+            {
+                while (scoreboardGrid.ColumnCount - 2 > control.Value)
+                {
                     scoreboardGrid.Columns.RemoveAt(scoreboardGrid.ColumnCount - 1);
                 }
             }
         }
 
-        private void PopulateScoreboard() {
+        private void PopulateScoreboard()
+        {
             int row = 0;
             var scoreboardRows = GetContest().Scoreboard;
-            if (scoreboardRows.Count == 0) {
+            if (scoreboardRows.Count == 0)
+            {
                 return;
             }
 
             scoreboardGrid.Rows.Add(scoreboardRows.Count);
-            foreach (var scoreboard in scoreboardRows) {
+            foreach (var scoreboard in scoreboardRows)
+            {
                 scoreboardGrid.Rows[row].Cells[0].Value = "" + scoreboard.Place;
                 scoreboardGrid.Rows[row].Cells[1].Value = scoreboard.Pilot;
 
-                for (int round = 0; round < GetContest().Rounds; ++round) {
+                for (int round = 0; round < GetContest().Rounds; ++round)
+                {
                     scoreboardGrid.Rows[row].Cells[round + 2].Value = scoreboard.HeatTimes[round];
                 }
 
@@ -198,32 +319,46 @@ namespace ClubPylonManager {
             }
         }
 
-        private void button1_Click(object sender, EventArgs e) {
-            if (scoreboardGrid.SelectedCells.Count == 0) {
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (scoreboardGrid.SelectedCells.Count == 0)
+            {
                 return;
             }
 
             int row = scoreboardGrid.SelectedCells[0].RowIndex;
-            for (int i = 0; i < scoreboardGrid.ColumnCount; ++i) {
+            for (int i = 0; i < scoreboardGrid.ColumnCount; ++i)
+            {
                 scoreboardGrid.Rows[row].Cells[i].Value = "";
                 scoreboardGrid.Rows[row].Cells[i].Style.BackColor = Color.White;
                 scoreboardGrid.Rows[row].Cells[i].ToolTipText = "";
             }
         }
 
-        private void SelectionChanged(object sender, EventArgs e) {
+        private void SelectionChanged(object sender, EventArgs e)
+        {
+            if (scoreboardGrid.SelectedCells.Count == 0)
+            {
+                clearRowButton.Enabled = false;
+                deleteRowButton.Enabled = false;
+                return;
+            }
+
             int row = scoreboardGrid.SelectedCells[0].RowIndex;
             bool enabled = row < scoreboardGrid.RowCount - 1;
             clearRowButton.Enabled = enabled;
             deleteRowButton.Enabled = enabled;
         }
 
-        private void deleteRowButton_Click(object sender, EventArgs e) {
-            if (scoreboardGrid.SelectedCells.Count == 0) {
+        private void deleteRowButton_Click(object sender, EventArgs e)
+        {
+            if (scoreboardGrid.SelectedCells.Count == 0)
+            {
                 return;
             }
 
-            else if (scoreboardGrid.Rows.Count == 1) {
+            else if (scoreboardGrid.Rows.Count == 1)
+            {
                 button1_Click(sender, e);
                 return;
             }
@@ -232,20 +367,51 @@ namespace ClubPylonManager {
             scoreboardGrid.Rows.RemoveAt(row);
         }
 
-        private void ClearValidationErrors() {
-            for (int row = 0; row < scoreboardGrid.RowCount; ++row) {
-                for (int col = 0; col < scoreboardGrid.ColumnCount; ++col) {
+        private void ClearValidationErrors()
+        {
+            for (int row = 0; row < scoreboardGrid.RowCount; ++row)
+            {
+                for (int col = 0; col < scoreboardGrid.ColumnCount; ++col)
+                {
                     scoreboardGrid.Rows[row].Cells[col].Style.BackColor = Color.White;
                     scoreboardGrid.Rows[row].Cells[col].ToolTipText = "";
                 }
             }
         }
 
-        private void ShowValidationErrors(List<CellValidationDetail> errors) {
-            foreach (CellValidationDetail detail in errors) {
+        private void ShowValidationErrors(List<CellValidationDetail> errors)
+        {
+            foreach (CellValidationDetail detail in errors)
+            {
                 scoreboardGrid.Rows[detail.Row].Cells[detail.Col].Style.BackColor = Color.Salmon;
                 scoreboardGrid.Rows[detail.Row].Cells[detail.Col].ToolTipText = detail.message;
             }
+        }
+
+        private void SortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        {
+            Console.WriteLine("hey");
+            //Suppose your interested column has index 1
+            if (e.Column.Index == 0)
+            {
+                int left = 0;
+                if (e.CellValue1 != null) {
+                    int.TryParse(e.CellValue1.ToString() ?? "0", out left);
+                }
+
+                int right = 0;
+                if (e.CellValue2 != null) {
+                    int.TryParse(e.CellValue2.ToString() ?? "0", out right);
+                }
+
+                e.SortResult = left.CompareTo(right);
+                e.Handled = true; //pass by the default sorting
+            }
+        }
+
+        private void pilotsLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }
