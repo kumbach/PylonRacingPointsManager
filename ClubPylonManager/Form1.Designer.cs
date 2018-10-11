@@ -52,9 +52,9 @@ namespace ClubPylonManager
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.contestDeleteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contestMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.seasonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pilotsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contestReportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.seasonReportMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pilotStatisticsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pilotRosterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.raceClassesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +64,6 @@ namespace ClubPylonManager
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contestGridView = new System.Windows.Forms.DataGridView();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.contestDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.locationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.raceClassDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,6 +72,7 @@ namespace ClubPylonManager
             this.pilotsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contestBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contestGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contestBindingSource)).BeginInit();
@@ -233,30 +233,31 @@ namespace ClubPylonManager
             // reportsToolStripMenuItem
             // 
             this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.contestMenuItem,
-            this.seasonMenuItem,
-            this.pilotsMenuItem});
+            this.contestReportMenuItem,
+            this.seasonReportMenuItem,
+            this.pilotStatisticsMenuItem});
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportsToolStripMenuItem.Text = "Reports";
             // 
-            // contestMenuItem
+            // contestReportMenuItem
             // 
-            this.contestMenuItem.Name = "contestMenuItem";
-            this.contestMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.contestMenuItem.Text = "Contest Summary";
+            this.contestReportMenuItem.Name = "contestReportMenuItem";
+            this.contestReportMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.contestReportMenuItem.Text = "Contest Summary";
+            this.contestReportMenuItem.Click += new System.EventHandler(this.contestReportMenuItem_Click);
             // 
-            // seasonMenuItem
+            // seasonReportMenuItem
             // 
-            this.seasonMenuItem.Name = "seasonMenuItem";
-            this.seasonMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.seasonMenuItem.Text = "Season Summary";
+            this.seasonReportMenuItem.Name = "seasonReportMenuItem";
+            this.seasonReportMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.seasonReportMenuItem.Text = "Season Summary";
             // 
-            // pilotsMenuItem
+            // pilotStatisticsMenuItem
             // 
-            this.pilotsMenuItem.Name = "pilotsMenuItem";
-            this.pilotsMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.pilotsMenuItem.Text = "Pilot Statistics";
+            this.pilotStatisticsMenuItem.Name = "pilotStatisticsMenuItem";
+            this.pilotStatisticsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pilotStatisticsMenuItem.Text = "Pilot Statistics";
             // 
             // clubToolStripMenuItem
             // 
@@ -348,16 +349,6 @@ namespace ClubPylonManager
             this.contestGridView.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.RowStateChanged);
             this.contestGridView.DoubleClick += new System.EventHandler(this.GridDoubleClicked);
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
-            this.flowLayoutPanel1.TabIndex = 1;
-            // 
             // contestDateDataGridViewTextBoxColumn
             // 
             this.contestDateDataGridViewTextBoxColumn.DataPropertyName = "ContestDate";
@@ -418,6 +409,16 @@ namespace ClubPylonManager
             // 
             this.contestBindingSource.DataSource = typeof(ClubPylonManager.Contest);
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
+            this.flowLayoutPanel1.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -456,9 +457,9 @@ namespace ClubPylonManager
         private System.Windows.Forms.DataGridView contestGridView;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.BindingSource contestBindingSource;
-        private System.Windows.Forms.ToolStripMenuItem contestMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem seasonMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pilotsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem contestReportMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem seasonReportMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pilotStatisticsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contestNewMenuItem;

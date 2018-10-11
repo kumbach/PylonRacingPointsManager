@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
@@ -29,16 +30,16 @@ namespace ClubPylonManager
             fileSaveAsMenuItem.Enabled = fileOpen;
 
             contestNewMenuItem.Enabled = fileOpen;
-            SetEditMenuState();
+
+            seasonReportMenuItem.Enabled = fileOpen;
+            pilotStatisticsMenuItem.Enabled = fileOpen;
 
             pilotRosterToolStripMenuItem.Enabled = fileOpen;
             locationsToolStripMenuItem.Enabled = fileOpen;
             raceClassesToolStripMenuItem.Enabled = fileOpen;
             settingsToolStripMenuItem.Enabled = fileOpen;
 
-            contestMenuItem.Enabled = fileOpen;
-            seasonMenuItem.Enabled = fileOpen;
-            pilotsMenuItem.Enabled = fileOpen;
+            SetEditMenuState();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -191,6 +192,7 @@ namespace ClubPylonManager
             contestDuplicateMenuItem.Enabled = contestGridView.SelectedRows.Count == 1;
 
             contestDeleteMenuItem.Enabled = contestGridView.SelectedRows.Count > 0;
+            contestReportMenuItem.Enabled = contestGridView.SelectedRows.Count > 0;
         }
 
         private void GridDoubleClicked(object sender, EventArgs e)
@@ -239,6 +241,19 @@ namespace ClubPylonManager
                 contestBindingSource.Add(form.GetContest());
             }
 
+        }
+
+        private void contestReportMenuItem_Click(object sender, EventArgs e)
+        {
+            List<Contest> contests = new List<Contest>();
+            foreach (DataGridViewRow row in contestGridView.SelectedRows)
+            {
+                contests.Add((Contest) contestBindingSource.List[row.Index]);
+            }
+
+            var report = new ContestSummaryReport(contests);
+            var form = new ReportViewerForm(report.GenerateReport());
+            form.ShowDialog();
         }
     }
 }
