@@ -70,12 +70,31 @@ namespace ClubPylonManager
                 }
             }
 
-            return bestHeatNum < 0 ? "0:00.00" : HeatTimes[bestHeatNum];
+            return bestHeatNum < 0 ? "NT" : HeatTimes[bestHeatNum];
         }
 
-        public String AverageTime()
+        public string AverageTime()
         {
-            return "average";
+            double timeAccum = 0;
+            double numHeats = 0;
+
+            for (var i = 0; i < HeatTimes.Count; ++i)
+            {
+                if (string.IsNullOrWhiteSpace(HeatTimes[i]) || HeatTimes[i].Length != 7) {
+                    continue;
+                }
+                var time = ConvertHeatStringToSeconds(i);
+                if (time > 0)
+                {
+                    ++numHeats;
+                    timeAccum += time;
+                }
+            }
+
+            if (numHeats == 0) {
+                return "NT";
+            }
+            return TimeUtils.ConvertDoubleTimeToString(Math.Round(timeAccum / numHeats, 2));
         }
     }
 }

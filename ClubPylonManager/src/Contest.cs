@@ -65,5 +65,26 @@ namespace ClubPylonManager
             string json = JsonConvert.SerializeObject(this);
             return JsonConvert.DeserializeObject<Contest>(json);
         }
+
+        public string GetFastestPilot() {
+            double fastTime = 99999;
+            string fastPilot = "";
+
+            foreach (var row in Scoreboard) {
+                foreach (var heatTime in row.HeatTimes) {
+                    if (string.IsNullOrWhiteSpace(heatTime) || heatTime.Length != 7)
+                    {
+                        continue;
+                    }
+                    var time = TimeUtils.ConvertHeatStringToSeconds(heatTime);
+                    if (time > 0 && time < fastTime) {
+                        fastTime = time;
+                        fastPilot = row.Pilot;
+                    }
+
+                }
+            }
+            return fastTime < 99999? fastPilot : "";
+        }
     }
 }

@@ -32,6 +32,19 @@ namespace ClubPylonManager
             Assert.That(s.BestTime(), Is.EqualTo("1:04.42"));
         }
 
+        [TestCase("2:00.00", 120)]
+        [TestCase("1:00.00", 60)]
+        [TestCase("1:01.00", 61)]
+        [TestCase("1:01.50", 61.5)]
+        [TestCase("1:01.05", 61.05)]
+        [TestCase("1:01.01", 61.01)]
+        [TestCase("1:01.99", 61.99)]
+        [TestCase("NT", 9*60 + .01)]
+        public void ConvertDoubleTimeToString(string expectedResult, double seconds)
+        {
+            Assert.That(TimeUtils.ConvertDoubleTimeToString(seconds), Is.EqualTo(expectedResult));
+        }
+
 
     }
 }

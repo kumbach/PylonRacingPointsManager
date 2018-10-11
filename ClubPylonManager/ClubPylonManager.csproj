@@ -110,6 +110,7 @@
     <Compile Include="src\Scoreboard.cs" />
     <Compile Include="src\Tests\NmpraPointsCalcTest.cs" />
     <Compile Include="src\Tests\ScoreboardTests.cs" />
+    <Compile Include="src\TimeUtils.cs" />
     <EmbeddedResource Include="ContestForm.resx">
       <DependentUpon>ContestForm.cs</DependentUpon>
     </EmbeddedResource>
