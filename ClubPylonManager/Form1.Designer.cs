@@ -113,68 +113,68 @@ namespace ClubPylonManager
             // fileNewMenuItem
             // 
             this.fileNewMenuItem.Name = "fileNewMenuItem";
-            this.fileNewMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.fileNewMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fileNewMenuItem.Text = "New";
             this.fileNewMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // fileOpenMenuItem
             // 
             this.fileOpenMenuItem.Name = "fileOpenMenuItem";
-            this.fileOpenMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.fileOpenMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fileOpenMenuItem.Text = "Open...";
             this.fileOpenMenuItem.Click += new System.EventHandler(this.fileOpenMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(122, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // fileCloseMenuItem
             // 
             this.fileCloseMenuItem.Name = "fileCloseMenuItem";
-            this.fileCloseMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.fileCloseMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fileCloseMenuItem.Text = "Close";
             this.fileCloseMenuItem.Click += new System.EventHandler(this.fileCloseMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(122, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // fileSaveMenuItem
             // 
             this.fileSaveMenuItem.Name = "fileSaveMenuItem";
-            this.fileSaveMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.fileSaveMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fileSaveMenuItem.Text = "Save";
             this.fileSaveMenuItem.Click += new System.EventHandler(this.fileSaveMenuItem_Click);
             // 
             // fileSaveAsMenuItem
             // 
             this.fileSaveAsMenuItem.Name = "fileSaveAsMenuItem";
-            this.fileSaveAsMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.fileSaveAsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fileSaveAsMenuItem.Text = "Save As...";
             this.fileSaveAsMenuItem.Click += new System.EventHandler(this.fileSaveAsMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(122, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "Settings...";
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(122, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(177, 6);
             // 
             // fileExitMenuItem
             // 
             this.fileExitMenuItem.Name = "fileExitMenuItem";
-            this.fileExitMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.fileExitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fileExitMenuItem.Text = "Exit";
             this.fileExitMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -243,20 +243,20 @@ namespace ClubPylonManager
             // contestReportMenuItem
             // 
             this.contestReportMenuItem.Name = "contestReportMenuItem";
-            this.contestReportMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.contestReportMenuItem.Size = new System.Drawing.Size(169, 22);
             this.contestReportMenuItem.Text = "Contest Summary";
             this.contestReportMenuItem.Click += new System.EventHandler(this.contestReportMenuItem_Click);
             // 
             // seasonReportMenuItem
             // 
             this.seasonReportMenuItem.Name = "seasonReportMenuItem";
-            this.seasonReportMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.seasonReportMenuItem.Size = new System.Drawing.Size(169, 22);
             this.seasonReportMenuItem.Text = "Season Summary";
             // 
             // pilotStatisticsMenuItem
             // 
             this.pilotStatisticsMenuItem.Name = "pilotStatisticsMenuItem";
-            this.pilotStatisticsMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pilotStatisticsMenuItem.Size = new System.Drawing.Size(169, 22);
             this.pilotStatisticsMenuItem.Text = "Pilot Statistics";
             // 
             // clubToolStripMenuItem

@@ -102,6 +102,7 @@
     <Compile Include="src\CellValidationDetail.cs" />
     <Compile Include="src\ClubFile.cs" />
     <Compile Include="src\Contest.cs" />
+    <Compile Include="src\AbstractReport.cs" />
     <Compile Include="src\ContestSummaryReport.cs" />
     <Compile Include="src\PilotSelection.cs" />
     <Compile Include="src\RaceClass.cs" />
