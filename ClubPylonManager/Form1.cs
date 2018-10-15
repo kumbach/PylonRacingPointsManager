@@ -252,7 +252,23 @@ namespace ClubPylonManager
             }
 
             var report = new ContestSummaryReport(contests);
-            var form = new ReportViewerForm(report.GenerateReport());
+            var form = new ReportViewerForm("Contest Summary", report.GenerateReport());
+            form.ShowDialog();
+        }
+
+        private void seasonReportMenuItem_Click(object sender, EventArgs e)
+        {
+            List<Contest> contests = new List<Contest>();
+            foreach (Contest row in contestBindingSource.List)
+            {
+                if (row.Status.Equals("Valid"))
+                {
+                    contests.Add(row);
+                }
+            }
+
+            var report = new SeasonSummaryReport(contests);
+            var form = new ReportViewerForm("Season Summary", report.GenerateReport());
             form.ShowDialog();
         }
     }

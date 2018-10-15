@@ -9,8 +9,9 @@ namespace ClubPylonManager
         {InitializeComponent();
         }
 
-        public ReportViewerForm(string content) : this()
+        public ReportViewerForm(string title, string content) : this()
         {
+            Text = title;
             textBox1.Text = content;
             
         }
