@@ -73,6 +73,22 @@ namespace ClubPylonManager
             return bestHeatNum < 0 ? "NT" : HeatTimes[bestHeatNum];
         }
 
+        public double BestTimeValue()
+        {
+            double bestTime = 9999;
+
+            for (var i = 0; i < HeatTimes.Count; ++i) 
+            {
+                var time = ConvertHeatStringToSeconds(i);
+                if (time > 0 && time < bestTime)
+                {
+                    bestTime = time;
+                }
+            }
+
+            return bestTime > 9990? 0 : bestTime;
+        }
+
         public string AverageTime()
         {
             double timeAccum = 0;
