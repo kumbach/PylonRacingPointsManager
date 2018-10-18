@@ -13,18 +13,21 @@ namespace ClubPylonManager {
         }
 
         public override string GenerateReport() {
-            var dict = CreatePilotLineItemDict();
+            Dictionary<string, LineItem> dict = null;
 
-            AddLine("                                     Total  Contests Best   Best      Average -------- TOTAL --------");
-            AddLine("Place Pilot                          Points Attended Finish Time       Time   DC DNS DNF OUT  MA CRA");
-            AddLine("----- ------------------------------ ------ -------- ------ -------   ------- --- --- --- --- --- ---");
-
-            foreach (var contest in contests) {
+            string currentClass = "";
+            foreach (var contest in contests.OrderBy(c => c.RaceClass)) {
                 if (contest.Status.Equals("Incomplete")) {
                     continue;
                 }
 
-                var fastPilot = "kevin";
+                if (!contest.RaceClass.Equals(currentClass)) {
+                    if (dict != null) {
+                        WriteDetails(currentClass, dict);
+                    }
+                    currentClass = contest.RaceClass;
+                    dict = CreatePilotLineItemDict(currentClass);
+                }
 
                 foreach (var row in contest.Scoreboard) {
                     var pilotKey = row.Pilot.ToLower();
@@ -32,6 +35,12 @@ namespace ClubPylonManager {
 
                     lineItem.NumContests += 1;
                     lineItem.Points += row.NmpraPoints(contest.Pilots);
+
+                    int.TryParse(row.Place, out var placing);
+                    if ((lineItem.BestPlace == 0 && placing > 0) || (placing > 0 && placing < lineItem.BestPlace)) {
+                        lineItem.BestPlace = placing;
+                    }
+
                     lineItem.Dc += row.HeatCodeCount("DC");
                     lineItem.Dns += row.HeatCodeCount("DNF");
                     lineItem.Dnf += row.HeatCodeCount("DNF");
@@ -50,13 +59,30 @@ namespace ClubPylonManager {
                     }
                 }
             }
+            if (currentClass.Length > 0)
+            {
+                WriteDetails(currentClass, dict);
+            }
 
-            
+            return rep.ToString();
+        }
+
+        private void WriteDetails(string currentClass, Dictionary<string, LineItem> dict) {
+            AddLine("Race Class: " + currentClass);
+            AddLine("");
+            AddLine("                                     Total  Contests Best   Best      Average -------- TOTAL --------");
+            AddLine("Place Pilot                          Points Attended Finish Time       Time   DC DNS DNF OUT  MA CRA");
+            AddLine("----- ------------------------------ ------ -------- ------ -------   ------- --- --- --- --- --- ---");
+
             int place = 1;
-            string fastTimeCode = "";
-
+            var fastPilot = GetFastPilot(dict);
             foreach (LineItem row in dict.Values.OrderByDescending(n => n.Points)) {
-                AddLine($"{place++,4}. {row.Pilot,-30} {row.Points,6:N1} {row.NumContests,8} {row.BestPlace,6} {TimeUtils.ConvertDoubleTimeToString(row.BestTime),-7}{fastTimeCode,2} {row.AverageTime,-7} {row.Dc,3} {row.Dns,3} {row.Dnf,3} {row.Out,3} {row.Ma,3} {row.Cra,3}");
+
+            }
+            foreach (LineItem row in dict.Values.OrderByDescending(n => n.Points)) {
+                string fastTimeCode = row.Pilot.Equals(fastPilot) ? "FT" : "";
+                AddLine(
+                    $"{place++,4}. {row.Pilot,-30} {row.Points,6:N1} {row.NumContests,8} {row.BestPlace,6} {TimeUtils.ConvertDoubleTimeToString(row.BestTime),-7}{fastTimeCode,2} {row.AverageTime,-7} {row.Dc,3} {row.Dns,3} {row.Dnf,3} {row.Out,3} {row.Ma,3} {row.Cra,3}");
             }
 
             var totalsLineItem = MakeTotalLineItem(dict);
@@ -68,8 +94,26 @@ namespace ClubPylonManager {
             NewLine();
             AddLine("DC-double cut, DNS-did not start, DNF-did not finish, OUT-missed heat,");
             AddLine("MA-mid air, CRA-crash, FT-fast time");
+            NewLine();
+            AddLine(new String('~', 102));
+            NewLine();
+            NewLine();
+        }
 
-            return rep.ToString();
+
+        private string GetFastPilot(Dictionary<string, LineItem> dict) {
+            double fastTime = 99999;
+            string pilotName = "";
+
+            foreach (LineItem row in dict.Values) {
+                if (row.BestTime > 0 && row.BestTime < fastTime) {
+                    fastTime = row.BestTime;
+                    pilotName = row.Pilot;
+                }
+            }
+
+            return fastTime < 99999 ? pilotName : "";
+            ;
         }
 
         private LineItem MakeTotalLineItem(Dictionary<string, LineItem> dict) {
@@ -86,13 +130,15 @@ namespace ClubPylonManager {
             return lineItem;
         }
 
-        private Dictionary<string, LineItem> CreatePilotLineItemDict() {
+        private Dictionary<string, LineItem> CreatePilotLineItemDict(string currentClass) {
             Dictionary<string, LineItem> dict = new Dictionary<string, LineItem>();
             foreach (var contest in contests) {
-                foreach (var row in contest.Scoreboard) {
-                    var pilot = row.Pilot.ToLower();
-                    if (!dict.ContainsKey(pilot)) {
-                        dict.Add(pilot, new LineItem(row.Pilot));
+                if (contest.RaceClass.Equals(currentClass)) {
+                    foreach (var row in contest.Scoreboard) {
+                        var pilot = row.Pilot.ToLower();
+                        if (!dict.ContainsKey(pilot)) {
+                            dict.Add(pilot, new LineItem(row.Pilot));
+                        }
                     }
                 }
             }
@@ -129,7 +175,6 @@ namespace ClubPylonManager {
             public LineItem(string pilot) {
                 Pilot = pilot;
             }
-
         }
     }
 }

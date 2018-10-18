@@ -53,8 +53,8 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.roundsNumeric = new System.Windows.Forms.NumericUpDown();
-            this.scoreboardBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pilotsLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.scoreboardBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contestBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreboardGrid)).BeginInit();
@@ -362,11 +362,6 @@
             0});
             this.roundsNumeric.ValueChanged += new System.EventHandler(this.roundsNumeric_ValueChanged);
             // 
-            // scoreboardBindingSource
-            // 
-            this.scoreboardBindingSource.DataMember = "Scoreboard";
-            this.scoreboardBindingSource.DataSource = this.contestBindingSource;
-            // 
             // pilotsLinkLabel
             // 
             this.pilotsLinkLabel.AutoSize = true;
@@ -378,6 +373,11 @@
             this.pilotsLinkLabel.TabStop = true;
             this.pilotsLinkLabel.Text = "Select Pilots";
             this.pilotsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.pilotsLinkLabel_LinkClicked);
+            // 
+            // scoreboardBindingSource
+            // 
+            this.scoreboardBindingSource.DataMember = "Scoreboard";
+            this.scoreboardBindingSource.DataSource = this.contestBindingSource;
             // 
             // ContestForm
             // 
