@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Csv, Version=1.0.35.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Csv.1.0.35\lib\net40\Csv.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -103,6 +106,7 @@
     <Compile Include="src\ClubFile.cs" />
     <Compile Include="src\Contest.cs" />
     <Compile Include="src\AbstractReport.cs" />
+    <Compile Include="src\ContestImporter.cs" />
     <Compile Include="src\SeasonSummaryReport.cs" />
     <Compile Include="src\ContestSummaryReport.cs" />
     <Compile Include="src\PilotSelection.cs" />

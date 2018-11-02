@@ -29,6 +29,8 @@ namespace ClubPylonManager
             fileSaveMenuItem.Enabled = fileOpen;
             fileSaveAsMenuItem.Enabled = fileOpen;
 
+            importToolStripMenuItem.Enabled = fileOpen;
+
             contestNewMenuItem.Enabled = fileOpen;
 
             seasonReportMenuItem.Enabled = fileOpen;
@@ -270,6 +272,25 @@ namespace ClubPylonManager
             var report = new SeasonSummaryReport(contests);
             var form = new ReportViewerForm("Season Summary", report.GenerateReport());
             form.ShowDialog();
+        }
+
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = $"{AppName} Import Files|*.csv";
+            openFileDialog1.Title = "Select a File";
+
+            if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                var filename = openFileDialog1.FileName;
+                var importer = new ContestImporter();
+                var contests = importer.Import(filename);
+                foreach (var contest in contests)
+                {
+                    contestBindingSource.Add(contest);
+                }
+
+            }
         }
     }
 }
