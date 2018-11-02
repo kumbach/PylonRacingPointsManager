@@ -285,6 +285,7 @@ namespace ClubPylonManager
                 var filename = openFileDialog1.FileName;
                 var importer = new ContestImporter();
                 var contests = importer.Import(filename);
+                _clubFile.Contests.AddRange(contests);
                 foreach (var contest in contests)
                 {
                     contestBindingSource.Add(contest);

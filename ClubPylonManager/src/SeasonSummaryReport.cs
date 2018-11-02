@@ -42,7 +42,7 @@ namespace ClubPylonManager {
                     }
 
                     lineItem.Dc += row.HeatCodeCount("DC");
-                    lineItem.Dns += row.HeatCodeCount("DNF");
+                    lineItem.Dns += row.HeatCodeCount("DNS");
                     lineItem.Dnf += row.HeatCodeCount("DNF");
                     lineItem.Out += row.HeatCodeCount("OUT");
                     lineItem.Ma += row.HeatCodeCount("MA");
@@ -76,13 +76,13 @@ namespace ClubPylonManager {
 
             int place = 1;
             var fastPilot = GetFastPilot(dict);
-            foreach (LineItem row in dict.Values.OrderByDescending(n => n.Points)) {
+            foreach (LineItem row in dict.Values.OrderByDescending(n => n.Points).ThenBy(t => t.BestTime).ThenBy(f => f.BestPlace)) {
 
             }
             foreach (LineItem row in dict.Values.OrderByDescending(n => n.Points)) {
                 string fastTimeCode = row.Pilot.Equals(fastPilot) ? "FT" : "";
                 AddLine(
-                    $"{place++,4}. {row.Pilot,-30} {row.Points,6:N1} {row.NumContests,8} {row.BestPlace,6} {TimeUtils.ConvertDoubleTimeToString(row.BestTime),-7}{fastTimeCode,2} {row.AverageTime,-7} {row.Dc,3} {row.Dns,3} {row.Dnf,3} {row.Out,3} {row.Ma,3} {row.Cra,3}");
+                    $"{place++,4}. {row.Pilot,-30} {row.Points,6:F1} {row.NumContests,8} {row.BestPlace,6} {TimeUtils.ConvertDoubleTimeToString(row.BestTime),-7}{fastTimeCode,2} {row.AverageTime,-7} {row.Dc,3} {row.Dns,3} {row.Dnf,3} {row.Out,3} {row.Ma,3} {row.Cra,3}");
             }
 
             var totalsLineItem = MakeTotalLineItem(dict);
@@ -121,7 +121,7 @@ namespace ClubPylonManager {
             foreach (LineItem row in dict.Values) {
                 lineItem.Dc += row.Dc;
                 lineItem.Dns += row.Dns;
-                lineItem.Dnf += row.Dns;
+                lineItem.Dnf += row.Dnf;
                 lineItem.Out += row.Out;
                 lineItem.Ma += row.Ma;
                 lineItem.Cra += row.Cra;

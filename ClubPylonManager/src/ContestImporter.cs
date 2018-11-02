@@ -41,6 +41,7 @@ namespace ClubPylonManager
                     line = file.ReadLine();
                 }
 
+                contest.Pilots = contest.Scoreboard.Count;
                 contests.Add(contest);
                 contest = null;
 

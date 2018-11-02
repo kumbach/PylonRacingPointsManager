@@ -25,6 +25,13 @@ namespace ClubPylonManager
         {
             double pilotEntries = numPilots;
             double.TryParse(Place, out var place);
+
+            if (place > pilotEntries)
+            {
+                Console.WriteLine("AHhhhh");
+            }
+
+
             return Math.Round((100 / pilotEntries + 0.2) * (pilotEntries - place) + 1.2, 2);
         }
 
