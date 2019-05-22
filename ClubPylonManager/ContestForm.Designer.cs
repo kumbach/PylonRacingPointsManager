@@ -100,7 +100,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(824, 461);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(824, 462);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // raceClassCombo
@@ -239,8 +239,9 @@
             this.scoreboardGrid.Name = "scoreboardGrid";
             this.scoreboardGrid.RowHeadersVisible = false;
             this.scoreboardGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.scoreboardGrid.Size = new System.Drawing.Size(802, 296);
+            this.scoreboardGrid.Size = new System.Drawing.Size(802, 297);
             this.scoreboardGrid.TabIndex = 11;
+            this.scoreboardGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.scoreboardGrid_EditingControlShowing);
             this.scoreboardGrid.SelectionChanged += new System.EventHandler(this.SelectionChanged);
             this.scoreboardGrid.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.SortCompare);
             // 
@@ -273,7 +274,7 @@
             this.panel1.Controls.Add(this.saveButton);
             this.panel1.Controls.Add(this.cancelButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(11, 421);
+            this.panel1.Location = new System.Drawing.Point(11, 422);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(802, 29);
             this.panel1.TabIndex = 12;
@@ -383,7 +384,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 461);
+            this.ClientSize = new System.Drawing.Size(824, 462);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "ContestForm";

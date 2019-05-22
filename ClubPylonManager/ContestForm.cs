@@ -6,412 +6,383 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace ClubPylonManager
-{
-    public partial class ContestForm : Form
-    {
-        private readonly ClubFile _clubFile;
-        private string[] _heatCodes = {"NT", "DC", "DNS", "DNF", "MA", "CRA", "OUT"};
-        private Regex _regex = new Regex("^[0-2]:[0-5][0-9]\\.[0-9][0-9]$");
+namespace ClubPylonManager {
+  public partial class ContestForm : Form {
+    private readonly ClubFile _clubFile;
+    private string[] _heatCodes = {"NT", "DC", "DNS", "DNF", "MA", "CRA", "OUT"};
+    private Regex _regex = new Regex("^[0-2]:[0-5][0-9]\\.[0-9][0-9]$");
 
-        public ContestForm(ClubFile clubFile, Contest contest)
-        {
-            _clubFile = clubFile;
-            InitializeComponent();
+    public ContestForm(ClubFile clubFile, Contest contest) {
+      _clubFile = clubFile;
+      InitializeComponent();
 
-            PopulateComboBoxes();
-            if (contest == null)
-            {
-                contestBindingSource.AddNew();
-            }
-            else
-            {
-                contestBindingSource.Add(contest.Clone());
-            }
+      PopulateComboBoxes();
+      if (contest == null) {
+        contestBindingSource.AddNew();
+      }
+      else {
+        contestBindingSource.Add(contest.Clone());
+      }
 
-            SetupScoreboardColumns();
-            PopulateScoreboard();
-        }
-
-        public Contest GetContest()
-        {
-            return (Contest) contestBindingSource.Current;
-        }
-
-        private void SetupScoreboardColumns()
-        {
-            DataGridViewTextBoxColumn[] columns = new DataGridViewTextBoxColumn[GetContest().Rounds];
-            for (int i = 1; i <= GetContest().Rounds; ++i)
-            {
-                var column = new DataGridViewTextBoxColumn();
-                column.HeaderText = $"Round {i}";
-                column.MaxInputLength = 7;
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                column.Width = 70;
-                column.MinimumWidth = 70;
-
-                columns[i - 1] = column;
-            }
-
-            scoreboardGrid.Columns.AddRange(columns);
-        }
-
-        private void PopulateComboBoxes()
-        {
-            locationCombo.DataSource = _clubFile.Locations;
-            raceClassCombo.DataSource = _clubFile.RaceClasses;
-        }
-
-        private void cancelButton_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            var contest = GetContest();
-            ClearValidationErrors();
-
-            if (ValidateScoreboard())
-            {
-                contest.Status = "Valid";
-            }
-            else
-            {
-                contest.Status = "Incomplete";
-                if (MessageBox.Show("The scoreboard is incomplete or has entry errors. \n\n" +
-                                    "You can still save it but it won't be included in any reports.\n\n" +
-                                    "Save it?", Form1.AppName, MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Exclamation) ==
-                    DialogResult.Yes)
-                {
-                    contest.Status = "Incomplete";
-                }
-                else
-                {
-                    return;
-                }
-            }
-
-            contest.Scoreboard.Clear();
-            contest.Pilots = scoreboardGrid.RowCount - 1;
-            for (int i = 0; i < scoreboardGrid.RowCount; ++i)
-            {
-                if (RowIsBlank(i))
-                {
-                    continue;
-                }
-
-                var scoreboard = new Scoreboard();
-                int.TryParse((string) scoreboardGrid.Rows[i].Cells[0].Value, out var placeValue);
-                scoreboard.Place = placeValue.ToString();
-                scoreboard.Pilot = (string) scoreboardGrid.Rows[i].Cells[1].Value;
-                for (int cell = 2; cell < scoreboardGrid.ColumnCount; ++cell)
-                {
-                    scoreboard.HeatTimes.Add(((string) scoreboardGrid.Rows[i].Cells[cell].Value ?? "").Trim()
-                        .ToUpper());
-                }
-
-                contest.Scoreboard.Add(scoreboard);
-            }
-
-            DialogResult = DialogResult.OK;
-            _clubFile.SetDirty();
-            this.Close();
-        }
-
-        private bool ValidateScoreboard()
-        {
-            List<CellValidationDetail> errors = new List<CellValidationDetail>();
-            ValidatePlace(errors);
-            ValidatePilots(errors);
-            ValidateHeats(errors);
-            ShowValidationErrors(errors);
-            return errors.Count == 0;
-        }
-
-        private void ValidateHeats(List<CellValidationDetail> errors)
-        {
-            for (int row = 0; row < scoreboardGrid.RowCount; ++row)
-            {
-                if (RowIsBlank(row))
-                {
-                    continue;
-                }
-
-                for (var col = 2; col < scoreboardGrid.ColumnCount; ++col)
-                {
-                    string cellValue = (string) scoreboardGrid.Rows[row].Cells[col].Value ?? "";
-                    cellValue = cellValue.Trim().ToUpper();
-
-                    if (cellValue.Length == 0)
-                    {
-                        errors.Add(new CellValidationDetail(row, col, "Heat time is required"));
-                        continue;
-                    }
-
-                    if (_regex.Match(cellValue).Success)
-                    {
-                        continue;
-                    }
-
-                    if (_heatCodes.Contains(cellValue))
-                    {
-                        continue;
-                    }
-
-                    errors.Add(new CellValidationDetail(row, col, "Heat time or code is invalid.\nRefer to Heat Entry tip below."));
-                }
-            }
-        }
-
-        private void ValidatePlace(List<CellValidationDetail> errors)
-        {
-            Dictionary<string, List<int>> placeToCountMap = new Dictionary<string, List<int>>();
-            int rows = scoreboardGrid.RowCount;
-
-            for (int row = 0; row < rows; ++row)
-            {
-                if (RowIsBlank(row))
-                {
-                    continue;
-                }
-
-                int.TryParse((string) scoreboardGrid.Rows[row].Cells[0].Value, out var place);
-                if (place < 1 || place >= scoreboardGrid.RowCount)
-                {
-                    errors.Add(new CellValidationDetail(row, 0,
-                        $"Place must be between 1 and {scoreboardGrid.RowCount - 1}"));
-                    continue;
-                }
-
-                string key = (string) scoreboardGrid.Rows[row].Cells[0].Value ?? "";
-                key = key.Trim().ToLower();
-                if (placeToCountMap.ContainsKey(key))
-                {
-                    var rowList = placeToCountMap[key];
-                    rowList.Add(row);
-                }
-                else
-                {
-                    var rowList = new List<int> {row};
-                    placeToCountMap.Add(key, rowList);
-                }
-            }
-
-            foreach (var key in placeToCountMap.Keys)
-            {
-                var rowList = placeToCountMap[key];
-                foreach (var row in rowList)
-                {
-                    if (rowList.Count > 1)
-                    {
-                        errors.Add(new CellValidationDetail(row, 0, "Duplicate place"));
-                    }
-                }
-            }
-        }
-
-        private void ValidatePilots(List<CellValidationDetail> errors)
-        {
-            Dictionary<string, List<int>> pilotToCountMap = new Dictionary<string, List<int>>();
-            for (int row = 0; row < scoreboardGrid.RowCount; ++row)
-            {
-                if (RowIsBlank(row))
-                {
-                    continue;
-                }
-
-                string name = (string) scoreboardGrid.Rows[row].Cells[1].Value ?? "";
-                name = name.Trim().ToLower();
-
-                if (pilotToCountMap.ContainsKey(name))
-                {
-                    var rowList = pilotToCountMap[name];
-                    rowList.Add(row);
-                }
-                else
-                {
-                    var rowList = new List<int> {row};
-                    pilotToCountMap.Add(name, rowList);
-                }
-            }
-
-            foreach (var key in pilotToCountMap.Keys)
-            {
-                var rowList = pilotToCountMap[key];
-                foreach (var row in rowList)
-                {
-                    if (key.Length == 0)
-                    {
-                        errors.Add(new CellValidationDetail(row, 1, "Pilot name is required"));
-                    }
-                    else if (rowList.Count > 1)
-                    {
-                        errors.Add(new CellValidationDetail(row, 1, "Duplicate pilot entry"));
-                    }
-                }
-            }
-        }
-
-        private bool RowIsBlank(int row)
-        {
-            for (int i = 0; i < scoreboardGrid.ColumnCount; ++i)
-            {
-                if (!string.IsNullOrEmpty((string) scoreboardGrid.Rows[row].Cells[i].Value))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        private void roundsNumeric_ValueChanged(object sender, EventArgs e)
-        {
-            var control = (NumericUpDown) sender;
-            var diff = scoreboardGrid.Columns.Count - 2 - control.Value;
-            if (diff < 0)
-            {
-                for (int i = scoreboardGrid.ColumnCount - 2 + 1; i <= control.Value; ++i)
-                {
-                    var column = new DataGridViewTextBoxColumn();
-                    column.HeaderText = $"Round {i}";
-                    column.MaxInputLength = 7;
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                    column.Width = 70;
-                    column.MinimumWidth = 70;
-
-                    scoreboardGrid.Columns.Add(column);
-                }
-            }
-            else
-            {
-                while (scoreboardGrid.ColumnCount - 2 > control.Value)
-                {
-                    scoreboardGrid.Columns.RemoveAt(scoreboardGrid.ColumnCount - 1);
-                }
-            }
-        }
-
-        private void PopulateScoreboard()
-        {
-            int row = 0;
-            var scoreboardRows = GetContest().Scoreboard;
-            if (scoreboardRows.Count == 0)
-            {
-                return;
-            }
-
-            scoreboardGrid.Rows.Add(scoreboardRows.Count);
-            foreach (var scoreboard in scoreboardRows)
-            {
-                scoreboardGrid.Rows[row].Cells[0].Value = "" + scoreboard.Place;
-                scoreboardGrid.Rows[row].Cells[1].Value = scoreboard.Pilot;
-
-                for (int round = 0; round < GetContest().Rounds; ++round)
-                {
-                    scoreboardGrid.Rows[row].Cells[round + 2].Value = scoreboard.HeatTimes[round];
-                }
-
-                ++row;
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (scoreboardGrid.SelectedCells.Count == 0)
-            {
-                return;
-            }
-
-            int row = scoreboardGrid.SelectedCells[0].RowIndex;
-            for (int i = 0; i < scoreboardGrid.ColumnCount; ++i)
-            {
-                scoreboardGrid.Rows[row].Cells[i].Value = "";
-                scoreboardGrid.Rows[row].Cells[i].Style.BackColor = Color.White;
-                scoreboardGrid.Rows[row].Cells[i].ToolTipText = "";
-            }
-        }
-
-        private void SelectionChanged(object sender, EventArgs e)
-        {
-            if (scoreboardGrid.SelectedCells.Count == 0)
-            {
-                clearRowButton.Enabled = false;
-                deleteRowButton.Enabled = false;
-                return;
-            }
-
-            int row = scoreboardGrid.SelectedCells[0].RowIndex;
-            bool enabled = row < scoreboardGrid.RowCount - 1;
-            clearRowButton.Enabled = enabled;
-            deleteRowButton.Enabled = enabled;
-        }
-
-        private void deleteRowButton_Click(object sender, EventArgs e)
-        {
-            if (scoreboardGrid.SelectedCells.Count == 0)
-            {
-                return;
-            }
-
-            else if (scoreboardGrid.Rows.Count == 1)
-            {
-                button1_Click(sender, e);
-                return;
-            }
-
-            int row = scoreboardGrid.SelectedCells[0].RowIndex;
-            scoreboardGrid.Rows.RemoveAt(row);
-        }
-
-        private void ClearValidationErrors()
-        {
-            for (int row = 0; row < scoreboardGrid.RowCount; ++row)
-            {
-                for (int col = 0; col < scoreboardGrid.ColumnCount; ++col)
-                {
-                    scoreboardGrid.Rows[row].Cells[col].Style.BackColor = Color.White;
-                    scoreboardGrid.Rows[row].Cells[col].ToolTipText = "";
-                }
-            }
-        }
-
-        private void ShowValidationErrors(List<CellValidationDetail> errors)
-        {
-            foreach (CellValidationDetail detail in errors)
-            {
-                scoreboardGrid.Rows[detail.Row].Cells[detail.Col].Style.BackColor = Color.Salmon;
-                scoreboardGrid.Rows[detail.Row].Cells[detail.Col].ToolTipText = detail.message;
-            }
-        }
-
-        private void SortCompare(object sender, DataGridViewSortCompareEventArgs e)
-        {
-            Console.WriteLine("hey");
-            //Suppose your interested column has index 1
-            if (e.Column.Index == 0)
-            {
-                int left = 0;
-                if (e.CellValue1 != null) {
-                    int.TryParse(e.CellValue1.ToString() ?? "0", out left);
-                }
-
-                int right = 0;
-                if (e.CellValue2 != null) {
-                    int.TryParse(e.CellValue2.ToString() ?? "0", out right);
-                }
-
-                e.SortResult = left.CompareTo(right);
-                e.Handled = true; //pass by the default sorting
-            }
-        }
-
-        private void pilotsLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-
-        }
+      SetupScoreboardColumns();
+      PopulateScoreboard();
     }
+
+    public Contest GetContest() {
+      return (Contest) contestBindingSource.Current;
+    }
+
+    private void SetupScoreboardColumns() {
+      DataGridViewTextBoxColumn[] columns = new DataGridViewTextBoxColumn[GetContest().Rounds];
+      for (int i = 1; i <= GetContest().Rounds; ++i) {
+        var column = new DataGridViewTextBoxColumn();
+        column.HeaderText = $"Round {i}";
+        column.MaxInputLength = 7;
+        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+        column.Width = 70;
+        column.MinimumWidth = 70;
+
+        columns[i - 1] = column;
+      }
+
+      scoreboardGrid.Columns.AddRange(columns);
+    }
+
+    public AutoCompleteStringCollection LoadPilotAutoComplete() {
+      AutoCompleteStringCollection str = new AutoCompleteStringCollection();
+      foreach (Pilot pilot in _clubFile.ClubRoster) {
+        str.Add(pilot.Name);
+      }
+
+      return str;
+    }
+
+    public AutoCompleteStringCollection LoadHeatCodeAutoComplete() {
+      AutoCompleteStringCollection str = new AutoCompleteStringCollection();
+      
+       str.Add("NT");
+       str.Add("DC");
+       str.Add("DNS");
+       str.Add("DNF");
+       str.Add("MA");
+       str.Add("CRA");
+      return str;
+    }
+
+    private void PopulateComboBoxes() {
+      locationCombo.DataSource = _clubFile.Locations;
+      raceClassCombo.DataSource = _clubFile.RaceClasses;
+    }
+
+    private void cancelButton_Click(object sender, EventArgs e) {
+      DialogResult = DialogResult.Cancel;
+      this.Close();
+    }
+
+    private void saveButton_Click(object sender, EventArgs e) {
+      var contest = GetContest();
+      ClearValidationErrors();
+
+      if (ValidateScoreboard()) {
+        contest.Status = "Valid";
+      }
+      else {
+        contest.Status = "Incomplete";
+        if (MessageBox.Show("The scoreboard is incomplete or has entry errors. \n\n" +
+                            "You can still save it but it won't be included in any reports.\n\n" +
+                            "Save it?", Form1.AppName, MessageBoxButtons.YesNo,
+              MessageBoxIcon.Exclamation) ==
+            DialogResult.Yes) {
+          contest.Status = "Incomplete";
+        }
+        else {
+          return;
+        }
+      }
+
+      contest.Scoreboard.Clear();
+      contest.Pilots = scoreboardGrid.RowCount - 1;
+      for (int i = 0; i < scoreboardGrid.RowCount; ++i) {
+        if (RowIsBlank(i)) {
+          continue;
+        }
+
+        var scoreboard = new Scoreboard();
+        int.TryParse((string) scoreboardGrid.Rows[i].Cells[0].Value, out var placeValue);
+        scoreboard.Place = placeValue.ToString();
+        scoreboard.Pilot = (string) scoreboardGrid.Rows[i].Cells[1].Value;
+        for (int cell = 2; cell < scoreboardGrid.ColumnCount; ++cell) {
+          scoreboard.HeatTimes.Add(((string) scoreboardGrid.Rows[i].Cells[cell].Value ?? "").Trim()
+            .ToUpper());
+        }
+
+        contest.Scoreboard.Add(scoreboard);
+      }
+
+      DialogResult = DialogResult.OK;
+      _clubFile.SetDirty();
+      this.Close();
+    }
+
+    private bool ValidateScoreboard() {
+      List<CellValidationDetail> errors = new List<CellValidationDetail>();
+      ValidatePlace(errors);
+      ValidatePilots(errors);
+      ValidateHeats(errors);
+      ShowValidationErrors(errors);
+      return errors.Count == 0;
+    }
+
+    private void ValidateHeats(List<CellValidationDetail> errors) {
+      for (int row = 0; row < scoreboardGrid.RowCount; ++row) {
+        if (RowIsBlank(row)) {
+          continue;
+        }
+
+        for (var col = 2; col < scoreboardGrid.ColumnCount; ++col) {
+          string cellValue = (string) scoreboardGrid.Rows[row].Cells[col].Value ?? "";
+          cellValue = cellValue.Trim().ToUpper();
+
+          if (cellValue.Length == 0) {
+            errors.Add(new CellValidationDetail(row, col, "Heat time is required"));
+            continue;
+          }
+
+          if (_regex.Match(cellValue).Success) {
+            continue;
+          }
+
+          if (_heatCodes.Contains(cellValue)) {
+            continue;
+          }
+
+          errors.Add(
+            new CellValidationDetail(row, col, "Heat time or code is invalid.\nRefer to Heat Entry tip below."));
+        }
+      }
+    }
+
+    private void ValidatePlace(List<CellValidationDetail> errors) {
+      Dictionary<string, List<int>> placeToCountMap = new Dictionary<string, List<int>>();
+      int rows = scoreboardGrid.RowCount;
+
+      for (int row = 0; row < rows; ++row) {
+        if (RowIsBlank(row)) {
+          continue;
+        }
+
+        int.TryParse((string) scoreboardGrid.Rows[row].Cells[0].Value, out var place);
+        if (place < 1 || place >= scoreboardGrid.RowCount) {
+          errors.Add(new CellValidationDetail(row, 0,
+            $"Place must be between 1 and {scoreboardGrid.RowCount - 1}"));
+          continue;
+        }
+
+        string key = (string) scoreboardGrid.Rows[row].Cells[0].Value ?? "";
+        key = key.Trim().ToLower();
+        if (placeToCountMap.ContainsKey(key)) {
+          var rowList = placeToCountMap[key];
+          rowList.Add(row);
+        }
+        else {
+          var rowList = new List<int> {row};
+          placeToCountMap.Add(key, rowList);
+        }
+      }
+
+      foreach (var key in placeToCountMap.Keys) {
+        var rowList = placeToCountMap[key];
+        foreach (var row in rowList) {
+          if (rowList.Count > 1) {
+            errors.Add(new CellValidationDetail(row, 0, "Duplicate place"));
+          }
+        }
+      }
+    }
+
+    private void ValidatePilots(List<CellValidationDetail> errors) {
+      Dictionary<string, List<int>> pilotToCountMap = new Dictionary<string, List<int>>();
+      for (int row = 0; row < scoreboardGrid.RowCount; ++row) {
+        if (RowIsBlank(row)) {
+          continue;
+        }
+
+        string name = (string) scoreboardGrid.Rows[row].Cells[1].Value ?? "";
+        name = name.Trim().ToLower();
+
+        if (pilotToCountMap.ContainsKey(name)) {
+          var rowList = pilotToCountMap[name];
+          rowList.Add(row);
+        }
+        else {
+          var rowList = new List<int> {row};
+          pilotToCountMap.Add(name, rowList);
+        }
+      }
+
+      foreach (var key in pilotToCountMap.Keys) {
+        var rowList = pilotToCountMap[key];
+        foreach (var row in rowList) {
+          if (key.Length == 0) {
+            errors.Add(new CellValidationDetail(row, 1, "Pilot name is required"));
+          }
+          else if (rowList.Count > 1) {
+            errors.Add(new CellValidationDetail(row, 1, "Duplicate pilot entry"));
+          }
+        }
+      }
+    }
+
+    private bool RowIsBlank(int row) {
+      for (int i = 0; i < scoreboardGrid.ColumnCount; ++i) {
+        if (!string.IsNullOrEmpty((string) scoreboardGrid.Rows[row].Cells[i].Value)) {
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    private void roundsNumeric_ValueChanged(object sender, EventArgs e) {
+      var control = (NumericUpDown) sender;
+      var diff = scoreboardGrid.Columns.Count - 2 - control.Value;
+      if (diff < 0) {
+        for (int i = scoreboardGrid.ColumnCount - 2 + 1; i <= control.Value; ++i) {
+          var column = new DataGridViewTextBoxColumn();
+          column.HeaderText = $"Round {i}";
+          column.MaxInputLength = 7;
+          column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+          column.Width = 70;
+          column.MinimumWidth = 70;
+
+          scoreboardGrid.Columns.Add(column);
+        }
+      }
+      else {
+        while (scoreboardGrid.ColumnCount - 2 > control.Value) {
+          scoreboardGrid.Columns.RemoveAt(scoreboardGrid.ColumnCount - 1);
+        }
+      }
+    }
+
+    private void PopulateScoreboard() {
+      int row = 0;
+      var scoreboardRows = GetContest().Scoreboard;
+      if (scoreboardRows.Count == 0) {
+        return;
+      }
+
+      scoreboardGrid.Rows.Add(scoreboardRows.Count);
+      foreach (var scoreboard in scoreboardRows) {
+        scoreboardGrid.Rows[row].Cells[0].Value = "" + scoreboard.Place;
+        scoreboardGrid.Rows[row].Cells[1].Value = scoreboard.Pilot;
+
+        for (int round = 0; round < GetContest().Rounds; ++round) {
+          scoreboardGrid.Rows[row].Cells[round + 2].Value = scoreboard.HeatTimes[round];
+        }
+
+        ++row;
+      }
+    }
+
+    private void button1_Click(object sender, EventArgs e) {
+      if (scoreboardGrid.SelectedCells.Count == 0) {
+        return;
+      }
+
+      int row = scoreboardGrid.SelectedCells[0].RowIndex;
+      for (int i = 0; i < scoreboardGrid.ColumnCount; ++i) {
+        scoreboardGrid.Rows[row].Cells[i].Value = "";
+        scoreboardGrid.Rows[row].Cells[i].Style.BackColor = Color.White;
+        scoreboardGrid.Rows[row].Cells[i].ToolTipText = "";
+      }
+    }
+
+    private void SelectionChanged(object sender, EventArgs e) {
+      if (scoreboardGrid.SelectedCells.Count == 0) {
+        clearRowButton.Enabled = false;
+        deleteRowButton.Enabled = false;
+        return;
+      }
+
+      int row = scoreboardGrid.SelectedCells[0].RowIndex;
+      bool enabled = row < scoreboardGrid.RowCount - 1;
+      clearRowButton.Enabled = enabled;
+      deleteRowButton.Enabled = enabled;
+    }
+
+    private void deleteRowButton_Click(object sender, EventArgs e) {
+      if (scoreboardGrid.SelectedCells.Count == 0) {
+        return;
+      }
+
+      else if (scoreboardGrid.Rows.Count == 1) {
+        button1_Click(sender, e);
+        return;
+      }
+
+      int row = scoreboardGrid.SelectedCells[0].RowIndex;
+      scoreboardGrid.Rows.RemoveAt(row);
+    }
+
+    private void ClearValidationErrors() {
+      for (int row = 0; row < scoreboardGrid.RowCount; ++row) {
+        for (int col = 0; col < scoreboardGrid.ColumnCount; ++col) {
+          scoreboardGrid.Rows[row].Cells[col].Style.BackColor = Color.White;
+          scoreboardGrid.Rows[row].Cells[col].ToolTipText = "";
+        }
+      }
+    }
+
+    private void ShowValidationErrors(List<CellValidationDetail> errors) {
+      foreach (CellValidationDetail detail in errors) {
+        scoreboardGrid.Rows[detail.Row].Cells[detail.Col].Style.BackColor = Color.Salmon;
+        scoreboardGrid.Rows[detail.Row].Cells[detail.Col].ToolTipText = detail.message;
+      }
+    }
+
+    private void SortCompare(object sender, DataGridViewSortCompareEventArgs e) {
+      Console.WriteLine("hey");
+      //Suppose your interested column has index 1
+      if (e.Column.Index == 0) {
+        int left = 0;
+        if (e.CellValue1 != null) {
+          int.TryParse(e.CellValue1.ToString() ?? "0", out left);
+        }
+
+        int right = 0;
+        if (e.CellValue2 != null) {
+          int.TryParse(e.CellValue2.ToString() ?? "0", out right);
+        }
+
+        e.SortResult = left.CompareTo(right);
+        e.Handled = true; //pass by the default sorting
+      }
+    }
+
+    private void scoreboardGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e) {
+      int column = scoreboardGrid.CurrentCell.ColumnIndex;
+      string headerText = scoreboardGrid.Columns[column].HeaderText;
+
+      if (headerText.Equals("Pilot")) {
+        TextBox tb = e.Control as TextBox;
+        if (tb != null) {
+          tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+          tb.AutoCompleteCustomSource = LoadPilotAutoComplete();
+          tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
+        }
+      }
+      else if (headerText.StartsWith("Round")) {
+        TextBox tb = e.Control as TextBox;
+        if (tb != null) {
+          tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+          tb.AutoCompleteCustomSource = LoadHeatCodeAutoComplete();
+          tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
+        }
+      }
+    }
+
+    private void pilotsLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+    }
+  }
 }
