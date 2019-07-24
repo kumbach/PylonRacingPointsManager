@@ -342,7 +342,6 @@ namespace ClubPylonManager {
     }
 
     private void SortCompare(object sender, DataGridViewSortCompareEventArgs e) {
-      Console.WriteLine("hey");
       //Suppose your interested column has index 1
       if (e.Column.Index == 0) {
         int left = 0;

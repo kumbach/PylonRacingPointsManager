@@ -7,27 +7,21 @@ namespace ClubPylonManager {
   public class ContestImporter {
     private StreamReader file;
 
-
     public List<Contest> Import(string filename) {
-      file = new System.IO.StreamReader(filename);
+      file = new StreamReader(filename);
 
       var contests = new List<Contest>();
       string line;
       Contest contest = null;
 
       line = NextLine();
-      while (line != null)
-      {
-        if (contest == null)
-        {
-          ExtractContestDetails(line, out var date, out var raceClass, out var location);
-          contest = new Contest {ContestDate = date, RaceClass = raceClass, Location = location};
-          contest.Status = "Valid";
-        }
+      while (line != null) {
+        ExtractContestDetails(line, out var date, out var raceClass, out var location);
+        contest = new Contest {ContestDate = date, RaceClass = raceClass, Location = location};
+        contest.Status = "Valid";
 
         line = file.ReadLine();
-        while (!string.IsNullOrEmpty(line))
-        {
+        while (!string.IsNullOrEmpty(line)) {
           ExtractPilotDetails(line, out var place, out var pilot, out var heatTimes);
           var row = new Scoreboard(pilot);
           row.Place = place;
@@ -39,12 +33,9 @@ namespace ClubPylonManager {
 
         contest.Pilots = contest.Scoreboard.Count;
         contests.Add(contest);
-        contest = null;
 
         line = NextLine();
       }
-
-      System.Console.WriteLine(line);
 
       file.Close();
 
@@ -57,10 +48,17 @@ namespace ClubPylonManager {
       pilot = fields[1].Trim();
       heatTimes = new List<string>();
 
-      for (int i = 2; i < fields.Length; ++i)
-      {
-        heatTimes.Add(fields[i]);
+      for (int i = 2; i < fields.Length; ++i) {
+        heatTimes.Add(convertFieldCode(fields[i]));
       }
+    }
+
+    private string convertFieldCode(string code) {
+      if (code != null && code.ToUpper().Equals("OUT")) {
+        return "DNS";
+      }
+
+      return code;
     }
 
 
@@ -75,8 +73,7 @@ namespace ClubPylonManager {
     private string NextLine() {
       string line = file.ReadLine();
 
-      while (line != null && string.IsNullOrEmpty(line))
-      {
+      while (line != null && string.IsNullOrEmpty(line)) {
         line = file.ReadLine();
       }
 

@@ -53,7 +53,6 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.roundsNumeric = new System.Windows.Forms.NumericUpDown();
-            this.pilotsLinkLabel = new System.Windows.Forms.LinkLabel();
             this.scoreboardBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contestBindingSource)).BeginInit();
@@ -86,7 +85,6 @@
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.label6, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.roundsNumeric, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.pilotsLinkLabel, 4, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -285,9 +283,9 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(446, 7);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(337, 13);
+            this.label7.Size = new System.Drawing.Size(303, 13);
             this.label7.TabIndex = 4;
-            this.label7.Text = "Heat Entry: M:SS.HH, NT, DC, DNS, DNF, MA, CRA, OUT";
+            this.label7.Text = "Heat Entry: M:SS.HH, NT, DC, DNS, DNF, MA, CRA";
             // 
             // deleteRowButton
             // 
@@ -363,18 +361,6 @@
             0});
             this.roundsNumeric.ValueChanged += new System.EventHandler(this.roundsNumeric_ValueChanged);
             // 
-            // pilotsLinkLabel
-            // 
-            this.pilotsLinkLabel.AutoSize = true;
-            this.pilotsLinkLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pilotsLinkLabel.Location = new System.Drawing.Point(551, 21);
-            this.pilotsLinkLabel.Name = "pilotsLinkLabel";
-            this.pilotsLinkLabel.Size = new System.Drawing.Size(262, 27);
-            this.pilotsLinkLabel.TabIndex = 19;
-            this.pilotsLinkLabel.TabStop = true;
-            this.pilotsLinkLabel.Text = "Select Pilots";
-            this.pilotsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.pilotsLinkLabel_LinkClicked);
-            // 
             // scoreboardBindingSource
             // 
             this.scoreboardBindingSource.DataMember = "Scoreboard";
@@ -428,6 +414,5 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn PIlot;
-        private System.Windows.Forms.LinkLabel pilotsLinkLabel;
     }
 }

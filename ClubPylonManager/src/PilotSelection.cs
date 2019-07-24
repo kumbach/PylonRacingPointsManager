@@ -1,14 +1,11 @@
-﻿namespace ClubPylonManager
-{
-    public class PilotSelection
-    {
-        public string Pilot { get; set; }
-        public bool Selected { get; set; }
+﻿namespace ClubPylonManager {
+  public class PilotSelection {
+    public string Pilot { get; set; }
+    public bool Selected { get; set; }
 
-        public PilotSelection(string pilot)
-        {
-            Pilot = pilot;
-            Selected = false;
-        }
+    public PilotSelection(string pilot) {
+      Pilot = pilot;
+      Selected = false;
     }
+  }
 }
