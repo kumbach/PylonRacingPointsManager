@@ -49,11 +49,11 @@ namespace ClubPylonManager {
           lineItem.Ma += row.HeatCodeCount("MA");
           lineItem.Cra += row.HeatCodeCount("CRA");
 
+          //lineItem.TimeAvgAccum += row.AverageTime();
+          lineItem.TimeAvgCount += 1;
+
           var bestTimeInContest = row.BestTimeValue();
           if (bestTimeInContest > 0) {
-            lineItem.TimeAvgAccum += bestTimeInContest;
-            lineItem.TimeAvgCount += 1;
-
             if (lineItem.BestTime == 0 || bestTimeInContest < lineItem.BestTime) {
               lineItem.BestTime = bestTimeInContest;
             }

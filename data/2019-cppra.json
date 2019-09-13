@@ -1,0 +1,731 @@
+{
+  "FileVersion": "1.0",
+  "ClubRoster": [
+    {
+      "Name": "Jack Ellefson",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Cecil Graval",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Jeff Martin",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Ted Ellefson",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Randy Smith",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Roy Andrassy",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Hank Kauffmann",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Doug Houston",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Kevin Moorehouse",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Allan Umbach",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Kevin Umbach",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Mark Duncan",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Dave Eaton",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Chris Metlewski",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Delbert Godon",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    }
+  ],
+  "RaceClasses": [
+    {
+      "name": "Q500 (AMA 426)"
+    },
+    {
+      "name": "Q40 (AMA 422)"
+    }
+  ],
+  "Locations": [
+    {
+      "name": "Calgary"
+    },
+    {
+      "name": "Edmonton"
+    },
+    {
+      "name": "Saskatoon"
+    },
+    {
+      "name": "Medicine Hat"
+    }
+  ],
+  "Contests": [
+    {
+      "ContestDate": "2019-07-27T21:03:45",
+      "Location": "Calgary",
+      "RaceClass": "Q500 (AMA 426)",
+      "Status": "Valid",
+      "Rounds": 5,
+      "Pilots": 12,
+      "Notes": "",
+      "Scoreboard": [
+        {
+          "Place": "1",
+          "Pilot": "Kevin Umbach",
+          "HeatTimes": [
+            "1:12.26",
+            "1:12.22",
+            "1:09.96",
+            "1:14.18",
+            "1:18.42"
+          ]
+        },
+        {
+          "Place": "2",
+          "Pilot": "Roy Andrassy",
+          "HeatTimes": [
+            "1:16.91",
+            "1:11.25",
+            "1:16.64",
+            "1:08.75",
+            "1:05.35"
+          ]
+        },
+        {
+          "Place": "3",
+          "Pilot": "Hank Kauffmann",
+          "HeatTimes": [
+            "1:09.57",
+            "1:14.44",
+            "1:09.85",
+            "1:10.88",
+            "1:09.35"
+          ]
+        },
+        {
+          "Place": "4",
+          "Pilot": "Allan Umbach",
+          "HeatTimes": [
+            "1:22.38",
+            "1:10.71",
+            "1:17.13",
+            "1:08.79",
+            "1:11.07"
+          ]
+        },
+        {
+          "Place": "5",
+          "Pilot": "Jeff Martin",
+          "HeatTimes": [
+            "1:19.33",
+            "1:19.51",
+            "1:14.70",
+            "1:11.47",
+            "1:25.30"
+          ]
+        },
+        {
+          "Place": "6",
+          "Pilot": "Cecil Graval",
+          "HeatTimes": [
+            "1:15.42",
+            "1:13.05",
+            "1:13.32",
+            "1:13.40",
+            "1:14.95"
+          ]
+        },
+        {
+          "Place": "7",
+          "Pilot": "Ted Ellefson",
+          "HeatTimes": [
+            "1:12.17",
+            "1:15.34",
+            "DC",
+            "1:10.17",
+            "1:18.03"
+          ]
+        },
+        {
+          "Place": "8",
+          "Pilot": "Randy Smith",
+          "HeatTimes": [
+            "1:13.90",
+            "1:11.09",
+            "DNF",
+            "1:10.35",
+            "1:13.81"
+          ]
+        },
+        {
+          "Place": "9",
+          "Pilot": "Mark Duncan",
+          "HeatTimes": [
+            "DNS",
+            "1:18.66",
+            "1:13.41",
+            "1:16.24",
+            "1:13.54"
+          ]
+        },
+        {
+          "Place": "10",
+          "Pilot": "Doug Houston",
+          "HeatTimes": [
+            "1:19.45",
+            "CRA",
+            "1:16.81",
+            "1:15.28",
+            "1:16.27"
+          ]
+        },
+        {
+          "Place": "11",
+          "Pilot": "Kevin Moorehouse",
+          "HeatTimes": [
+            "1:15.37",
+            "1:16.79",
+            "1:19.75",
+            "1:15.09",
+            "1:12.87"
+          ]
+        },
+        {
+          "Place": "12",
+          "Pilot": "Jack Ellefson",
+          "HeatTimes": [
+            "1:18.80",
+            "1:22.99",
+            "1:21.08",
+            "1:17.20",
+            "1:24.04"
+          ]
+        }
+      ]
+    },
+    {
+      "ContestDate": "2019-07-28T21:13:18",
+      "Location": "Calgary",
+      "RaceClass": "Q40 (AMA 422)",
+      "Status": "Valid",
+      "Rounds": 8,
+      "Pilots": 12,
+      "Notes": "",
+      "Scoreboard": [
+        {
+          "Place": "1",
+          "Pilot": "Doug Houston",
+          "HeatTimes": [
+            "1:17.45",
+            "1:11.65",
+            "1:08.78",
+            "1:06.92",
+            "1:07.11",
+            "NT",
+            "1:09.10",
+            "1:06.66"
+          ]
+        },
+        {
+          "Place": "2",
+          "Pilot": "Roy Andrassy",
+          "HeatTimes": [
+            "1:09.36",
+            "DNF",
+            "1:06.16",
+            "1:05.37",
+            "1:07.67",
+            "1:08.28",
+            "1:06.49",
+            "1:06.84"
+          ]
+        },
+        {
+          "Place": "3",
+          "Pilot": "Allan Umbach",
+          "HeatTimes": [
+            "1:16.43",
+            "1:15.37",
+            "1:16.11",
+            "1:26.67",
+            "1:10.55",
+            "1:14.52",
+            "1:10.85",
+            "1:10.26"
+          ]
+        },
+        {
+          "Place": "4",
+          "Pilot": "Ted Ellefson",
+          "HeatTimes": [
+            "1:11.74",
+            "1:20.42",
+            "1:20.05",
+            "1:14.68",
+            "1:10.91",
+            "1:20.69",
+            "1:18.97",
+            "1:11.57"
+          ]
+        },
+        {
+          "Place": "5",
+          "Pilot": "Jeff Martin",
+          "HeatTimes": [
+            "1:19.82",
+            "1:24.32",
+            "1:11.63",
+            "1:09.74",
+            "1:10.13",
+            "1:15.10",
+            "1:09.16",
+            "1:14.08"
+          ]
+        },
+        {
+          "Place": "6",
+          "Pilot": "Kevin Moorehouse",
+          "HeatTimes": [
+            "1:23.43",
+            "1:20.79",
+            "DNF",
+            "1:15.21",
+            "1:13.45",
+            "1:18.35",
+            "1:14.75",
+            "NT"
+          ]
+        },
+        {
+          "Place": "7",
+          "Pilot": "Cecil Graval",
+          "HeatTimes": [
+            "DC",
+            "1:27.65",
+            "1:19.91",
+            "1:14.19",
+            "1:10.50",
+            "1:18.31",
+            "1:22.25",
+            "1:11.91"
+          ]
+        },
+        {
+          "Place": "8",
+          "Pilot": "Hank Kauffmann",
+          "HeatTimes": [
+            "1:48.52",
+            "1:21.58",
+            "1:18.90",
+            "1:08.55",
+            "1:18.24",
+            "MA",
+            "OUT",
+            "OUT"
+          ]
+        },
+        {
+          "Place": "9",
+          "Pilot": "Kevin Umbach",
+          "HeatTimes": [
+            "1:10.75",
+            "1:13.99",
+            "1:43.08",
+            "1:22.97",
+            "1:21.22",
+            "MA",
+            "OUT",
+            "OUT"
+          ]
+        },
+        {
+          "Place": "10",
+          "Pilot": "Randy Smith",
+          "HeatTimes": [
+            "DNS",
+            "1:30.34",
+            "DNS",
+            "1:24.85",
+            "DNS",
+            "DNS",
+            "1:07.33",
+            "1:11.86"
+          ]
+        },
+        {
+          "Place": "11",
+          "Pilot": "Mark Duncan",
+          "HeatTimes": [
+            "DNF",
+            "1:35.51",
+            "1:24.81",
+            "1:33.17",
+            "1:29.13",
+            "1:32.87",
+            "1:37.75",
+            "DNS"
+          ]
+        },
+        {
+          "Place": "12",
+          "Pilot": "Jack Ellefson",
+          "HeatTimes": [
+            "1:21.39",
+            "1:22.58",
+            "DNS",
+            "1:32.40",
+            "1:33.62",
+            "DNF",
+            "DNS",
+            "OUT"
+          ]
+        }
+      ]
+    },
+    {
+      "ContestDate": "2019-08-26T16:44:39.3178881-06:00",
+      "Location": "Saskatoon",
+      "RaceClass": "Q500 (AMA 426)",
+      "Status": "Valid",
+      "Rounds": 8,
+      "Pilots": 10,
+      "Notes": "ted disqualified for illegal LS engine",
+      "Scoreboard": [
+        {
+          "Place": "1",
+          "Pilot": "Roy Andrassy",
+          "HeatTimes": [
+            "1:17.61",
+            "1:13.84",
+            "1:15.67",
+            "1:10.11",
+            "1:12.93",
+            "1:09.80",
+            "1:13.12",
+            "1:18.70"
+          ]
+        },
+        {
+          "Place": "2",
+          "Pilot": "Doug Houston",
+          "HeatTimes": [
+            "1:22.48",
+            "1:15.55",
+            "1:11.15",
+            "NT",
+            "1:06.41",
+            "NT",
+            "1:07.49",
+            "1:12.78"
+          ]
+        },
+        {
+          "Place": "3",
+          "Pilot": "Jeff Martin",
+          "HeatTimes": [
+            "DNF",
+            "1:14.63",
+            "1:12.65",
+            "1:19.01",
+            "1:21.19",
+            "1:10.06",
+            "1:14.94",
+            "1:10.41"
+          ]
+        },
+        {
+          "Place": "4",
+          "Pilot": "Randy Smith",
+          "HeatTimes": [
+            "1:16.89",
+            "1:11.69",
+            "DC",
+            "1:11.81",
+            "1:14.68",
+            "1:13.06",
+            "DNF",
+            "1:12.97"
+          ]
+        },
+        {
+          "Place": "5",
+          "Pilot": "Allan Umbach",
+          "HeatTimes": [
+            "MA",
+            "1:19.66",
+            "1:12.00",
+            "DNF",
+            "NT",
+            "1:17.77",
+            "1:15.75",
+            "1:10.02"
+          ]
+        },
+        {
+          "Place": "6",
+          "Pilot": "Mark Duncan",
+          "HeatTimes": [
+            "1:19.06",
+            "DNF",
+            "1:19.40",
+            "1:17.50",
+            "1:12.33",
+            "1:20.23",
+            "1:13.39",
+            "1:13.13"
+          ]
+        },
+        {
+          "Place": "7",
+          "Pilot": "Chris Metlewski",
+          "HeatTimes": [
+            "MA",
+            "1:20.37",
+            "1:17.25",
+            "1:18.89",
+            "1:25.10",
+            "1:20.94",
+            "1:22.37",
+            "1:19.29"
+          ]
+        },
+        {
+          "Place": "8",
+          "Pilot": "Kevin Umbach",
+          "HeatTimes": [
+            "1:18.90",
+            "1:25.70",
+            "1:19.08",
+            "1:15.88",
+            "1:22.87",
+            "DNF",
+            "1:14.99",
+            "1:10.41"
+          ]
+        },
+        {
+          "Place": "9",
+          "Pilot": "Dave Eaton",
+          "HeatTimes": [
+            "1:16.62",
+            "1:20.76",
+            "DNF",
+            "1:13.43",
+            "NT",
+            "1:20.54",
+            "DNF",
+            "DNF"
+          ]
+        },
+        {
+          "Place": "10",
+          "Pilot": "Ted Ellefson",
+          "HeatTimes": [
+            "1:14.63",
+            "1:10.45",
+            "1:14.51",
+            "NT",
+            "1:13.47",
+            "NT",
+            "1:10.67",
+            "1:08.83"
+          ]
+        }
+      ]
+    },
+    {
+      "ContestDate": "2019-08-25T16:54:12",
+      "Location": "Saskatoon",
+      "RaceClass": "Q40 (AMA 422)",
+      "Status": "Valid",
+      "Rounds": 7,
+      "Pilots": 11,
+      "Notes": "",
+      "Scoreboard": [
+        {
+          "Place": "4",
+          "Pilot": "Jeff Martin",
+          "HeatTimes": [
+            "1:09.87",
+            "1:11.77",
+            "NT",
+            "1:12.81",
+            "1:13.22",
+            "1:12.65",
+            "1:10.73"
+          ]
+        },
+        {
+          "Place": "2",
+          "Pilot": "Ted Ellefson",
+          "HeatTimes": [
+            "1:16.19",
+            "DC",
+            "1:13.55",
+            "1:11.67",
+            "1:11.16",
+            "1:09.97",
+            "1:08.00"
+          ]
+        },
+        {
+          "Place": "5",
+          "Pilot": "Randy Smith",
+          "HeatTimes": [
+            "DNF",
+            "1:02.49",
+            "1:07.15",
+            "1:03.35",
+            "NT",
+            "1:06.93",
+            "DNF"
+          ]
+        },
+        {
+          "Place": "1",
+          "Pilot": "Roy Andrassy",
+          "HeatTimes": [
+            "1:03.28",
+            "1:03.58",
+            "1:02.05",
+            "1:04.81",
+            "1:03.63",
+            "1:05.12",
+            "1:05.49"
+          ]
+        },
+        {
+          "Place": "9",
+          "Pilot": "Doug Houston",
+          "HeatTimes": [
+            "1:04.19",
+            "NT",
+            "DNS",
+            "DC",
+            "DC",
+            "1:05.91",
+            "1:06.12"
+          ]
+        },
+        {
+          "Place": "10",
+          "Pilot": "Allan Umbach",
+          "HeatTimes": [
+            "DNF",
+            "1:09.08",
+            "1:09.16",
+            "NT",
+            "NT",
+            "1:15.71",
+            "1:07.73"
+          ]
+        },
+        {
+          "Place": "11",
+          "Pilot": "Kevin Umbach",
+          "HeatTimes": [
+            "1:19.63",
+            "DNF",
+            "NT",
+            "DNF",
+            "1:17.95",
+            "1:14.28",
+            "1:24.28"
+          ]
+        },
+        {
+          "Place": "8",
+          "Pilot": "Mark Duncan",
+          "HeatTimes": [
+            "DNS",
+            "1:16.01",
+            "1:09.84",
+            "1:14.90",
+            "1:14.22",
+            "DNS",
+            "1:15.04"
+          ]
+        },
+        {
+          "Place": "3",
+          "Pilot": "Dave Eaton",
+          "HeatTimes": [
+            "1:13.77",
+            "1:07.92",
+            "1:10.59",
+            "1:08.78",
+            "1:08.65",
+            "1:07.06",
+            "1:06.36"
+          ]
+        },
+        {
+          "Place": "6",
+          "Pilot": "Chris Metlewski",
+          "HeatTimes": [
+            "1:14.12",
+            "1:12.09",
+            "1:15.44",
+            "1:13.63",
+            "1:15.01",
+            "1:13.94",
+            "1:13.09"
+          ]
+        },
+        {
+          "Place": "7",
+          "Pilot": "Delbert Godon",
+          "HeatTimes": [
+            "DNS",
+            "1:10.20",
+            "DNS",
+            "1:07.74",
+            "1:18.08",
+            "1:08.12",
+            "1:15.00"
+          ]
+        }
+      ]
+    }
+  ]
+}
