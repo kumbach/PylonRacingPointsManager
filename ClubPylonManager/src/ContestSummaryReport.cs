@@ -24,9 +24,9 @@ namespace ClubPylonManager {
           continue;
         }
 
-        AddLine("                                             Best     Average -------- TOTAL --------");
-        AddLine("Place Pilot                          Points  Time       Time   DC DNS DNF OUT  MA CRA");
-        AddLine("----- ------------------------------ ------ -------   ------- --- --- --- --- --- ---");
+        AddLine("                                             Best     -------- TOTAL --------");
+        AddLine("Place Pilot                          Points  Time      DC DNS DNF OUT  MA CRA");
+        AddLine("----- ------------------------------ ------ -------   --- --- --- --- --- ---");
 
         var fastPilot = contest.GetFastestPilot();
 
@@ -53,12 +53,12 @@ namespace ClubPylonManager {
 
           string fastTimeCode = row.Pilot.Equals(fastPilot) ? "FT" : "";
           AddLine(
-            $"{row.Place,4}. {row.Pilot,-30} {row.NmpraPoints(contest.Scoreboard.Count),6:N1} {row.BestTime(),-7}{fastTimeCode,2} {row.AverageTime(),-7} {dc,3} {dns,3} {dnf,3} {outt,3} {ma,3} {cra,3}");
+            $"{row.Place,4}. {row.Pilot,-30} {row.NmpraPoints(contest.Scoreboard.Count),6:N1} {row.BestTime(),-7}{fastTimeCode,2} {dc,3} {dns,3} {dnf,3} {outt,3} {ma,3} {cra,3}");
         }
 
-        AddLine($"{"",62}--- --- --- --- --- ---");
-        AddLine($"{"",62}{totalDc,3} {totalDns,3} {totalDnf,3} {totalOut,3} {totalMa,3} {totalCra,3}");
-        AddLine($"{"",62}=== === === === === ===");
+        AddLine($"{"",54}--- --- --- --- --- ---");
+        AddLine($"{"",54}{totalDc,3} {totalDns,3} {totalDnf,3} {totalOut,3} {totalMa,3} {totalCra,3}");
+        AddLine($"{"",54}=== === === === === ===");
 
         NewLine();
         AddLine("DC-double cut, DNS-did not start, DNF-did not finish, OUT-missed heat,");

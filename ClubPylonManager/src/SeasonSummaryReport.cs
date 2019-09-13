@@ -81,9 +81,9 @@ namespace ClubPylonManager {
     private void WriteDetails(string currentClass, Dictionary<string, LineItem> dict) {
       AddLine("Race Class: " + currentClass);
       AddLine("");
-      AddLine("                                     Total  Contests Best   Best      Average -------- TOTAL --------");
-      AddLine("Place Pilot                          Points Attended Finish Time       Time   DC DNS DNF OUT  MA CRA");
-      AddLine("----- ------------------------------ ------ -------- ------ -------   ------- --- --- --- --- --- ---");
+      AddLine("                                     Total  Contests Best   Best      -------- TOTAL --------");
+      AddLine("Place Pilot                          Points Attended Finish Time       DC DNS DNF OUT  MA CRA");
+      AddLine("----- ------------------------------ ------ -------- ------ -------   --- --- --- --- --- ---");
 
       int place = 1;
       var fastPilot = GetFastPilot(dict);
@@ -98,21 +98,19 @@ namespace ClubPylonManager {
 
         string fastTimeCode = row.Pilot.Equals(fastPilot) ? "FT" : "";
         AddLine(
-          $"{place++,4}. {row.Pilot,-30} {row.Points,6:F1} {row.NumContests,8} {row.BestPlace,6} {TimeUtils.ConvertDoubleTimeToString(row.BestTime),-7}{fastTimeCode,2} {row.AverageTime,-7} {row.Dc,3} {row.Dns,3} {row.Dnf,3} {row.Out,3} {row.Ma,3} {row.Cra,3}");
+          $"{place++,4}. {row.Pilot,-30} {row.Points,6:F1} {row.NumContests,8} {row.BestPlace,6} {TimeUtils.ConvertDoubleTimeToString(row.BestTime),-7}{fastTimeCode,2} {row.Dc,3} {row.Dns,3} {row.Dnf,3} {row.Out,3} {row.Ma,3} {row.Cra,3}");
       }
 
       var totalsLineItem = MakeTotalLineItem(dict);
 
-      AddLine($"{"",77} --- --- --- --- --- ---");
+      AddLine($"{"",69} --- --- --- --- --- ---");
       AddLine(
-        $"{"",77} {totalsLineItem.Dc,3} {totalsLineItem.Dns,3} {totalsLineItem.Dnf,3} {totalsLineItem.Out,3} {totalsLineItem.Ma,3} {totalsLineItem.Cra,3}");
-      AddLine($"{"",77} === === === === === ===");
+        $"{"",69} {totalsLineItem.Dc,3} {totalsLineItem.Dns,3} {totalsLineItem.Dnf,3} {totalsLineItem.Out,3} {totalsLineItem.Ma,3} {totalsLineItem.Cra,3}");
+      AddLine($"{"",69} === === === === === ===");
 
       NewLine();
       AddLine("DC-double cut, DNS-did not start, DNF-did not finish, OUT-missed heat,");
       AddLine("MA-mid air, CRA-crash, FT-fast time");
-      NewLine();
-      AddLine(new String('~', 102));
       NewLine();
       NewLine();
     }
