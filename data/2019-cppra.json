@@ -583,16 +583,16 @@
       "Notes": "",
       "Scoreboard": [
         {
-          "Place": "4",
-          "Pilot": "Jeff Martin",
+          "Place": "1",
+          "Pilot": "Roy Andrassy",
           "HeatTimes": [
-            "1:09.87",
-            "1:11.77",
-            "NT",
-            "1:12.81",
-            "1:13.22",
-            "1:12.65",
-            "1:10.73"
+            "1:03.28",
+            "1:03.58",
+            "1:02.05",
+            "1:04.81",
+            "1:03.63",
+            "1:05.12",
+            "1:05.49"
           ]
         },
         {
@@ -609,6 +609,32 @@
           ]
         },
         {
+          "Place": "3",
+          "Pilot": "Dave Eaton",
+          "HeatTimes": [
+            "1:13.77",
+            "1:07.92",
+            "1:10.59",
+            "1:08.78",
+            "1:08.65",
+            "1:07.06",
+            "1:06.36"
+          ]
+        },
+        {
+          "Place": "4",
+          "Pilot": "Jeff Martin",
+          "HeatTimes": [
+            "1:09.87",
+            "1:11.77",
+            "NT",
+            "1:12.81",
+            "1:13.22",
+            "1:12.65",
+            "1:10.73"
+          ]
+        },
+        {
           "Place": "5",
           "Pilot": "Randy Smith",
           "HeatTimes": [
@@ -622,16 +648,42 @@
           ]
         },
         {
-          "Place": "1",
-          "Pilot": "Roy Andrassy",
+          "Place": "6",
+          "Pilot": "Chris Metlewski",
           "HeatTimes": [
-            "1:03.28",
-            "1:03.58",
-            "1:02.05",
-            "1:04.81",
-            "1:03.63",
-            "1:05.12",
-            "1:05.49"
+            "1:14.12",
+            "1:12.09",
+            "1:15.44",
+            "1:13.63",
+            "1:15.01",
+            "1:13.94",
+            "1:13.09"
+          ]
+        },
+        {
+          "Place": "7",
+          "Pilot": "Delbert Godon",
+          "HeatTimes": [
+            "DNS",
+            "1:10.20",
+            "DNS",
+            "1:07.74",
+            "1:18.08",
+            "1:08.12",
+            "1:15.00"
+          ]
+        },
+        {
+          "Place": "8",
+          "Pilot": "Mark Duncan",
+          "HeatTimes": [
+            "DNS",
+            "1:16.01",
+            "1:09.84",
+            "1:14.90",
+            "1:14.22",
+            "DNS",
+            "1:15.04"
           ]
         },
         {
@@ -672,58 +724,6 @@
             "1:14.28",
             "1:24.28"
           ]
-        },
-        {
-          "Place": "8",
-          "Pilot": "Mark Duncan",
-          "HeatTimes": [
-            "DNS",
-            "1:16.01",
-            "1:09.84",
-            "1:14.90",
-            "1:14.22",
-            "DNS",
-            "1:15.04"
-          ]
-        },
-        {
-          "Place": "3",
-          "Pilot": "Dave Eaton",
-          "HeatTimes": [
-            "1:13.77",
-            "1:07.92",
-            "1:10.59",
-            "1:08.78",
-            "1:08.65",
-            "1:07.06",
-            "1:06.36"
-          ]
-        },
-        {
-          "Place": "6",
-          "Pilot": "Chris Metlewski",
-          "HeatTimes": [
-            "1:14.12",
-            "1:12.09",
-            "1:15.44",
-            "1:13.63",
-            "1:15.01",
-            "1:13.94",
-            "1:13.09"
-          ]
-        },
-        {
-          "Place": "7",
-          "Pilot": "Delbert Godon",
-          "HeatTimes": [
-            "DNS",
-            "1:10.20",
-            "DNS",
-            "1:07.74",
-            "1:18.08",
-            "1:08.12",
-            "1:15.00"
-          ]
         }
       ]
     },
@@ -731,84 +731,84 @@
       "ContestDate": "2019-09-14T21:43:46",
       "Location": "Medicine Hat",
       "RaceClass": "Q500 (AMA 426)",
-      "Status": "Incomplete",
+      "Status": "Valid",
       "Rounds": 1,
       "Pilots": 11,
-      "Notes": "",
+      "Notes": "5 rounds. no judgeman laptop so no heat times.",
       "Scoreboard": [
         {
-          "Place": "0",
-          "Pilot": "Jeff Martin",
-          "HeatTimes": [
-            "NT"
-          ]
-        },
-        {
-          "Place": "0",
-          "Pilot": "Ted Ellefson",
-          "HeatTimes": [
-            "NT"
-          ]
-        },
-        {
-          "Place": "0",
-          "Pilot": "Randy Smith",
-          "HeatTimes": [
-            "NT"
-          ]
-        },
-        {
-          "Place": "0",
+          "Place": "1",
           "Pilot": "Roy Andrassy",
           "HeatTimes": [
             "NT"
           ]
         },
         {
-          "Place": "0",
-          "Pilot": "Hank Kauffmann",
-          "HeatTimes": [
-            "NT"
-          ]
-        },
-        {
-          "Place": "0",
-          "Pilot": "Doug Houston",
-          "HeatTimes": [
-            "NT"
-          ]
-        },
-        {
-          "Place": "0",
-          "Pilot": "Allan Umbach",
-          "HeatTimes": [
-            "NT"
-          ]
-        },
-        {
-          "Place": "0",
-          "Pilot": "Kevin Umbach",
-          "HeatTimes": [
-            "NT"
-          ]
-        },
-        {
-          "Place": "0",
-          "Pilot": "Mark Duncan",
-          "HeatTimes": [
-            "NT"
-          ]
-        },
-        {
-          "Place": "0",
+          "Place": "2",
           "Pilot": "Dave Eaton",
           "HeatTimes": [
             "NT"
           ]
         },
         {
-          "Place": "0",
+          "Place": "3",
+          "Pilot": "Allan Umbach",
+          "HeatTimes": [
+            "NT"
+          ]
+        },
+        {
+          "Place": "4",
+          "Pilot": "Doug Houston",
+          "HeatTimes": [
+            "NT"
+          ]
+        },
+        {
+          "Place": "5",
+          "Pilot": "Kevin Umbach",
+          "HeatTimes": [
+            "NT"
+          ]
+        },
+        {
+          "Place": "6",
+          "Pilot": "Randy Smith",
+          "HeatTimes": [
+            "NT"
+          ]
+        },
+        {
+          "Place": "7",
           "Pilot": "Chris Metlewski",
+          "HeatTimes": [
+            "NT"
+          ]
+        },
+        {
+          "Place": "8",
+          "Pilot": "Ted Ellefson",
+          "HeatTimes": [
+            "NT"
+          ]
+        },
+        {
+          "Place": "9",
+          "Pilot": "Jeff Martin",
+          "HeatTimes": [
+            "NT"
+          ]
+        },
+        {
+          "Place": "10",
+          "Pilot": "Hank Kauffmann",
+          "HeatTimes": [
+            "NT"
+          ]
+        },
+        {
+          "Place": "11",
+          "Pilot": "Mark Duncan",
           "HeatTimes": [
             "NT"
           ]
@@ -819,77 +819,70 @@
       "ContestDate": "2018-09-15T21:43:46",
       "Location": "Medicine Hat",
       "RaceClass": "Q500 (AMA 426)",
-      "Status": "Incomplete",
+      "Status": "Valid",
       "Rounds": 1,
-      "Pilots": 10,
+      "Pilots": 9,
       "Notes": "",
       "Scoreboard": [
         {
-          "Place": "0",
-          "Pilot": "Jeff Martin",
-          "HeatTimes": [
-            "NT"
-          ]
-        },
-        {
-          "Place": "0",
-          "Pilot": "Ted Ellefson",
-          "HeatTimes": [
-            "NT"
-          ]
-        },
-        {
-          "Place": "0",
-          "Pilot": "Randy Smith",
-          "HeatTimes": [
-            "NT"
-          ]
-        },
-        {
-          "Place": "0",
+          "Place": "1",
           "Pilot": "Roy Andrassy",
           "HeatTimes": [
             "NT"
           ]
         },
         {
-          "Place": "0",
-          "Pilot": "Hank Kauffmann",
+          "Place": "2",
+          "Pilot": "Jeff Martin",
           "HeatTimes": [
             "NT"
           ]
         },
         {
-          "Place": "0",
+          "Place": "3",
+          "Pilot": "Ted Ellefson",
+          "HeatTimes": [
+            "NT"
+          ]
+        },
+        {
+          "Place": "4",
           "Pilot": "Doug Houston",
           "HeatTimes": [
             "NT"
           ]
         },
         {
-          "Place": "0",
+          "Place": "5",
           "Pilot": "Allan Umbach",
           "HeatTimes": [
             "NT"
           ]
         },
         {
-          "Place": "0",
-          "Pilot": "Kevin Umbach",
+          "Place": "6",
+          "Pilot": "Randy Smith",
           "HeatTimes": [
             "NT"
           ]
         },
         {
-          "Place": "0",
+          "Place": "7",
           "Pilot": "Dave Eaton",
           "HeatTimes": [
             "NT"
           ]
         },
         {
-          "Place": "0",
+          "Place": "8",
           "Pilot": "Chris Metlewski",
+          "HeatTimes": [
+            "NT"
+          ]
+        },
+        {
+          "Place": "9",
+          "Pilot": "Kevin Umbach",
           "HeatTimes": [
             "NT"
           ]
