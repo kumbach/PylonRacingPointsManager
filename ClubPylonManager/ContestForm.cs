@@ -15,7 +15,7 @@ namespace ClubPylonManager {
     public ContestForm(ClubFile clubFile, Contest contest) {
       _clubFile = clubFile;
       InitializeComponent();
-
+      
       PopulateComboBoxes();
       if (contest == null) {
         contestBindingSource.AddNew();
@@ -81,6 +81,7 @@ namespace ClubPylonManager {
 
     private void saveButton_Click(object sender, EventArgs e) {
       var contest = GetContest();
+      contest.ContestDate = contest.ContestDate.Date; // strip off time
       ClearValidationErrors();
 
       if (ValidateScoreboard()) {

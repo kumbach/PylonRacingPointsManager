@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace ClubPylonManager {
@@ -39,6 +40,10 @@ namespace ClubPylonManager {
 
     public bool IsUnNamed() {
       return string.IsNullOrWhiteSpace(Filename);
+    }
+
+    public void SortByDate() {
+      Contests = Contests.OrderByDescending(o => o.ContestDate).ToList();
     }
   }
 }

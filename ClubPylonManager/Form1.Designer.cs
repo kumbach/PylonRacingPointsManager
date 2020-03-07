@@ -28,8 +28,7 @@ namespace ClubPylonManager
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,8 +65,6 @@ namespace ClubPylonManager
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contestGridView = new System.Windows.Forms.DataGridView();
-            this.contestBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.contestDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.locationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.raceClassDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,41 +72,31 @@ namespace ClubPylonManager
             this.roundsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pilotsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contestBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.contestGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contestBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.contestGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.contestBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.contestToolStripMenuItem,
-            this.reportsToolStripMenuItem,
-            this.clubToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[]
+                {this.fileToolStripMenuItem, this.contestToolStripMenuItem, this.reportsToolStripMenuItem, this.clubToolStripMenuItem, this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(933, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileNewMenuItem,
-            this.fileOpenMenuItem,
-            this.toolStripSeparator1,
-            this.fileCloseMenuItem,
-            this.toolStripSeparator2,
-            this.fileSaveMenuItem,
-            this.fileSaveAsMenuItem,
-            this.toolStripSeparator3,
-            this.importToolStripMenuItem,
-            this.toolStripSeparator8,
-            this.settingsToolStripMenuItem,
-            this.toolStripSeparator7,
-            this.fileExitMenuItem});
+                this.fileNewMenuItem, this.fileOpenMenuItem, this.toolStripSeparator1, this.fileCloseMenuItem, this.toolStripSeparator2, this.fileSaveMenuItem,
+                this.fileSaveAsMenuItem, this.toolStripSeparator3, this.importToolStripMenuItem, this.toolStripSeparator8, this.settingsToolStripMenuItem, this.toolStripSeparator7,
+                this.fileExitMenuItem
+            });
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -196,13 +183,8 @@ namespace ClubPylonManager
             // 
             // contestToolStripMenuItem
             // 
-            this.contestToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.contestNewMenuItem,
-            this.contestEditMenuItem,
-            this.toolStripSeparator4,
-            this.contestDuplicateMenuItem,
-            this.toolStripSeparator5,
-            this.contestDeleteMenuItem});
+            this.contestToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[]
+                {this.contestNewMenuItem, this.contestEditMenuItem, this.toolStripSeparator4, this.contestDuplicateMenuItem, this.toolStripSeparator5, this.contestDeleteMenuItem});
             this.contestToolStripMenuItem.Name = "contestToolStripMenuItem";
             this.contestToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.contestToolStripMenuItem.Text = "Contest";
@@ -248,10 +230,8 @@ namespace ClubPylonManager
             // 
             // reportsToolStripMenuItem
             // 
-            this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.contestReportMenuItem,
-            this.seasonReportMenuItem,
-            this.pilotStatisticsMenuItem});
+            this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[]
+                {this.contestReportMenuItem, this.seasonReportMenuItem, this.pilotStatisticsMenuItem});
             this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
             this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportsToolStripMenuItem.Text = "Reports";
@@ -279,11 +259,9 @@ namespace ClubPylonManager
             // clubToolStripMenuItem
             // 
             this.clubToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pilotRosterToolStripMenuItem,
-            this.raceClassesToolStripMenuItem,
-            this.locationsToolStripMenuItem,
-            this.toolStripSeparator6,
-            this.contestSettingsToolStripMenuItem});
+                this.pilotRosterToolStripMenuItem, this.raceClassesToolStripMenuItem, this.locationsToolStripMenuItem, this.toolStripSeparator6,
+                this.contestSettingsToolStripMenuItem
+            });
             this.clubToolStripMenuItem.Name = "clubToolStripMenuItem";
             this.clubToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.clubToolStripMenuItem.Text = "Club";
@@ -322,8 +300,7 @@ namespace ClubPylonManager
             // 
             // helpToolStripMenuItem
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
@@ -346,25 +323,77 @@ namespace ClubPylonManager
             this.contestGridView.BackgroundColor = System.Drawing.SystemColors.Window;
             this.contestGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.contestGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.contestDateDataGridViewTextBoxColumn,
-            this.locationDataGridViewTextBoxColumn,
-            this.raceClassDataGridViewTextBoxColumn,
-            this.statusDataGridViewTextBoxColumn,
-            this.roundsDataGridViewTextBoxColumn,
-            this.pilotsDataGridViewTextBoxColumn,
-            this.notesDataGridViewTextBoxColumn});
+                this.contestDateDataGridViewTextBoxColumn, this.locationDataGridViewTextBoxColumn, this.raceClassDataGridViewTextBoxColumn, this.statusDataGridViewTextBoxColumn,
+                this.roundsDataGridViewTextBoxColumn, this.pilotsDataGridViewTextBoxColumn, this.notesDataGridViewTextBoxColumn
+            });
             this.contestGridView.DataSource = this.contestBindingSource;
             this.contestGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contestGridView.Location = new System.Drawing.Point(0, 24);
-            this.contestGridView.MinimumSize = new System.Drawing.Size(100, 100);
+            this.contestGridView.MinimumSize = new System.Drawing.Size(117, 115);
             this.contestGridView.Name = "contestGridView";
             this.contestGridView.ReadOnly = true;
             this.contestGridView.RowHeadersVisible = false;
             this.contestGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.contestGridView.Size = new System.Drawing.Size(800, 426);
+            this.contestGridView.Size = new System.Drawing.Size(933, 495);
             this.contestGridView.TabIndex = 0;
             this.contestGridView.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.RowStateChanged);
             this.contestGridView.DoubleClick += new System.EventHandler(this.GridDoubleClicked);
+            // 
+            // contestDateDataGridViewTextBoxColumn
+            // 
+            this.contestDateDataGridViewTextBoxColumn.DataPropertyName = "ContestDate";
+            this.contestDateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.contestDateDataGridViewTextBoxColumn.Name = "contestDateDataGridViewTextBoxColumn";
+            this.contestDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.contestDateDataGridViewTextBoxColumn.Width = 56;
+            // 
+            // locationDataGridViewTextBoxColumn
+            // 
+            this.locationDataGridViewTextBoxColumn.DataPropertyName = "Location";
+            this.locationDataGridViewTextBoxColumn.HeaderText = "Location";
+            this.locationDataGridViewTextBoxColumn.Name = "locationDataGridViewTextBoxColumn";
+            this.locationDataGridViewTextBoxColumn.ReadOnly = true;
+            this.locationDataGridViewTextBoxColumn.Width = 78;
+            // 
+            // raceClassDataGridViewTextBoxColumn
+            // 
+            this.raceClassDataGridViewTextBoxColumn.DataPropertyName = "RaceClass";
+            this.raceClassDataGridViewTextBoxColumn.HeaderText = "Race Class";
+            this.raceClassDataGridViewTextBoxColumn.Name = "raceClassDataGridViewTextBoxColumn";
+            this.raceClassDataGridViewTextBoxColumn.ReadOnly = true;
+            this.raceClassDataGridViewTextBoxColumn.Width = 87;
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
+            this.statusDataGridViewTextBoxColumn.Width = 64;
+            // 
+            // roundsDataGridViewTextBoxColumn
+            // 
+            this.roundsDataGridViewTextBoxColumn.DataPropertyName = "Rounds";
+            this.roundsDataGridViewTextBoxColumn.HeaderText = "Rounds";
+            this.roundsDataGridViewTextBoxColumn.Name = "roundsDataGridViewTextBoxColumn";
+            this.roundsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.roundsDataGridViewTextBoxColumn.Width = 72;
+            // 
+            // pilotsDataGridViewTextBoxColumn
+            // 
+            this.pilotsDataGridViewTextBoxColumn.DataPropertyName = "Pilots";
+            this.pilotsDataGridViewTextBoxColumn.HeaderText = "Pilots";
+            this.pilotsDataGridViewTextBoxColumn.Name = "pilotsDataGridViewTextBoxColumn";
+            this.pilotsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.pilotsDataGridViewTextBoxColumn.Width = 61;
+            // 
+            // notesDataGridViewTextBoxColumn
+            // 
+            this.notesDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.notesDataGridViewTextBoxColumn.DataPropertyName = "Notes";
+            this.notesDataGridViewTextBoxColumn.HeaderText = "Notes";
+            this.notesDataGridViewTextBoxColumn.Name = "notesDataGridViewTextBoxColumn";
+            this.notesDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // contestBindingSource
             // 
@@ -375,72 +404,16 @@ namespace ClubPylonManager
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 24);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 28);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(0, 0);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
-            // contestDateDataGridViewTextBoxColumn
-            // 
-            this.contestDateDataGridViewTextBoxColumn.DataPropertyName = "ContestDate";
-            this.contestDateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.contestDateDataGridViewTextBoxColumn.Name = "contestDateDataGridViewTextBoxColumn";
-            this.contestDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.contestDateDataGridViewTextBoxColumn.Width = 55;
-            // 
-            // locationDataGridViewTextBoxColumn
-            // 
-            this.locationDataGridViewTextBoxColumn.DataPropertyName = "Location";
-            this.locationDataGridViewTextBoxColumn.HeaderText = "Location";
-            this.locationDataGridViewTextBoxColumn.Name = "locationDataGridViewTextBoxColumn";
-            this.locationDataGridViewTextBoxColumn.ReadOnly = true;
-            this.locationDataGridViewTextBoxColumn.Width = 73;
-            // 
-            // raceClassDataGridViewTextBoxColumn
-            // 
-            this.raceClassDataGridViewTextBoxColumn.DataPropertyName = "RaceClass";
-            this.raceClassDataGridViewTextBoxColumn.HeaderText = "Race Class";
-            this.raceClassDataGridViewTextBoxColumn.Name = "raceClassDataGridViewTextBoxColumn";
-            this.raceClassDataGridViewTextBoxColumn.ReadOnly = true;
-            this.raceClassDataGridViewTextBoxColumn.Width = 86;
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
-            this.statusDataGridViewTextBoxColumn.Width = 62;
-            // 
-            // roundsDataGridViewTextBoxColumn
-            // 
-            this.roundsDataGridViewTextBoxColumn.DataPropertyName = "Rounds";
-            this.roundsDataGridViewTextBoxColumn.HeaderText = "Rounds";
-            this.roundsDataGridViewTextBoxColumn.Name = "roundsDataGridViewTextBoxColumn";
-            this.roundsDataGridViewTextBoxColumn.ReadOnly = true;
-            this.roundsDataGridViewTextBoxColumn.Width = 69;
-            // 
-            // pilotsDataGridViewTextBoxColumn
-            // 
-            this.pilotsDataGridViewTextBoxColumn.DataPropertyName = "Pilots";
-            this.pilotsDataGridViewTextBoxColumn.HeaderText = "Pilots";
-            this.pilotsDataGridViewTextBoxColumn.Name = "pilotsDataGridViewTextBoxColumn";
-            this.pilotsDataGridViewTextBoxColumn.ReadOnly = true;
-            this.pilotsDataGridViewTextBoxColumn.Width = 57;
-            // 
-            // notesDataGridViewTextBoxColumn
-            // 
-            this.notesDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.notesDataGridViewTextBoxColumn.DataPropertyName = "Notes";
-            this.notesDataGridViewTextBoxColumn.HeaderText = "Notes";
-            this.notesDataGridViewTextBoxColumn.Name = "notesDataGridViewTextBoxColumn";
-            this.notesDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(933, 519);
             this.Controls.Add(this.contestGridView);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
@@ -449,11 +422,10 @@ namespace ClubPylonManager
             this.Text = "Club Pylon Manager";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.contestGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contestBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.contestGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.contestBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

@@ -112,6 +112,7 @@ namespace ClubPylonManager {
         return;
       }
 
+      _clubFile.SortByDate();
       string json = JsonConvert.SerializeObject(_clubFile, Formatting.Indented);
       string filename = _clubFile.Filename;
 
@@ -225,9 +226,11 @@ namespace ClubPylonManager {
 
     private void seasonReportMenuItem_Click(object sender, EventArgs e) {
       List<Contest> contests = new List<Contest>();
-      foreach (Contest row in contestBindingSource.List) {
-        if (row.Status.Equals("Valid")) {
-          contests.Add(row);
+      
+      foreach (DataGridViewRow row in contestGridView.SelectedRows) {
+        var contest = (Contest) contestBindingSource.List[row.Index];
+        if (contest.Status.Equals("Valid")) {
+          contests.Add(contest);
         }
       }
 
