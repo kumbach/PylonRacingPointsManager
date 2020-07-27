@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace ClubPylonManager {
   public partial class ContestForm : Form {
     private readonly ClubFile _clubFile;
-    private string[] _heatCodes = {"NT", "DC", "DNS", "DNF", "MA", "CRA", "OUT"};
+    private string[] _heatCodes = {"NT", "DC", "DNS", "DNF", "MA", "CRA"};
     private Regex _regex = new Regex("^[0-2]:[0-5][0-9]\\.[0-9][0-9]$");
 
     public ContestForm(ClubFile clubFile, Contest contest) {
