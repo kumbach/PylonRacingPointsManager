@@ -7,25 +7,24 @@ using Newtonsoft.Json;
 namespace ClubPylonManager {
     public class ClubFile {
         [JsonIgnore] public string Filename { get; set; }
-
         [JsonIgnore] public bool Dirty { get; set; }
+        [JsonIgnore] public string LastError { get; set; } = "";
 
         public string FileVersion { get; } = "1.0";
         public List<Pilot> ClubRoster { get; set; }
         public List<RaceClass> RaceClasses { get; set; }
         public List<Location> Locations { get; set; }
         public List<Contest> Contests { get; set; }
-        public string LastError { get; set; } = "";
 
         public ClubFile() {
             NewFile();
         }
 
         public void NewFile() {
-            this.ClubRoster = new List<Pilot>();
-            this.RaceClasses = new List<RaceClass>();
-            this.Locations = new List<Location>();
-            this.Contests = new List<Contest>();
+            ClubRoster = new List<Pilot>();
+            RaceClasses = new List<RaceClass>();
+            Locations = new List<Location>();
+            Contests = new List<Contest>();
         }
 
         public Contest NewContest() {

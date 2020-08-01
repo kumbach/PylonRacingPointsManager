@@ -283,6 +283,12 @@ namespace ClubPylonManager {
         }
 
         private void seasonReportMenuItem_Click(object sender, EventArgs e) {
+            if (contestGridView.SelectedRows.Count <= 1) {
+                MessageBox.Show("Tip: You have only highlighted a single contest. To include more contests, highlight them too to include them in the report.",
+                    "Tip",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
             List<Contest> contests = new List<Contest>();
 
             foreach (DataGridViewRow row in contestGridView.SelectedRows) {
@@ -316,6 +322,21 @@ namespace ClubPylonManager {
 
         private void Form1_Load(object sender, EventArgs e) {
             // nothing to do here...
+        }
+
+        private void pilotStatisticsMenuItem_Click(object sender, EventArgs e) {
+            List<Contest> contests = new List<Contest>();
+
+            foreach (DataGridViewRow row in contestGridView.Rows) {
+                var contest = (Contest) contestBindingSource.List[row.Index];
+                if (contest.Status.Equals("Valid")) {
+                    contests.Add(contest);
+                }
+            }
+
+            var report = new SeasonSummaryReport(contests, clubFile);
+            var form = new ReportViewerForm("Pilot Statistics", report.GenerateReport());
+            form.ShowDialog();
         }
     }
 }

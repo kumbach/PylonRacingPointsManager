@@ -20,5 +20,11 @@ namespace ClubPylonManager
         {
             Close();
         }
+
+        private void CopyButton_Click(object sender, EventArgs e) {
+            if (!string.IsNullOrEmpty(textBox1.Text)) {
+                Clipboard.SetText(textBox1.Text);
+            }
+        }
     }
 }

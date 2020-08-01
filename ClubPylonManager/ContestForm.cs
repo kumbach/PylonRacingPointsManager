@@ -11,6 +11,7 @@ namespace ClubPylonManager {
         private readonly ClubFile _clubFile;
         private string[] _heatCodes = {"NT", "DC", "DNS", "DNF", "MA", "CRA"};
         private Regex _regex = new Regex("^[0-2]:[0-5][0-9]\\.[0-9][0-9]$");
+        public bool Dirty { get; set; }
 
         public ContestForm(ClubFile clubFile, Contest contest) {
             _clubFile = clubFile;
@@ -77,6 +78,21 @@ namespace ClubPylonManager {
         private void cancelButton_Click(object sender, EventArgs e) {
             DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private bool DiscardChanges() {
+            if (!Dirty) {
+                return true;
+            }
+
+            var result = MessageBox.Show(
+                $"Discard the changes made to this contest?",
+                "Unsaved Changes",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Exclamation
+            );
+
+            return result == DialogResult.Yes;
         }
 
         private void saveButton_Click(object sender, EventArgs e) {
@@ -175,7 +191,7 @@ namespace ClubPylonManager {
                 }
 
                 int.TryParse((string) scoreboardGrid.Rows[row].Cells[0].Value, out var place);
-                if (place < 1 || place >= scoreboardGrid.RowCount) {
+                if (place < 1 || place >= scoreboardGrid.RowCount - 1) {
                     errors.Add(new CellValidationDetail(row, 0,
                         $"Place must be between 1 and {scoreboardGrid.RowCount - 1}"));
                     continue;
@@ -389,21 +405,32 @@ namespace ClubPylonManager {
             var contest = GetContest();
             contest.ContestDate = contest.ContestDate.Date; // strip off time
             ClearValidationErrors();
+            scoreboardGrid.ClearSelection();
 
             if (ValidateScoreboard()) {
                 MessageBox.Show(
-                    "No errors detected.", "Scoreboard Validation",
+                    "Everything looks okay.", "Scoreboard Validation",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
             }
             else {
                 MessageBox.Show(
-                    "Errors detected.", "Scoreboard Validation",
+                    "Errors detected. Check the highlighted fields.", "Scoreboard Validation",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation
                 );
             }
         }
+
+        protected override void OnFormClosing(FormClosingEventArgs e) {
+            base.OnFormClosing(e);
+            e.Cancel = !DiscardChanges();
+        }
+
+        private void scoreboardGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e) {
+            Dirty = true;
+        }
+
     }
 }

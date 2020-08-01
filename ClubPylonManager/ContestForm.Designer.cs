@@ -228,6 +228,7 @@
             this.scoreboardGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.scoreboardGrid.Size = new System.Drawing.Size(1072, 376);
             this.scoreboardGrid.TabIndex = 11;
+            this.scoreboardGrid.CurrentCellDirtyStateChanged += new System.EventHandler(this.scoreboardGrid_CurrentCellDirtyStateChanged);
             this.scoreboardGrid.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.scoreboardGrid_EditingControlShowing);
             this.scoreboardGrid.SelectionChanged += new System.EventHandler(this.SelectionChanged);
             this.scoreboardGrid.SortCompare += new System.Windows.Forms.DataGridViewSortCompareEventHandler(this.SortCompare);

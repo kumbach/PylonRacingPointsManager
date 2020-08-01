@@ -60,8 +60,6 @@ namespace ClubPylonManager
             this.pilotRosterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.raceClassesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.locationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.contestSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contestGridView = new System.Windows.Forms.DataGridView();
@@ -248,11 +246,12 @@ namespace ClubPylonManager
             // 
             this.pilotStatisticsMenuItem.Name = "pilotStatisticsMenuItem";
             this.pilotStatisticsMenuItem.Size = new System.Drawing.Size(200, 26);
-            this.pilotStatisticsMenuItem.Text = "Pilot Statistics";
+            this.pilotStatisticsMenuItem.Text = "Pilot Historical Summary";
+            this.pilotStatisticsMenuItem.Click += new System.EventHandler(this.pilotStatisticsMenuItem_Click);
             // 
             // clubToolStripMenuItem
             // 
-            this.clubToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.pilotRosterToolStripMenuItem, this.raceClassesToolStripMenuItem, this.locationsToolStripMenuItem, this.toolStripSeparator6, this.contestSettingsToolStripMenuItem});
+            this.clubToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.pilotRosterToolStripMenuItem, this.raceClassesToolStripMenuItem, this.locationsToolStripMenuItem});
             this.clubToolStripMenuItem.Name = "clubToolStripMenuItem";
             this.clubToolStripMenuItem.Size = new System.Drawing.Size(51, 24);
             this.clubToolStripMenuItem.Text = "Club";
@@ -260,34 +259,23 @@ namespace ClubPylonManager
             // pilotRosterToolStripMenuItem
             // 
             this.pilotRosterToolStripMenuItem.Name = "pilotRosterToolStripMenuItem";
-            this.pilotRosterToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.pilotRosterToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.pilotRosterToolStripMenuItem.Text = "Pilot Roster...";
             this.pilotRosterToolStripMenuItem.Click += new System.EventHandler(this.pilotRosterToolStripMenuItem_Click);
             // 
             // raceClassesToolStripMenuItem
             // 
             this.raceClassesToolStripMenuItem.Name = "raceClassesToolStripMenuItem";
-            this.raceClassesToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.raceClassesToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.raceClassesToolStripMenuItem.Text = "Race Classes...";
             this.raceClassesToolStripMenuItem.Click += new System.EventHandler(this.raceClassesToolStripMenuItem_Click);
             // 
             // locationsToolStripMenuItem
             // 
             this.locationsToolStripMenuItem.Name = "locationsToolStripMenuItem";
-            this.locationsToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
+            this.locationsToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.locationsToolStripMenuItem.Text = "Locations...";
             this.locationsToolStripMenuItem.Click += new System.EventHandler(this.locationsToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(196, 6);
-            // 
-            // contestSettingsToolStripMenuItem
-            // 
-            this.contestSettingsToolStripMenuItem.Name = "contestSettingsToolStripMenuItem";
-            this.contestSettingsToolStripMenuItem.Size = new System.Drawing.Size(199, 26);
-            this.contestSettingsToolStripMenuItem.Text = "Default Settings...";
             // 
             // helpToolStripMenuItem
             // 
@@ -427,7 +415,6 @@ namespace ClubPylonManager
         private System.Windows.Forms.DataGridView contestGridView;
         private System.Windows.Forms.ToolStripMenuItem contestNewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contestReportMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem contestSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileCloseMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fileExitMenuItem;
@@ -458,7 +445,6 @@ namespace ClubPylonManager
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
 
