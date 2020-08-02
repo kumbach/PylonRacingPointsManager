@@ -47,10 +47,6 @@ namespace ClubPylonManager {
       }
     }
 
-    public override string ToString() {
-      return (Location + " " + RaceClass + " " + ContestDate).Trim();
-    }
-
     public Contest Clone() {
       string json = JsonConvert.SerializeObject(this);
       return JsonConvert.DeserializeObject<Contest>(json);

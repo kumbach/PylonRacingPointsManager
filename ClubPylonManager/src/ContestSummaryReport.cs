@@ -10,7 +10,9 @@ namespace ClubPylonManager {
 
     public override string GenerateReport() {
       foreach (var contest in contests) {
-        AddLine(contest.ToString());
+        AddLine(contest.ContestDate.ToString("MMMM d, yyyy"));
+        AddLine(contest.RaceClass);
+        AddLine(contest.Location);
 
         if (contest.Status.Equals("Incomplete")) {
           AddLine("Cannot generate the report because the contest is marked as incomplete.");
