@@ -27,6 +27,7 @@ namespace ClubPylonManager {
       foreach (Pilot pilot in pilotBindingSource) {
         clubFile.ClubRoster.Add(pilot);
       }
+
       clubFile.ClubRoster = clubFile.ClubRoster.OrderBy(o => o.Name).ToList();
       clubFile.SetDirty();
       Close();

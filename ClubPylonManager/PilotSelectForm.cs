@@ -19,7 +19,7 @@ namespace ClubPylonManager {
             }
         }
 
-        private void selectButton_Click(object sender, System.EventArgs e) {
+        private void selectButton_Click(object sender, EventArgs e) {
             DialogResult = DialogResult.OK;
             this.Close();
         }

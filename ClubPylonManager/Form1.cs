@@ -35,7 +35,7 @@ namespace ClubPylonManager {
             pilotStatisticsMenuItem.Enabled = fileOpen;
             includeUnpaidMembersInReportsToolStripMenuItem1.Enabled = fileOpen;
             InactiveMembersInLists.Enabled = fileOpen;
-            
+
             pilotRosterToolStripMenuItem.Enabled = fileOpen;
             locationsToolStripMenuItem.Enabled = fileOpen;
             raceClassesToolStripMenuItem.Enabled = fileOpen;
@@ -89,7 +89,7 @@ namespace ClubPylonManager {
                     MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Exclamation
                 );
-                
+
                 if (result == DialogResult.Yes) {
                     fileSaveMenuItem_Click(null, null);
                 }
@@ -289,11 +289,13 @@ namespace ClubPylonManager {
 
         private void seasonReportMenuItem_Click(object sender, EventArgs e) {
             if (contestGridView.SelectedRows.Count <= 1) {
-                MessageBox.Show("Tip: You have only highlighted a single contest. If there are more contests in the season, highlight them too before creating the report.",
+                MessageBox.Show(
+                    "Tip: You have only highlighted a single contest. If there are more contests in the season, highlight them too before creating the report.",
                     "Tip",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
+
             List<Contest> contests = new List<Contest>();
 
             foreach (DataGridViewRow row in contestGridView.SelectedRows) {

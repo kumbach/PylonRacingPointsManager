@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -8,13 +7,13 @@ using System.Windows.Forms;
 
 namespace ClubPylonManager {
     public partial class ContestForm : Form {
-        private readonly ClubFile _clubFile;
-        private string[] _heatCodes = {"NT", "DC", "DNS", "DNF", "MA", "CRA"};
-        private Regex _regex = new Regex("^[0-2]:[0-5][0-9]\\.[0-9][0-9]$");
-        public bool Dirty { get; set; }
+        private readonly ClubFile clubFile;
+        private readonly string[] heatCodes = {"NT", "DC", "DNS", "DNF", "MA", "CRA"};
+        private readonly Regex regex = new Regex("^[0-2]:[0-5][0-9]\\.[0-9][0-9]$");
+        private bool Dirty { get; set; }
 
         public ContestForm(ClubFile clubFile, Contest contest) {
-            _clubFile = clubFile;
+            this.clubFile = clubFile;
             InitializeComponent();
 
             PopulateComboBoxes();
@@ -36,12 +35,13 @@ namespace ClubPylonManager {
         private void SetupScoreboardColumns() {
             DataGridViewTextBoxColumn[] columns = new DataGridViewTextBoxColumn[GetContest().Rounds];
             for (int i = 1; i <= GetContest().Rounds; ++i) {
-                var column = new DataGridViewTextBoxColumn();
-                column.HeaderText = $"Round {i}";
-                column.MaxInputLength = 7;
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                column.Width = 70;
-                column.MinimumWidth = 70;
+                var column = new DataGridViewTextBoxColumn {
+                    HeaderText = $"Round {i}",
+                    MaxInputLength = 7,
+                    AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                    Width = 70,
+                    MinimumWidth = 70
+                };
 
                 columns[i - 1] = column;
             }
@@ -51,8 +51,8 @@ namespace ClubPylonManager {
 
         public AutoCompleteStringCollection LoadPilotAutoComplete() {
             AutoCompleteStringCollection str = new AutoCompleteStringCollection();
-            foreach (Pilot pilot in _clubFile.ClubRoster) {
-                if (_clubFile.InactiveMembersInLists || pilot.MembershipPaid) {
+            foreach (Pilot pilot in clubFile.ClubRoster) {
+                if (clubFile.InactiveMembersInLists || pilot.MembershipPaid) {
                     str.Add(pilot.Name);
                 }
             }
@@ -73,8 +73,8 @@ namespace ClubPylonManager {
         }
 
         private void PopulateComboBoxes() {
-            locationCombo.DataSource = _clubFile.Locations;
-            raceClassCombo.DataSource = _clubFile.RaceClasses;
+            locationCombo.DataSource = clubFile.Locations;
+            raceClassCombo.DataSource = clubFile.RaceClasses;
         }
 
         private void cancelButton_Click(object sender, EventArgs e) {
@@ -141,7 +141,7 @@ namespace ClubPylonManager {
             }
 
             DialogResult = DialogResult.OK;
-            _clubFile.SetDirty();
+            clubFile.SetDirty();
             this.Close();
         }
 
@@ -169,11 +169,11 @@ namespace ClubPylonManager {
                         continue;
                     }
 
-                    if (_regex.Match(cellValue).Success) {
+                    if (regex.Match(cellValue).Success) {
                         continue;
                     }
 
-                    if (_heatCodes.Contains(cellValue)) {
+                    if (heatCodes.Contains(cellValue)) {
                         continue;
                     }
 
@@ -418,7 +418,7 @@ namespace ClubPylonManager {
             }
             else {
                 MessageBox.Show(
-                    "Scoreboard errors detected.\n\nHover the mouse over the highlighted fields for more details.", 
+                    "Scoreboard errors detected.\n\nHover the mouse over the highlighted fields for more details.",
                     "Scoreboard Validation",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation
@@ -434,6 +434,5 @@ namespace ClubPylonManager {
         private void scoreboardGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e) {
             Dirty = true;
         }
-
     }
 }
