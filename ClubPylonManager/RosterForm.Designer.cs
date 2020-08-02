@@ -64,7 +64,7 @@
             this.rosterGridView.AutoGenerateColumns = false;
             this.rosterGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.rosterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {this.Column1, this.pilotNumberDataGridViewTextBoxColumn, this.membershipPaidDataGridViewCheckBoxColumn});
-            this.rosterGridView.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.pilotBindingSource, "MembershipPaid", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rosterGridView.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.pilotBindingSource, "Active", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.rosterGridView.DataSource = this.pilotBindingSource;
             this.rosterGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rosterGridView.Location = new System.Drawing.Point(4, 4);
@@ -94,8 +94,8 @@
             // 
             // membershipPaidDataGridViewCheckBoxColumn
             // 
-            this.membershipPaidDataGridViewCheckBoxColumn.DataPropertyName = "MembershipPaid";
-            this.membershipPaidDataGridViewCheckBoxColumn.HeaderText = "Membership Paid";
+            this.membershipPaidDataGridViewCheckBoxColumn.DataPropertyName = "Active";
+            this.membershipPaidDataGridViewCheckBoxColumn.HeaderText = "Active";
             this.membershipPaidDataGridViewCheckBoxColumn.Name = "membershipPaidDataGridViewCheckBoxColumn";
             this.membershipPaidDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.membershipPaidDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;

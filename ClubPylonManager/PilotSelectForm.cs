@@ -13,7 +13,7 @@ namespace ClubPylonManager {
 
         private void UpdateData(ClubFile clubFile) {
             foreach (var pilot in clubFile.ClubRoster) {
-                if (clubFile.InactiveMembersInLists || pilot.MembershipPaid) {
+                if (clubFile.InactiveMembersInLists || pilot.Active) {
                     pilotSelectionBindingSource.Add(new PilotSelection(pilot.Name));
                 }
             }

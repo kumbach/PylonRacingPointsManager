@@ -97,7 +97,7 @@ namespace ClubPylonManager {
                     if (addPilot) {
                         ClubRoster.Add(new Pilot() {
                             Name =  row.Pilot,
-                            MembershipPaid =  false
+                            Active =  false
                         });
                     }
                 }

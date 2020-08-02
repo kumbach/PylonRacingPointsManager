@@ -6,167 +6,167 @@
     {
       "Name": "Allan Umbach",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Allie Russell",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Bryan Batch",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Cecil Graval",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Chris Metlewski",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Chris Metlewsky",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Chuck Swaney",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Darrol Cady",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Dave Eaton",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Delbert Godon",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Doug Houston",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Ed Alves",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Fred Champagne",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Hank Kauffmann",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Harold Sattler",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Henry Redekop",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Jack Ellefson",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Jeff Martin",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Kevin Moorehouse",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Kevin Umbach",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Leonard Cloninger",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Lyle Baker",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Mark Duncan",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Matt Russell",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Mike Bergan",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Murray Hamula",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Peter Thannhauser",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Randy Smith",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Rod Kelln",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Roy Andrassy",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Sam Ferris",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     },
     {
       "Name": "Ted Ellefson",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "Active": true
     },
     {
       "Name": "Terry Truelove",
       "PilotNumber": null,
-      "MembershipPaid": false
+      "Active": false
     }
   ],
   "RaceClasses": [

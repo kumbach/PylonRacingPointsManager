@@ -95,7 +95,7 @@ namespace ClubPylonManager {
             }
 
             foreach (var pilot in _clubFile.ClubRoster) {
-                if (pilotKey.ToLower().Equals(pilot.Name.ToLower()) && pilot.MembershipPaid) {
+                if (pilotKey.ToLower().Equals(pilot.Name.ToLower()) && pilot.Active) {
                     return true;
                 }
             }
