@@ -14,8 +14,8 @@ namespace ClubPylonManager {
         AddLine(contest.RaceClass);
         AddLine(contest.Location);
 
-        if (contest.Status.Equals("Incomplete")) {
-          AddLine("Cannot generate the report because the contest is marked as incomplete.");
+        if (contest.HasErrors()) {
+          AddLine("Cannot generate the report because the contest is marked as having errors.");
           AddLine("Edit the contest and correct all entry errors.");
           NewLine();
           AddLine("---------------------------------------------------------------------------------");

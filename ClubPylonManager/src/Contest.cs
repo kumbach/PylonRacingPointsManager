@@ -6,6 +6,8 @@ namespace ClubPylonManager {
   public class Contest {
     private const int DefaultNumPilots = 10;
     private const int DefaultNumRounds = 8;
+    public const string InvalidStatus = "Errors";
+    public const string ValidStatus = "OK";
 
     public DateTime ContestDate { get; set; }
     public string Location { get; set; }
@@ -52,6 +54,13 @@ namespace ClubPylonManager {
       return JsonConvert.DeserializeObject<Contest>(json);
     }
 
+    public bool HasErrors() {
+      return Status.Equals(InvalidStatus);
+    }
+
+    public bool IsValid() {
+      return Status.Equals(ValidStatus);
+    }
     public string GetFastestPilot() {
       double fastTime = 99999;
       string fastPilot = "";

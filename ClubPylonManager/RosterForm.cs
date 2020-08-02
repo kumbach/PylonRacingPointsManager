@@ -25,6 +25,9 @@ namespace ClubPylonManager {
     private void SaveButton_Click(object sender, EventArgs e) {
       clubFile.ClubRoster.Clear();
       foreach (Pilot pilot in pilotBindingSource) {
+        if (pilot.PilotNumber == null) {
+          pilot.PilotNumber = "";
+        }
         clubFile.ClubRoster.Add(pilot);
       }
 

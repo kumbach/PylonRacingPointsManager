@@ -106,7 +106,7 @@ namespace ClubPylonManager {
                 ContestForm contestForm = new ContestForm(clubFile, new Contest());
                 var result = contestForm.ShowDialog(this);
                 if (result == DialogResult.OK) {
-                    contestBindingSource.Add(contestForm.GetContest());
+                    AddRowAndBringIntoView(contestForm.GetContest());
                 }
 
                 return;
@@ -119,9 +119,16 @@ namespace ClubPylonManager {
                 ContestForm contestForm = new ContestForm(clubFile, new Contest(form.SelectedPilots()));
                 var result = contestForm.ShowDialog(this);
                 if (result == DialogResult.OK) {
-                    contestBindingSource.Add(contestForm.GetContest());
+                    AddRowAndBringIntoView(contestForm.GetContest());
                 }
             }
+        }
+
+        private void AddRowAndBringIntoView(Contest contest) {
+            contestBindingSource.Insert(0,contest);
+            contestGridView.ClearSelection();
+            contestGridView.Rows[0].Selected = true;
+            contestGridView.FirstDisplayedScrollingRowIndex = 0;
         }
 
         private void pilotRosterToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -300,7 +307,7 @@ namespace ClubPylonManager {
 
             foreach (DataGridViewRow row in contestGridView.SelectedRows) {
                 var contest = (Contest) contestBindingSource.List[row.Index];
-                if (contest.Status.Equals("Valid")) {
+                if (contest.IsValid()) {
                     contests.Add(contest);
                 }
             }
@@ -336,7 +343,7 @@ namespace ClubPylonManager {
 
             foreach (DataGridViewRow row in contestGridView.Rows) {
                 var contest = (Contest) contestBindingSource.List[row.Index];
-                if (contest.Status.Equals("Valid")) {
+                if (contest.IsValid()) {
                     contests.Add(contest);
                 }
             }

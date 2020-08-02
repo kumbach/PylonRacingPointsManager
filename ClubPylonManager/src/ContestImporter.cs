@@ -12,13 +12,13 @@ namespace ClubPylonManager {
 
       var contests = new List<Contest>();
       string line;
-      Contest contest = null;
+      Contest contest;
 
       line = NextLine();
       while (line != null) {
         ExtractContestDetails(line, out var date, out var raceClass, out var location);
         contest = new Contest {ContestDate = date, RaceClass = raceClass, Location = location};
-        contest.Status = "Valid";
+        contest.Status = Contest.ValidStatus;
 
         line = file.ReadLine();
         while (!string.IsNullOrEmpty(line)) {

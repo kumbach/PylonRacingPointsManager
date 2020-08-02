@@ -11,6 +11,7 @@ namespace ClubPylonManager {
         private readonly string[] heatCodes = {"NT", "DC", "DNS", "DNF", "MA", "CRA"};
         private readonly Regex regex = new Regex("^[0-2]:[0-5][0-9]\\.[0-9][0-9]$");
         private bool Dirty { get; set; }
+        private bool IgnoreCloseDirtyCheck;
 
         public ContestForm(ClubFile clubFile, Contest contest) {
             this.clubFile = clubFile;
@@ -103,15 +104,18 @@ namespace ClubPylonManager {
             ClearValidationErrors();
 
             if (ValidateScoreboard()) {
-                contest.Status = "Valid";
+                contest.Status = Contest.ValidStatus;
             }
             else {
-                contest.Status = "Incomplete";
+                contest.Status = Contest.InvalidStatus;
                 var result = MessageBox.Show("The scoreboard is incomplete or has entry errors. \n\n" +
                                              "You can still save it but it won't be included in any reports.\n\n" +
                                              "Save it?", Form1.AppName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Exclamation);
                 if (result == DialogResult.Yes) {
-                    contest.Status = "Incomplete";
+                    contest.Status = Contest.InvalidStatus;
+                    
+                    // need to skip dirty file check in window closing event 
+                    IgnoreCloseDirtyCheck = true;
                 }
                 else if (result == DialogResult.Cancel) {
                     return;
@@ -141,6 +145,7 @@ namespace ClubPylonManager {
             }
 
             DialogResult = DialogResult.OK;
+            Dirty = false;
             clubFile.SetDirty();
             this.Close();
         }
@@ -428,7 +433,9 @@ namespace ClubPylonManager {
 
         protected override void OnFormClosing(FormClosingEventArgs e) {
             base.OnFormClosing(e);
-            e.Cancel = !DiscardChanges();
+            if (!IgnoreCloseDirtyCheck) {
+                e.Cancel = !DiscardChanges();
+            }
         }
 
         private void scoreboardGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e) {

@@ -1,8 +1,50 @@
 {
   "FileVersion": "1.0",
-  "ClubRoster": [],
+  "InactiveMembersInReports": true,
+  "InactiveMembersInLists": true,
+  "ClubRoster": [
+    {
+      "Name": "11",
+      "PilotNumber": null,
+      "Active": false
+    },
+    {
+      "Name": "dd",
+      "PilotNumber": null,
+      "Active": false
+    }
+  ],
   "RaceClasses": [],
   "Locations": [],
-  "Contests": [],
-  "LastError": ""
+  "Contests": [
+    {
+      "ContestDate": "2001-08-02T00:00:00",
+      "Location": "",
+      "RaceClass": "",
+      "Status": "Errors",
+      "Rounds": 3,
+      "Pilots": 2,
+      "Notes": "",
+      "Scoreboard": [
+        {
+          "Place": "1",
+          "Pilot": "11",
+          "HeatTimes": [
+            "NT",
+            "NT",
+            "NT"
+          ]
+        },
+        {
+          "Place": "2",
+          "Pilot": "dd",
+          "HeatTimes": [
+            "NT",
+            "DCJJJ",
+            "NT"
+          ]
+        }
+      ]
+    }
+  ]
 }

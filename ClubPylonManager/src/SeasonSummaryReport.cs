@@ -17,7 +17,7 @@ namespace ClubPylonManager {
 
             string currentClass = "";
             foreach (var contest in _contests.OrderBy(c => c.RaceClass)) {
-                if (contest.Status.Equals("Incomplete")) {
+                if (contest.HasErrors()) {
                     continue;
                 }
 

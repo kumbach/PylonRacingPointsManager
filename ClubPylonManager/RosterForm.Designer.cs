@@ -32,7 +32,6 @@
             this.rosterGridView = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pilotNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.membershipPaidDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.pilotBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
@@ -51,7 +50,7 @@
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -63,12 +62,12 @@
             // 
             this.rosterGridView.AutoGenerateColumns = false;
             this.rosterGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.rosterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {this.Column1, this.pilotNumberDataGridViewTextBoxColumn, this.membershipPaidDataGridViewCheckBoxColumn});
+            this.rosterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {this.Column1, this.pilotNumberDataGridViewTextBoxColumn});
             this.rosterGridView.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.pilotBindingSource, "Active", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.rosterGridView.DataSource = this.pilotBindingSource;
             this.rosterGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rosterGridView.Location = new System.Drawing.Point(4, 4);
-            this.rosterGridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rosterGridView.Margin = new System.Windows.Forms.Padding(4);
             this.rosterGridView.MultiSelect = false;
             this.rosterGridView.Name = "rosterGridView";
             this.rosterGridView.RowHeadersVisible = false;
@@ -92,14 +91,6 @@
             this.pilotNumberDataGridViewTextBoxColumn.Name = "pilotNumberDataGridViewTextBoxColumn";
             this.pilotNumberDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // membershipPaidDataGridViewCheckBoxColumn
-            // 
-            this.membershipPaidDataGridViewCheckBoxColumn.DataPropertyName = "Active";
-            this.membershipPaidDataGridViewCheckBoxColumn.HeaderText = "Active";
-            this.membershipPaidDataGridViewCheckBoxColumn.Name = "membershipPaidDataGridViewCheckBoxColumn";
-            this.membershipPaidDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.membershipPaidDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // pilotBindingSource
             // 
             this.pilotBindingSource.DataSource = typeof(ClubPylonManager.Pilot);
@@ -112,7 +103,7 @@
             this.panel1.Controls.Add(this.saveButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(4, 650);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(637, 36);
             this.panel1.TabIndex = 1;
@@ -120,7 +111,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(120, 4);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 28);
             this.button2.TabIndex = 1;
@@ -131,7 +122,7 @@
             // saveButton
             // 
             this.saveButton.Location = new System.Drawing.Point(12, 4);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(100, 28);
             this.saveButton.TabIndex = 0;
@@ -146,7 +137,7 @@
             this.ClientSize = new System.Drawing.Size(645, 690);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(665, 730);
             this.Name = "RosterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
