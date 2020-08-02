@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ClubPylonManager {
@@ -18,7 +19,7 @@ namespace ClubPylonManager {
     }
 
     private void Button2_Click(object sender, EventArgs e) {
-      this.Close();
+      Close();
     }
 
     private void SaveButton_Click(object sender, EventArgs e) {
@@ -26,10 +27,9 @@ namespace ClubPylonManager {
       foreach (Pilot pilot in pilotBindingSource) {
         clubFile.ClubRoster.Add(pilot);
       }
-
+      clubFile.ClubRoster = clubFile.ClubRoster.OrderBy(o => o.Name).ToList();
       clubFile.SetDirty();
-
-      this.Close();
+      Close();
     }
 
     private void rosterGridView_CellContentClick(object sender, DataGridViewCellEventArgs e) {

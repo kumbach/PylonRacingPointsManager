@@ -1,68 +1,25 @@
 {
   "FileVersion": "1.0",
+  "InactiveMembersInReports": true,
+  "InactiveMembersInLists": true,
   "ClubRoster": [
-    {
-      "Name": "Jack Ellefson",
-      "PilotNumber": null,
-      "MembershipPaid": true
-    },
-    {
-      "Name": "Cecil Graval",
-      "PilotNumber": null,
-      "MembershipPaid": true
-    },
-    {
-      "Name": "Jeff Martin",
-      "PilotNumber": null,
-      "MembershipPaid": true
-    },
-    {
-      "Name": "Ted Ellefson",
-      "PilotNumber": null,
-      "MembershipPaid": true
-    },
-    {
-      "Name": "Randy Smith",
-      "PilotNumber": null,
-      "MembershipPaid": true
-    },
-    {
-      "Name": "Roy Andrassy",
-      "PilotNumber": null,
-      "MembershipPaid": true
-    },
-    {
-      "Name": "Hank Kauffmann",
-      "PilotNumber": null,
-      "MembershipPaid": true
-    },
-    {
-      "Name": "Doug Houston",
-      "PilotNumber": null,
-      "MembershipPaid": true
-    },
-    {
-      "Name": "Kevin Moorehouse",
-      "PilotNumber": null,
-      "MembershipPaid": true
-    },
     {
       "Name": "Allan Umbach",
       "PilotNumber": null,
       "MembershipPaid": true
     },
     {
-      "Name": "Kevin Umbach",
+      "Name": "Allie Russell",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "MembershipPaid": false
     },
     {
-      "Name": "Mark Duncan",
+      "Name": "Bryan Batch",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "MembershipPaid": false
     },
     {
-      "Name": "Dave Eaton",
+      "Name": "Cecil Graval",
       "PilotNumber": null,
       "MembershipPaid": true
     },
@@ -72,22 +29,152 @@
       "MembershipPaid": true
     },
     {
-      "Name": "Delbert Godon",
+      "Name": "Chris Metlewsky",
       "PilotNumber": null,
-      "MembershipPaid": true
+      "MembershipPaid": false
     },
     {
       "Name": "Chuck Swaney",
       "PilotNumber": null,
       "MembershipPaid": true
+    },
+    {
+      "Name": "Darrol Cady",
+      "PilotNumber": null,
+      "MembershipPaid": false
+    },
+    {
+      "Name": "Dave Eaton",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Delbert Godon",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Doug Houston",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Ed Alves",
+      "PilotNumber": null,
+      "MembershipPaid": false
+    },
+    {
+      "Name": "Fred Champagne",
+      "PilotNumber": null,
+      "MembershipPaid": false
+    },
+    {
+      "Name": "Hank Kauffmann",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Harold Sattler",
+      "PilotNumber": null,
+      "MembershipPaid": false
+    },
+    {
+      "Name": "Henry Redekop",
+      "PilotNumber": null,
+      "MembershipPaid": false
+    },
+    {
+      "Name": "Jack Ellefson",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Jeff Martin",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Kevin Moorehouse",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Kevin Umbach",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Leonard Cloninger",
+      "PilotNumber": null,
+      "MembershipPaid": false
+    },
+    {
+      "Name": "Lyle Baker",
+      "PilotNumber": null,
+      "MembershipPaid": false
+    },
+    {
+      "Name": "Mark Duncan",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Matt Russell",
+      "PilotNumber": null,
+      "MembershipPaid": false
+    },
+    {
+      "Name": "Mike Bergan",
+      "PilotNumber": null,
+      "MembershipPaid": false
+    },
+    {
+      "Name": "Murray Hamula",
+      "PilotNumber": null,
+      "MembershipPaid": false
+    },
+    {
+      "Name": "Peter Thannhauser",
+      "PilotNumber": null,
+      "MembershipPaid": false
+    },
+    {
+      "Name": "Randy Smith",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Rod Kelln",
+      "PilotNumber": null,
+      "MembershipPaid": false
+    },
+    {
+      "Name": "Roy Andrassy",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Sam Ferris",
+      "PilotNumber": null,
+      "MembershipPaid": false
+    },
+    {
+      "Name": "Ted Ellefson",
+      "PilotNumber": null,
+      "MembershipPaid": true
+    },
+    {
+      "Name": "Terry Truelove",
+      "PilotNumber": null,
+      "MembershipPaid": false
     }
   ],
   "RaceClasses": [
     {
-      "name": "Q500 (AMA 426)"
+      "Name": "Q40 (AMA 422)"
     },
     {
-      "name": "Q40 (AMA 422)"
+      "Name": "Q500 (AMA 426)"
     }
   ],
   "Locations": [
@@ -98,10 +185,10 @@
       "name": "Edmonton"
     },
     {
-      "name": "Saskatoon"
+      "name": "Medicine Hat"
     },
     {
-      "name": "Medicine Hat"
+      "name": "Saskatoon"
     }
   ],
   "Contests": [

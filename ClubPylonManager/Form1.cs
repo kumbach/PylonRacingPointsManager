@@ -6,12 +6,13 @@ using Newtonsoft.Json;
 
 namespace ClubPylonManager {
     public partial class Form1 : Form {
-        public const string AppName = "CPPRA Scoring Manager";
+        public const string AppName = "Pylon Racing Points Manager";
 
         private ClubFile clubFile;
 
         public Form1() {
             InitializeComponent();
+            Text = AppName;
             SetMenuState();
         }
 
@@ -32,11 +33,12 @@ namespace ClubPylonManager {
 
             seasonReportMenuItem.Enabled = fileOpen;
             pilotStatisticsMenuItem.Enabled = fileOpen;
-
+            includeUnpaidMembersInReportsToolStripMenuItem1.Enabled = fileOpen;
+            InactiveMembersInLists.Enabled = fileOpen;
+            
             pilotRosterToolStripMenuItem.Enabled = fileOpen;
             locationsToolStripMenuItem.Enabled = fileOpen;
             raceClassesToolStripMenuItem.Enabled = fileOpen;
-            settingsToolStripMenuItem.Enabled = fileOpen;
 
             SetEditMenuState();
         }
@@ -152,6 +154,7 @@ namespace ClubPylonManager {
                 string json = File.ReadAllText(filename);
                 clubFile = JsonConvert.DeserializeObject<ClubFile>(json);
                 clubFile.Filename = filename;
+                clubFile.AddMissingPilots();
                 SetOpenFileState();
             }
         }
@@ -161,6 +164,8 @@ namespace ClubPylonManager {
             contestBindingSource.DataSource = clubFile.Contests;
             var filename = string.IsNullOrEmpty(clubFile.Filename) ? "Untitled.json" : clubFile.Filename;
             this.Text = $"{AppName} - {filename}";
+
+            includeUnpaidMembersInReportsToolStripMenuItem1.Checked = clubFile.InactiveMembersInReports ^ true;
         }
 
         private void fileSaveMenuItem_Click(object sender, EventArgs e) {
@@ -284,7 +289,7 @@ namespace ClubPylonManager {
 
         private void seasonReportMenuItem_Click(object sender, EventArgs e) {
             if (contestGridView.SelectedRows.Count <= 1) {
-                MessageBox.Show("Tip: You have only highlighted a single contest. To include more contests, highlight them too to include them in the report.",
+                MessageBox.Show("Tip: You have only highlighted a single contest. If there are more contests in the season, highlight them too before creating the report.",
                     "Tip",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
@@ -337,6 +342,22 @@ namespace ClubPylonManager {
             var report = new SeasonSummaryReport(contests, clubFile);
             var form = new ReportViewerForm("Pilot Statistics", report.GenerateReport());
             form.ShowDialog();
+        }
+
+        private void includeUnpaidMembersInReportsToolStripMenuItem1_Click(object sender, EventArgs e) {
+            includeUnpaidMembersInReportsToolStripMenuItem1.Checked ^= true;
+            clubFile.SetInactiveInReports(includeUnpaidMembersInReportsToolStripMenuItem1.Checked);
+            clubFile.SetDirty();
+        }
+
+        private void showUnpaidMembersInListsToolStripMenuItem_Click(object sender, EventArgs e) {
+            InactiveMembersInLists.Checked ^= true;
+            clubFile.SetInactiveInLists(InactiveMembersInLists.Checked);
+            clubFile.SetDirty();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
+            new About().ShowDialog();
         }
     }
 }

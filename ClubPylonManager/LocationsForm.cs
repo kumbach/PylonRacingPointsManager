@@ -8,42 +8,37 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ClubPylonManager
-{
-    public partial class Locations : Form
-    {
-        private readonly ClubFile _clubFile;
+namespace ClubPylonManager {
+    public partial class Locations : Form {
+        private readonly ClubFile clubFile;
 
-        public Locations(ClubFile clubFile)
-        {
-            _clubFile = clubFile;
+        public Locations(ClubFile clubFile) {
+            this.clubFile = clubFile;
             InitializeComponent();
 
-           
 
             UpdateData();
         }
-        private void UpdateData()
-        {
-            foreach (var pilot in _clubFile.Locations)
-            {
+
+        private void UpdateData() {
+            foreach (var pilot in clubFile.Locations) {
                 locationBindingSource.Add(pilot);
             }
-
         }
-        private void saveButton_Click(object sender, EventArgs e)
-        {
-            _clubFile.Locations.Clear();
-            foreach (Location location in locationBindingSource)
-            {
-                _clubFile.Locations.Add(location);
+
+        private void saveButton_Click(object sender, EventArgs e) {
+            clubFile.Locations.Clear();
+            foreach (Location location in locationBindingSource) {
+                clubFile.Locations.Add(location);
             }
-            _clubFile.SetDirty();
+
+            clubFile.Locations = clubFile.Locations.OrderBy(o => o.name).ToList();
+
+            clubFile.SetDirty();
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
+        private void button2_Click(object sender, EventArgs e) {
             this.Close();
         }
     }

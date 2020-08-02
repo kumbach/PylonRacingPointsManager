@@ -52,7 +52,9 @@ namespace ClubPylonManager {
         public AutoCompleteStringCollection LoadPilotAutoComplete() {
             AutoCompleteStringCollection str = new AutoCompleteStringCollection();
             foreach (Pilot pilot in _clubFile.ClubRoster) {
-                str.Add(pilot.Name);
+                if (_clubFile.InactiveMembersInLists || pilot.MembershipPaid) {
+                    str.Add(pilot.Name);
+                }
             }
 
             return str;
@@ -191,7 +193,7 @@ namespace ClubPylonManager {
                 }
 
                 int.TryParse((string) scoreboardGrid.Rows[row].Cells[0].Value, out var place);
-                if (place < 1 || place >= scoreboardGrid.RowCount - 1) {
+                if (place < 1 || place > scoreboardGrid.RowCount - 1) {
                     errors.Add(new CellValidationDetail(row, 0,
                         $"Place must be between 1 and {scoreboardGrid.RowCount - 1}"));
                     continue;
@@ -409,14 +411,15 @@ namespace ClubPylonManager {
 
             if (ValidateScoreboard()) {
                 MessageBox.Show(
-                    "Everything looks okay.", "Scoreboard Validation",
+                    "The scoreboard looks okay.", "Scoreboard Validation",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
             }
             else {
                 MessageBox.Show(
-                    "Errors detected. Check the highlighted fields.", "Scoreboard Validation",
+                    "Scoreboard errors detected.\n\nHover the mouse over the highlighted fields for more details.", 
+                    "Scoreboard Validation",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Exclamation
                 );

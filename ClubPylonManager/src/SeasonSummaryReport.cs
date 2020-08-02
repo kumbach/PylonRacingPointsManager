@@ -72,6 +72,9 @@ namespace ClubPylonManager {
     }
 
     private bool PilotIsMember(string pilotKey) {
+      if (_clubFile.InactiveMembersInReports) {
+        return true;
+      }
       foreach (var pilot in _clubFile.ClubRoster) {
         if (pilotKey.ToLower().Equals(pilot.Name.ToLower()) && pilot.MembershipPaid) {
           return true;
