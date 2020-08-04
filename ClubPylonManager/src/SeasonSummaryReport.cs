@@ -4,26 +4,26 @@ using System.Linq;
 
 namespace ClubPylonManager {
     public class SeasonSummaryReport : AbstractReport {
-        private readonly List<Contest> _contests;
-        private readonly ClubFile _clubFile;
+        private readonly List<Contest> contests;
+        private readonly ClubFile clubFile;
 
         public SeasonSummaryReport(List<Contest> contests, ClubFile clubFile) {
-            _contests = contests;
-            _clubFile = clubFile;
+            this.contests = contests;
+            this.clubFile = clubFile;
         }
 
         public override string GenerateReport() {
             Dictionary<string, LineItem> dict = null;
 
             string currentClass = "";
-            foreach (var contest in _contests.OrderBy(c => c.RaceClass)) {
+            foreach (var contest in contests.OrderBy(c => c.RaceClass)) {
                 if (contest.HasErrors()) {
                     continue;
                 }
 
                 if (!contest.RaceClass.Equals(currentClass)) {
                     if (dict != null) {
-                        WriteDetails(currentClass, MakeTimeRangeString(currentClass, _contests), dict);
+                        WriteDetails(currentClass, MakeTimeRangeString(currentClass, contests), dict);
                     }
 
                     currentClass = contest.RaceClass;
@@ -65,7 +65,7 @@ namespace ClubPylonManager {
             }
 
             if (currentClass.Length > 0) {
-                WriteDetails(currentClass, MakeTimeRangeString(currentClass, _contests), dict);
+                WriteDetails(currentClass, MakeTimeRangeString(currentClass, contests), dict);
             }
 
             return ReportData.ToString();
@@ -90,11 +90,11 @@ namespace ClubPylonManager {
         }
 
         private bool PilotIsMember(string pilotKey) {
-            if (_clubFile.InactiveMembersInReports) {
+            if (Form1.GetSetting(Form1.ShowInactiveInReportsKey).Equals("True")) {
                 return true;
             }
 
-            foreach (var pilot in _clubFile.ClubRoster) {
+            foreach (var pilot in clubFile.ClubRoster) {
                 if (pilotKey.ToLower().Equals(pilot.Name.ToLower()) && pilot.Active) {
                     return true;
                 }
@@ -169,7 +169,7 @@ namespace ClubPylonManager {
 
         private Dictionary<string, LineItem> CreatePilotLineItemDict(string currentClass) {
             Dictionary<string, LineItem> dict = new Dictionary<string, LineItem>();
-            foreach (var contest in _contests) {
+            foreach (var contest in contests) {
                 if (contest.RaceClass.Equals(currentClass)) {
                     foreach (var row in contest.Scoreboard) {
                         var pilot = row.Pilot.ToLower();

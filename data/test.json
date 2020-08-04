@@ -1,7 +1,5 @@
 {
   "FileVersion": "1.0",
-  "InactiveMembersInReports": false,
-  "InactiveMembersInLists": false,
   "ClubRoster": [
     {
       "Name": "Allan Umbach",
@@ -184,19 +182,72 @@
   ],
   "Locations": [
     {
-      "name": "Calgary"
+      "Name": "Calgary"
     },
     {
-      "name": "Edmonton"
+      "Name": "Edmonton"
     },
     {
-      "name": "Medicine Hat"
+      "Name": "Medicine Hat"
     },
     {
-      "name": "Saskatoon"
+      "Name": "Saskatoon"
     }
   ],
   "Contests": [
+    {
+      "ContestDate": "2020-08-03T00:00:00",
+      "Location": "Medicine Hat",
+      "RaceClass": "Q40 (AMA 422)",
+      "Status": "Errors",
+      "Rounds": 8,
+      "Pilots": 3,
+      "Notes": "",
+      "Scoreboard": [
+        {
+          "Place": "1",
+          "Pilot": "Chuck Swaney",
+          "HeatTimes": [
+            "NT",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "Place": "2",
+          "Pilot": "Bob Johnson",
+          "HeatTimes": [
+            "1:01.01",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "Place": "3",
+          "Pilot": "Kevin Moorehouse",
+          "HeatTimes": [
+            "DC",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        }
+      ]
+    },
     {
       "ContestDate": "2020-08-01T00:00:00",
       "Location": "Medicine Hat",

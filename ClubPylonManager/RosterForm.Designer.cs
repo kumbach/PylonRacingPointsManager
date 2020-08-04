@@ -32,6 +32,7 @@
             this.rosterGridView = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pilotNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.membershipPaidDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.pilotBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
@@ -62,7 +63,7 @@
             // 
             this.rosterGridView.AutoGenerateColumns = false;
             this.rosterGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.rosterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {this.Column1, this.pilotNumberDataGridViewTextBoxColumn});
+            this.rosterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {this.Column1, this.pilotNumberDataGridViewTextBoxColumn, this.membershipPaidDataGridViewCheckBoxColumn});
             this.rosterGridView.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.pilotBindingSource, "Active", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.rosterGridView.DataSource = this.pilotBindingSource;
             this.rosterGridView.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -75,7 +76,7 @@
             this.rosterGridView.Size = new System.Drawing.Size(637, 638);
             this.rosterGridView.TabIndex = 0;
             this.rosterGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.rosterGridView_CellContentClick);
-            this.rosterGridView.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateSomething);
+            this.rosterGridView.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateInput);
             // 
             // Column1
             // 
@@ -90,6 +91,14 @@
             this.pilotNumberDataGridViewTextBoxColumn.HeaderText = "Pilot #";
             this.pilotNumberDataGridViewTextBoxColumn.Name = "pilotNumberDataGridViewTextBoxColumn";
             this.pilotNumberDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // membershipPaidDataGridViewCheckBoxColumn
+            // 
+            this.membershipPaidDataGridViewCheckBoxColumn.DataPropertyName = "Active";
+            this.membershipPaidDataGridViewCheckBoxColumn.HeaderText = "Active";
+            this.membershipPaidDataGridViewCheckBoxColumn.Name = "membershipPaidDataGridViewCheckBoxColumn";
+            this.membershipPaidDataGridViewCheckBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.membershipPaidDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // pilotBindingSource
             // 

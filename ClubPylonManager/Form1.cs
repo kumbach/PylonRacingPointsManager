@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 
 namespace ClubPylonManager {
     public partial class Form1 : Form {
         public const string AppName = "Pylon Racing Points Manager";
+        public const string ShowInactiveInListsKey = "ShowInactiveInLists";
+        public const string ShowInactiveInReportsKey = "ShowInactiveInReports";
 
         private ClubFile clubFile;
 
@@ -125,7 +128,7 @@ namespace ClubPylonManager {
         }
 
         private void AddRowAndBringIntoView(Contest contest) {
-            contestBindingSource.Insert(0,contest);
+            contestBindingSource.Insert(0, contest);
             contestGridView.ClearSelection();
             contestGridView.Rows[0].Selected = true;
             contestGridView.FirstDisplayedScrollingRowIndex = 0;
@@ -158,21 +161,25 @@ namespace ClubPylonManager {
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK) {
                 var filename = openFileDialog1.FileName;
-                string json = File.ReadAllText(filename);
-                clubFile = JsonConvert.DeserializeObject<ClubFile>(json);
-                clubFile.Filename = filename;
-                clubFile.AddMissingPilots();
-                SetOpenFileState();
+                OpenFile(filename);
+
+                SetSetting("LastFile", filename);
             }
+        }
+
+        private void OpenFile(string filename) {
+            string json = File.ReadAllText(filename);
+            clubFile = JsonConvert.DeserializeObject<ClubFile>(json);
+            clubFile.Filename = filename;
+            clubFile.AddMissingPilots();
+            SetOpenFileState();
         }
 
         private void SetOpenFileState() {
             SetMenuState();
             contestBindingSource.DataSource = clubFile.Contests;
             var filename = string.IsNullOrEmpty(clubFile.Filename) ? "Untitled.json" : clubFile.Filename;
-            this.Text = $"{AppName} - {filename}";
-
-            includeUnpaidMembersInReportsToolStripMenuItem1.Checked = clubFile.InactiveMembersInReports ^ true;
+            Text = $"{AppName} - {filename}";
         }
 
         private void fileSaveMenuItem_Click(object sender, EventArgs e) {
@@ -197,7 +204,8 @@ namespace ClubPylonManager {
                 string filename = saveFileDialog1.FileName;
                 clubFile.Filename = filename;
                 if (clubFile.Save()) {
-                    this.Text = $"{AppName} - {filename}";
+                    Text = $"{AppName} - {filename}";
+                    SetSetting("LastFile", filename);
                 }
                 else {
                     MessageBox.Show(clubFile.LastError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -224,6 +232,7 @@ namespace ClubPylonManager {
                 return;
             }
 
+            SetSetting("LastFile", "");
             SetClosedFileState();
         }
 
@@ -279,7 +288,7 @@ namespace ClubPylonManager {
             ContestForm form = new ContestForm(clubFile, dupContest);
             var result = form.ShowDialog(this);
             if (result == DialogResult.OK) {
-                contestBindingSource.Add(form.GetContest());
+                AddRowAndBringIntoView(form.GetContest());
             }
         }
 
@@ -335,7 +344,28 @@ namespace ClubPylonManager {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            // nothing to do here...
+            var lastFile = GetSetting("LastFile");
+            if (!string.IsNullOrEmpty(lastFile) && File.Exists(lastFile)) {
+                OpenFile(lastFile);
+            }
+            else {
+                newToolStripMenuItem_Click(null, null);
+            }
+
+            InactiveMembersInLists.Checked = GetSetting(Form1.ShowInactiveInListsKey).Equals("True");
+            includeUnpaidMembersInReportsToolStripMenuItem1.Checked = GetSetting(Form1.ShowInactiveInReportsKey).Equals("True");
+        }
+
+        public static string GetSetting(string settingName) {
+            var key = Registry.CurrentUser.CreateSubKey($@"SOFTWARE\{AppName}");
+            var value = key.GetValue($"{settingName}");
+
+            return value == null ? "" : value.ToString();
+        }
+
+        public static void SetSetting(string settingName, string value) {
+            var key = Registry.CurrentUser.CreateSubKey($@"SOFTWARE\{AppName}");
+            key.SetValue(settingName, value);
         }
 
         private void pilotStatisticsMenuItem_Click(object sender, EventArgs e) {
@@ -349,20 +379,18 @@ namespace ClubPylonManager {
             }
 
             var report = new SeasonSummaryReport(contests, clubFile);
-            var form = new ReportViewerForm("Pilot Statistics", report.GenerateReport());
+            var form = new ReportViewerForm("Historical Pilot Summary", report.GenerateReport());
             form.ShowDialog();
         }
 
         private void includeUnpaidMembersInReportsToolStripMenuItem1_Click(object sender, EventArgs e) {
             includeUnpaidMembersInReportsToolStripMenuItem1.Checked ^= true;
-            clubFile.SetInactiveInReports(includeUnpaidMembersInReportsToolStripMenuItem1.Checked);
-            clubFile.SetDirty();
+            SetSetting(Form1.ShowInactiveInReportsKey, includeUnpaidMembersInReportsToolStripMenuItem1.Checked.ToString());
         }
 
         private void showUnpaidMembersInListsToolStripMenuItem_Click(object sender, EventArgs e) {
             InactiveMembersInLists.Checked ^= true;
-            clubFile.SetInactiveInLists(InactiveMembersInLists.Checked);
-            clubFile.SetDirty();
+            SetSetting(Form1.ShowInactiveInListsKey, includeUnpaidMembersInReportsToolStripMenuItem1.Checked.ToString());
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {

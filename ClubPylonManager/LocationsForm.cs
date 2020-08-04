@@ -22,10 +22,14 @@ namespace ClubPylonManager {
         private void saveButton_Click(object sender, EventArgs e) {
             clubFile.Locations.Clear();
             foreach (Location location in locationBindingSource) {
+                location.Name = location.Name == null ? "" : location.Name.Trim();
+                if (string.IsNullOrEmpty(location.Name)) {
+                    continue;
+                }
                 clubFile.Locations.Add(location);
             }
 
-            clubFile.Locations = clubFile.Locations.OrderBy(o => o.name).ToList();
+            clubFile.Locations = clubFile.Locations.OrderBy(o => o.Name).ToList();
 
             clubFile.SetDirty();
             this.Close();

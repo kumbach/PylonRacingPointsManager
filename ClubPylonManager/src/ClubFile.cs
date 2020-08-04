@@ -11,8 +11,6 @@ namespace ClubPylonManager {
         [JsonIgnore] public string LastError { get; set; } = "";
 
         public string FileVersion { get; } = "1.0";
-        public bool InactiveMembersInReports { get; set; }
-        public bool InactiveMembersInLists { get; set; }
         public List<Pilot> ClubRoster { get; set; }
         public List<RaceClass> RaceClasses { get; set; }
         public List<Location> Locations { get; set; }
@@ -27,9 +25,6 @@ namespace ClubPylonManager {
             RaceClasses = new List<RaceClass>();
             Locations = new List<Location>();
             Contests = new List<Contest>();
-
-            InactiveMembersInReports = true;
-            InactiveMembersInLists = true;
         }
 
         public Contest NewContest() {
@@ -49,19 +44,11 @@ namespace ClubPylonManager {
             return string.IsNullOrWhiteSpace(Filename);
         }
 
-        public void SetInactiveInReports(bool value) {
-            InactiveMembersInReports = value;
-        }
-
-        public void SetInactiveInLists(bool value) {
-            InactiveMembersInLists = value;
-        }
-
         public bool PilotRosterIsEmpty() {
             return ClubRoster.Count == 0;
         }
 
-        public void SortByDate() {
+        private void SortByDate() {
             Contests = Contests.OrderByDescending(o => o.ContestDate).ToList();
         }
 

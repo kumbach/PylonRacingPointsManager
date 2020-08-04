@@ -15,5 +15,9 @@ namespace ClubPylonManager {
         private void CloseButton_Click(object sender, EventArgs e) {
             Close();
         }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            System.Diagnostics.Process.Start("http://cppra.org/race-tools");
+        }
     }
 }

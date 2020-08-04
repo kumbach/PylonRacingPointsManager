@@ -5,16 +5,49 @@
   "ClubRoster": [
     {
       "Name": "11",
-      "PilotNumber": null,
+      "PilotNumber": "",
+      "Active": false
+    },
+    {
+      "Name": "bob",
+      "PilotNumber": "1234",
       "Active": false
     },
     {
       "Name": "dd",
-      "PilotNumber": null,
+      "PilotNumber": "",
+      "Active": false
+    },
+    {
+      "Name": "kevin",
+      "PilotNumber": "",
+      "Active": false
+    },
+    {
+      "Name": "kevin2",
+      "PilotNumber": "",
+      "Active": false
+    },
+    {
+      "Name": "XZC",
+      "PilotNumber": "",
       "Active": false
     }
   ],
-  "RaceClasses": [],
+  "RaceClasses": [
+    {
+      "Name": "astro"
+    },
+    {
+      "Name": "bob"
+    },
+    {
+      "Name": "empty"
+    },
+    {
+      "Name": "kevin"
+    }
+  ],
   "Locations": [],
   "Contests": [
     {

@@ -1,171 +1,164 @@
 {
   "FileVersion": "1.0",
-  "InactiveMembersInReports": true,
-  "InactiveMembersInLists": true,
   "ClubRoster": [
     {
       "Name": "Allan Umbach",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": true
     },
     {
       "Name": "Allie Russell",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Bryan Batch",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Cecil Graval",
-      "PilotNumber": null,
-      "Active": true
-    },
-    {
-      "Name": "Chris Metlewski",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": true
     },
     {
       "Name": "Chris Metlewsky",
-      "PilotNumber": null,
-      "Active": false
+      "PilotNumber": "",
+      "Active": true
     },
     {
       "Name": "Chuck Swaney",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": true
     },
     {
       "Name": "Darrol Cady",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Dave Eaton",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": true
     },
     {
       "Name": "Delbert Godon",
-      "PilotNumber": null,
-      "Active": true
+      "PilotNumber": "",
+      "Active": false
     },
     {
       "Name": "Doug Houston",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": true
     },
     {
       "Name": "Ed Alves",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Fred Champagne",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Hank Kauffmann",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": true
     },
     {
       "Name": "Harold Sattler",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Henry Redekop",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Jack Ellefson",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": true
     },
     {
       "Name": "Jeff Martin",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": true
     },
     {
       "Name": "Kevin Moorehouse",
-      "PilotNumber": null,
-      "Active": true
+      "PilotNumber": "",
+      "Active": false
     },
     {
       "Name": "Kevin Umbach",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": true
     },
     {
       "Name": "Leonard Cloninger",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Lyle Baker",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Mark Duncan",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": true
     },
     {
       "Name": "Matt Russell",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Mike Bergan",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Murray Hamula",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Peter Thannhauser",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Randy Smith",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": true
     },
     {
       "Name": "Rod Kelln",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Roy Andrassy",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": true
     },
     {
       "Name": "Sam Ferris",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Ted Ellefson",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": true
     },
     {
       "Name": "Terry Truelove",
-      "PilotNumber": null,
+      "PilotNumber": "",
       "Active": false
     }
   ],
@@ -179,16 +172,16 @@
   ],
   "Locations": [
     {
-      "name": "Calgary"
+      "Name": "Calgary"
     },
     {
-      "name": "Edmonton"
+      "Name": "Edmonton"
     },
     {
-      "name": "Medicine Hat"
+      "Name": "Medicine Hat"
     },
     {
-      "name": "Saskatoon"
+      "Name": "Saskatoon"
     }
   ],
   "Contests": [
@@ -287,7 +280,7 @@
         },
         {
           "Place": "7",
-          "Pilot": "Chris Metlewski",
+          "Pilot": "Chris Metlewsky",
           "HeatTimes": [
             "1:15.48",
             "1:12.27",
@@ -550,7 +543,7 @@
         },
         {
           "Place": "11",
-          "Pilot": "Chris Metlewski",
+          "Pilot": "Chris Metlewsky",
           "HeatTimes": [
             "1:15.24",
             "1:11.99",
@@ -666,7 +659,7 @@
         },
         {
           "Place": "8",
-          "Pilot": "Chris Metlewski",
+          "Pilot": "Chris Metlewsky",
           "HeatTimes": [
             "NT"
           ]
@@ -733,7 +726,7 @@
         },
         {
           "Place": "7",
-          "Pilot": "Chris Metlewski",
+          "Pilot": "Chris Metlewsky",
           "HeatTimes": [
             "NT"
           ]
@@ -863,7 +856,7 @@
         },
         {
           "Place": "7",
-          "Pilot": "Chris Metlewski",
+          "Pilot": "Chris Metlewsky",
           "HeatTimes": [
             "MA",
             "1:20.37",
@@ -995,7 +988,7 @@
         },
         {
           "Place": "6",
-          "Pilot": "Chris Metlewski",
+          "Pilot": "Chris Metlewsky",
           "HeatTimes": [
             "1:14.12",
             "1:12.09",

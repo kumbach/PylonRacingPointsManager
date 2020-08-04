@@ -53,7 +53,7 @@ namespace ClubPylonManager {
         public AutoCompleteStringCollection LoadPilotAutoComplete() {
             AutoCompleteStringCollection str = new AutoCompleteStringCollection();
             foreach (Pilot pilot in clubFile.ClubRoster) {
-                if (clubFile.InactiveMembersInLists || pilot.Active) {
+                if (Form1.GetSetting(Form1.ShowInactiveInListsKey).Equals("True") || pilot.Active) {
                     str.Add(pilot.Name);
                 }
             }

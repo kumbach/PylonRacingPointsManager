@@ -21,6 +21,10 @@ namespace ClubPylonManager {
         private void saveButton_Click(object sender, EventArgs e) {
             clubFile.RaceClasses.Clear();
             foreach (RaceClass raceClass in dataBindingSource) {
+                raceClass.Name = raceClass.Name == null ? "" : raceClass.Name.Trim();
+                if (string.IsNullOrEmpty(raceClass.Name)) {
+                    continue;
+                }
                 clubFile.RaceClasses.Add(raceClass);
             }
 

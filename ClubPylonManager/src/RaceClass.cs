@@ -1,6 +1,4 @@
-﻿using System.Runtime.Remoting.Messaging;
-
-namespace ClubPylonManager {
+﻿namespace ClubPylonManager {
   public class RaceClass {
     public string Name { get; set; }
 

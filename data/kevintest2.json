@@ -1,0 +1,35 @@
+{
+  "FileVersion": "1.0",
+  "InactiveMembersInReports": true,
+  "InactiveMembersInLists": true,
+  "ClubRoster": [
+    {
+      "Name": "Allan",
+      "PilotNumber": "",
+      "Active": true
+    },
+    {
+      "Name": "Doug",
+      "PilotNumber": "",
+      "Active": false
+    },
+    {
+      "Name": "Kevin",
+      "PilotNumber": "",
+      "Active": true
+    },
+    {
+      "Name": "Randy",
+      "PilotNumber": "",
+      "Active": true
+    },
+    {
+      "Name": "Roy",
+      "PilotNumber": "",
+      "Active": true
+    }
+  ],
+  "RaceClasses": [],
+  "Locations": [],
+  "Contests": []
+}
