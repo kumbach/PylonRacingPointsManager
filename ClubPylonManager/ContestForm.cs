@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
     public partial class ContestForm : Form {
         private readonly ClubFile clubFile;
         private readonly string[] heatCodes = {"NT", "DC", "DNS", "DNF", "MA", "CRA"};

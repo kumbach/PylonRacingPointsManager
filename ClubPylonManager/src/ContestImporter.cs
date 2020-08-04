@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
   public class ContestImporter {
     private StreamReader file;
 

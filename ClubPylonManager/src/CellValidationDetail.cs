@@ -1,4 +1,4 @@
-﻿namespace ClubPylonManager {
+﻿namespace PylonRacingPointsManager {
   public class CellValidationDetail {
     public int Row { get; }
     public int Col { get; }

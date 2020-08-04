@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{62949097-6295-4358-8E89-722532FF20C9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>ClubPylonManager</RootNamespace>
-    <AssemblyName>ClubPylonManager</AssemblyName>
+    <RootNamespace>PylonRacingPointsManager</RootNamespace>
+    <AssemblyName>PylonRacingPointsManager</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

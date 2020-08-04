@@ -1,4 +1,4 @@
-﻿namespace ClubPylonManager
+﻿namespace PylonRacingPointsManager
 {
     partial class RaceClassesForm
     {
@@ -65,7 +65,7 @@
             // 
             // dataBindingSource
             // 
-            this.dataBindingSource.DataSource = typeof(ClubPylonManager.RaceClass);
+            this.dataBindingSource.DataSource = typeof(RaceClass);
             // 
             // tableLayoutPanel1
             // 

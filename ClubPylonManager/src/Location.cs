@@ -1,6 +1,4 @@
-﻿using System.Runtime.Remoting.Messaging;
-
-namespace ClubPylonManager {
+﻿namespace PylonRacingPointsManager {
   public class Location {
     public string Name { get; set; }
 

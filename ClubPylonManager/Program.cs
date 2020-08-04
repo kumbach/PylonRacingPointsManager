@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
   static class Program {
     [STAThread]
     static void Main() {

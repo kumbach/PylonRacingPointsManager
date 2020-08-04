@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
     public class SeasonSummaryReport : AbstractReport {
         private readonly List<Contest> contests;
         private readonly ClubFile clubFile;

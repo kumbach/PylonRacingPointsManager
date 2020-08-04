@@ -1,4 +1,4 @@
-﻿namespace ClubPylonManager
+﻿namespace PylonRacingPointsManager
 {
     partial class Locations
     {
@@ -66,7 +66,7 @@
             // 
             // locationBindingSource
             // 
-            this.locationBindingSource.DataSource = typeof(ClubPylonManager.Location);
+            this.locationBindingSource.DataSource = typeof(Location);
             // 
             // tableLayoutPanel1
             // 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
     public partial class PilotSelectForm : Form {
         private bool selectAllStatus = true;
 

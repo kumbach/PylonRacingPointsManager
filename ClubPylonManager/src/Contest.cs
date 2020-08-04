@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
   public class Contest {
     private const int DefaultNumPilots = 10;
     private const int DefaultNumRounds = 8;

@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace ClubPylonManager
+namespace PylonRacingPointsManager.Tests
 {
     public class ScoreboardTests
     {

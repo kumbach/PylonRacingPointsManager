@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
   public class TimeUtils {
     private const double MaxTime = 9.0 * 60.0;
 

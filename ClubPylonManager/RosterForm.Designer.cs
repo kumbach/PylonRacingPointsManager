@@ -1,4 +1,4 @@
-﻿namespace ClubPylonManager
+﻿namespace PylonRacingPointsManager
 {
     partial class RosterForm
     {
@@ -102,7 +102,7 @@
             // 
             // pilotBindingSource
             // 
-            this.pilotBindingSource.DataSource = typeof(ClubPylonManager.Pilot);
+            this.pilotBindingSource.DataSource = typeof(Pilot);
             this.pilotBindingSource.CurrentChanged += new System.EventHandler(this.pilotBindingSource_CurrentChanged);
             // 
             // panel1

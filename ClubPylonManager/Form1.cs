@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
     public partial class Form1 : Form {
         public const string AppName = "Pylon Racing Points Manager";
         public const string ShowInactiveInListsKey = "ShowInactiveInLists";
@@ -36,8 +36,6 @@ namespace ClubPylonManager {
 
             seasonReportMenuItem.Enabled = fileOpen;
             pilotStatisticsMenuItem.Enabled = fileOpen;
-            includeUnpaidMembersInReportsToolStripMenuItem1.Enabled = fileOpen;
-            InactiveMembersInLists.Enabled = fileOpen;
 
             pilotRosterToolStripMenuItem.Enabled = fileOpen;
             locationsToolStripMenuItem.Enabled = fileOpen;
@@ -390,7 +388,7 @@ namespace ClubPylonManager {
 
         private void showUnpaidMembersInListsToolStripMenuItem_Click(object sender, EventArgs e) {
             InactiveMembersInLists.Checked ^= true;
-            SetSetting(Form1.ShowInactiveInListsKey, includeUnpaidMembersInReportsToolStripMenuItem1.Checked.ToString());
+            SetSetting(Form1.ShowInactiveInListsKey, InactiveMembersInLists.Checked.ToString());
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
   public class ContestSummaryReport : AbstractReport {
     private List<Contest> contests;
 

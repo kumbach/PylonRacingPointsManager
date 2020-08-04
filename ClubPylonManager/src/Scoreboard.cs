@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
   public class Scoreboard {
     public string Place { get; set; }
     public string Pilot { get; set; }

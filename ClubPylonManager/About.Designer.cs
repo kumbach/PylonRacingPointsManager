@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
     partial class About {
         /// <summary>
         /// Required designer variable.
@@ -32,12 +32,18 @@ namespace ClubPylonManager {
             this.label4 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
+            // 
+            // label1
+            // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(370, 41);
+            this.label1.Size = new System.Drawing.Size(410, 41);
             this.label1.TabIndex = 0;
             this.label1.Text = "A contest points manager used by miniature pylon racing organizations.";
+            // 
+            // CloseButton
+            // 
             this.CloseButton.Location = new System.Drawing.Point(172, 174);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(75, 23);
@@ -45,30 +51,42 @@ namespace ClubPylonManager {
             this.CloseButton.Text = "OK";
             this.CloseButton.UseVisualStyleBackColor = true;
             this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
+            // label3
+            // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.label3.Location = new System.Drawing.Point(12, 131);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(370, 28);
+            this.label3.Size = new System.Drawing.Size(410, 28);
             this.label3.TabIndex = 3;
             this.label3.Text = "Copyright (c) 2020 by Kevin Umbach. All rights reserved.";
+            // 
+            // label4
+            // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.label4.Location = new System.Drawing.Point(12, 60);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(370, 22);
             this.label4.TabIndex = 4;
             this.label4.Text = "Version 1.0.0";
+            // 
+            // linkLabel1
+            // 
             this.linkLabel1.Location = new System.Drawing.Point(12, 93);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(370, 23);
+            this.linkLabel1.Size = new System.Drawing.Size(410, 23);
             this.linkLabel1.TabIndex = 5;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Visit cppra.org for more information.";
+            this.linkLabel1.Text = "Visit cppra.org for more information and application updates.";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // About
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(414, 215);
+            this.ClientSize = new System.Drawing.Size(434, 215);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);

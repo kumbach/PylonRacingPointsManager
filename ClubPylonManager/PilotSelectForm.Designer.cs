@@ -1,4 +1,4 @@
-﻿namespace ClubPylonManager
+﻿namespace PylonRacingPointsManager
 {
     partial class PilotSelectForm
     {
@@ -94,7 +94,7 @@
             // 
             // pilotSelectionBindingSource
             // 
-            this.pilotSelectionBindingSource.DataSource = typeof(ClubPylonManager.PilotSelection);
+            this.pilotSelectionBindingSource.DataSource = typeof(PilotSelection);
             // 
             // panel1
             // 

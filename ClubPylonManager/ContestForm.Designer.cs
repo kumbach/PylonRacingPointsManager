@@ -1,4 +1,4 @@
-﻿namespace ClubPylonManager
+﻿namespace PylonRacingPointsManager
 {
     partial class ContestForm
     {
@@ -116,7 +116,7 @@
             // contestBindingSource
             // 
             this.contestBindingSource.AllowNew = true;
-            this.contestBindingSource.DataSource = typeof(ClubPylonManager.Contest);
+            this.contestBindingSource.DataSource = typeof(Contest);
             // 
             // label3
             // 

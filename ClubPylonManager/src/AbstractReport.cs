@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
   public abstract class AbstractReport {
     protected readonly StringBuilder ReportData;
 

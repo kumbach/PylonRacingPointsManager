@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows.Forms;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
     public partial class RosterForm : Form {
         private readonly ClubFile clubFile;
 

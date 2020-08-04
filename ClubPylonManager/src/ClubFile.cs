@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
     public class ClubFile {
         [JsonIgnore] public string Filename { get; set; }
         [JsonIgnore] public bool Dirty { get; set; }

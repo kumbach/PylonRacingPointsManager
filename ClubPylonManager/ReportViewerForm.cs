@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
     public partial class ReportViewerForm : Form {
         public ReportViewerForm() {
             InitializeComponent();

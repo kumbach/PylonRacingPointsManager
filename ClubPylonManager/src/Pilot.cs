@@ -1,4 +1,4 @@
-﻿namespace ClubPylonManager {
+﻿namespace PylonRacingPointsManager {
   public class Pilot {
     public string Name { set; get; }
     public string PilotNumber { set; get; }

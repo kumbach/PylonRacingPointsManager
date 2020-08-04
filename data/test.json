@@ -99,7 +99,7 @@
     {
       "Name": "Kevin Moorehouse",
       "PilotNumber": "",
-      "Active": true
+      "Active": false
     },
     {
       "Name": "Kevin Umbach",
@@ -164,12 +164,12 @@
     {
       "Name": "Ted Ellefson",
       "PilotNumber": "",
-      "Active": true
+      "Active": false
     },
     {
       "Name": "Terry Truelove",
       "PilotNumber": "",
-      "Active": false
+      "Active": true
     }
   ],
   "RaceClasses": [
@@ -199,8 +199,8 @@
       "ContestDate": "2020-08-03T00:00:00",
       "Location": "Medicine Hat",
       "RaceClass": "Q40 (AMA 422)",
-      "Status": "Errors",
-      "Rounds": 8,
+      "Status": "OK",
+      "Rounds": 1,
       "Pilots": 3,
       "Notes": "",
       "Scoreboard": [
@@ -208,42 +208,21 @@
           "Place": "1",
           "Pilot": "Chuck Swaney",
           "HeatTimes": [
-            "NT",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "NT"
           ]
         },
         {
           "Place": "2",
           "Pilot": "Bob Johnson",
           "HeatTimes": [
-            "1:01.01",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "1:01.01"
           ]
         },
         {
           "Place": "3",
           "Pilot": "Kevin Moorehouse",
           "HeatTimes": [
-            "DC",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
+            "DC"
           ]
         }
       ]

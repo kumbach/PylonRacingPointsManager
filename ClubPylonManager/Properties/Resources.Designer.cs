@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClubPylonManager.Properties
+namespace PylonRacingPointsManager.Properties
 {
 
 

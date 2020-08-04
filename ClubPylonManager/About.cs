@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Reflection;
 using System.Windows.Forms;
 
-namespace ClubPylonManager {
+namespace PylonRacingPointsManager {
     public partial class About : Form {
         public About() {
             InitializeComponent();
@@ -9,6 +10,7 @@ namespace ClubPylonManager {
 
         private void About_Load(object sender, EventArgs e) {
             Text = $"About {Form1.AppName}";
+            label4.Text = $"Version {Assembly.GetExecutingAssembly().GetName().Version.ToString()}";
             CenterToParent();
         }
 
