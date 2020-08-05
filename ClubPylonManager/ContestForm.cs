@@ -145,7 +145,7 @@ namespace PylonRacingPointsManager {
             }
 
             if (contest.Status == Contest.ValidStatus) {
-                clubFile.AddMissingPilots(contest);
+                clubFile.AddMissingPilotsInContest(contest);
             }
 
             DialogResult = DialogResult.OK;

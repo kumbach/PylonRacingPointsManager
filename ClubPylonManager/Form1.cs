@@ -31,7 +31,8 @@ namespace PylonRacingPointsManager {
             fileSaveMenuItem.Enabled = fileOpen;
             fileSaveAsMenuItem.Enabled = fileOpen;
 
-            importToolStripMenuItem.Enabled = fileOpen;
+            ImportContestsToolStripMenuItem.Enabled = fileOpen;
+            ImportPilotsToolStripMenuItem.Enabled = fileOpen;
 
             contestNewMenuItem.Enabled = fileOpen;
 
@@ -324,23 +325,6 @@ namespace PylonRacingPointsManager {
             form.ShowDialog();
         }
 
-        private void importToolStripMenuItem_Click(object sender, EventArgs e) {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog {
-                Filter = $"{AppName} Import Files|*.csv",
-                Title = "Select a File"
-            };
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK) {
-                var filename = openFileDialog1.FileName;
-                var importer = new ContestImporter();
-                var contests = importer.Import(filename);
-                clubFile.Contests.AddRange(contests);
-                foreach (var contest in contests) {
-                    contestBindingSource.Add(contest);
-                }
-            }
-        }
-
         private void Form1_Load(object sender, EventArgs e) {
             var lastFile = GetSetting("LastFile");
             if (!string.IsNullOrEmpty(lastFile) && File.Exists(lastFile)) {
@@ -400,6 +384,38 @@ namespace PylonRacingPointsManager {
             UsePilotNumbersToolStripMenuItem.Checked ^= true;
             SetSetting(Form1.UsePilotNumbersKey, UsePilotNumbersToolStripMenuItem.Checked.ToString());
             
+        }
+
+        private void pilotsToolStripMenuItem_Click(object sender, EventArgs e) {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog {
+                Filter = $"CSV Files|*.csv",
+                Title = "Select Pilots File"
+            };
+            if (openFileDialog1.ShowDialog() == DialogResult.OK) {
+                var filename = openFileDialog1.FileName;
+                var importer = new PilotImporter();
+                var pilots = importer.Import(filename);
+                var count = clubFile.AddMissingPilots(pilots);
+                var result = count == 0 ? "No pilots were" : count == 1 ? "1 pilot was" : $"{count} pilots were";
+                MessageBox.Show($"{result} imported.", "Import Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void ImportContestsToolStripMenuItem_Click(object sender, EventArgs e) {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog {
+                Filter = $"CSV Files|*.csv",
+                Title = "Select Contests File"
+            };
+            if (openFileDialog1.ShowDialog() == DialogResult.OK) {
+                var filename = openFileDialog1.FileName;
+                var importer = new ContestImporter();
+                var contests = importer.Import(filename);
+                clubFile.Contests.AddRange(contests);
+                foreach (var contest in contests) {
+                    contestBindingSource.Add(contest);
+                }
+            }
+
         }
     }
 }

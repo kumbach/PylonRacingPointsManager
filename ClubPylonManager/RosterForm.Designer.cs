@@ -165,7 +165,7 @@
             this.MaximumSize = new System.Drawing.Size(665, 730);
             this.Name = "RosterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Pilot Roster";
+            this.Text = "Pilots";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize) (this.rosterGridView)).EndInit();

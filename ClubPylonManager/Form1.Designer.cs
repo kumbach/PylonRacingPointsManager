@@ -40,7 +40,9 @@ namespace PylonRacingPointsManager
             this.fileSaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileSaveAsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ImportContestsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ImportPilotsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.fileExitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,8 +58,8 @@ namespace PylonRacingPointsManager
             this.pilotStatisticsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pilotRosterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.raceClassesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.locationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.raceClassesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.includeUnpaidMembersInReportsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.InactiveMembersInLists = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,7 +94,7 @@ namespace PylonRacingPointsManager
             // 
             // fileToolStripMenuItem
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.fileNewMenuItem, this.fileOpenMenuItem, this.toolStripSeparator1, this.fileCloseMenuItem, this.toolStripSeparator2, this.fileSaveMenuItem, this.fileSaveAsMenuItem, this.toolStripSeparator3, this.importToolStripMenuItem, this.toolStripSeparator8, this.fileExitMenuItem});
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.fileNewMenuItem, this.fileOpenMenuItem, this.toolStripSeparator1, this.fileCloseMenuItem, this.toolStripSeparator2, this.fileSaveMenuItem, this.fileSaveAsMenuItem, this.toolStripSeparator3, this.importToolStripMenuItem1, this.toolStripSeparator8, this.fileExitMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
@@ -147,12 +149,26 @@ namespace PylonRacingPointsManager
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(141, 6);
             // 
-            // importToolStripMenuItem
+            // importToolStripMenuItem1
             // 
-            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
-            this.importToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
-            this.importToolStripMenuItem.Text = "Import...";
-            this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
+            this.importToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.ImportContestsToolStripMenuItem, this.ImportPilotsToolStripMenuItem});
+            this.importToolStripMenuItem1.Name = "importToolStripMenuItem1";
+            this.importToolStripMenuItem1.Size = new System.Drawing.Size(144, 26);
+            this.importToolStripMenuItem1.Text = "Import";
+            // 
+            // ImportContestsToolStripMenuItem
+            // 
+            this.ImportContestsToolStripMenuItem.Name = "ImportContestsToolStripMenuItem";
+            this.ImportContestsToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.ImportContestsToolStripMenuItem.Text = "Contests...";
+            this.ImportContestsToolStripMenuItem.Click += new System.EventHandler(this.ImportContestsToolStripMenuItem_Click);
+            // 
+            // ImportPilotsToolStripMenuItem
+            // 
+            this.ImportPilotsToolStripMenuItem.Name = "ImportPilotsToolStripMenuItem";
+            this.ImportPilotsToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.ImportPilotsToolStripMenuItem.Text = "Pilots...";
+            this.ImportPilotsToolStripMenuItem.Click += new System.EventHandler(this.pilotsToolStripMenuItem_Click);
             // 
             // toolStripSeparator8
             // 
@@ -177,7 +193,7 @@ namespace PylonRacingPointsManager
             // 
             this.contestNewMenuItem.Name = "contestNewMenuItem";
             this.contestNewMenuItem.Size = new System.Drawing.Size(157, 26);
-            this.contestNewMenuItem.Text = "Add...";
+            this.contestNewMenuItem.Text = "New...";
             this.contestNewMenuItem.Click += new System.EventHandler(this.contestNewMenuItem_Click);
             // 
             // contestEditMenuItem
@@ -242,7 +258,7 @@ namespace PylonRacingPointsManager
             // 
             // clubToolStripMenuItem
             // 
-            this.clubToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.pilotRosterToolStripMenuItem, this.raceClassesToolStripMenuItem, this.locationsToolStripMenuItem});
+            this.clubToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.pilotRosterToolStripMenuItem, this.locationsToolStripMenuItem, this.raceClassesToolStripMenuItem});
             this.clubToolStripMenuItem.Name = "clubToolStripMenuItem";
             this.clubToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
             this.clubToolStripMenuItem.Text = "Lists";
@@ -251,15 +267,8 @@ namespace PylonRacingPointsManager
             // 
             this.pilotRosterToolStripMenuItem.Name = "pilotRosterToolStripMenuItem";
             this.pilotRosterToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
-            this.pilotRosterToolStripMenuItem.Text = "Pilot Roster...";
+            this.pilotRosterToolStripMenuItem.Text = "Pilots...";
             this.pilotRosterToolStripMenuItem.Click += new System.EventHandler(this.pilotRosterToolStripMenuItem_Click);
-            // 
-            // raceClassesToolStripMenuItem
-            // 
-            this.raceClassesToolStripMenuItem.Name = "raceClassesToolStripMenuItem";
-            this.raceClassesToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
-            this.raceClassesToolStripMenuItem.Text = "Race Classes...";
-            this.raceClassesToolStripMenuItem.Click += new System.EventHandler(this.raceClassesToolStripMenuItem_Click);
             // 
             // locationsToolStripMenuItem
             // 
@@ -267,6 +276,13 @@ namespace PylonRacingPointsManager
             this.locationsToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.locationsToolStripMenuItem.Text = "Locations...";
             this.locationsToolStripMenuItem.Click += new System.EventHandler(this.locationsToolStripMenuItem_Click);
+            // 
+            // raceClassesToolStripMenuItem
+            // 
+            this.raceClassesToolStripMenuItem.Name = "raceClassesToolStripMenuItem";
+            this.raceClassesToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.raceClassesToolStripMenuItem.Text = "Race Classes...";
+            this.raceClassesToolStripMenuItem.Click += new System.EventHandler(this.raceClassesToolStripMenuItem_Click);
             // 
             // optionsMenu
             // 
@@ -300,6 +316,7 @@ namespace PylonRacingPointsManager
             this.UsePilotNumbersToolStripMenuItem.Name = "UsePilotNumbersToolStripMenuItem";
             this.UsePilotNumbersToolStripMenuItem.Size = new System.Drawing.Size(324, 26);
             this.UsePilotNumbersToolStripMenuItem.Text = "Use Pilot Numbers";
+            this.UsePilotNumbersToolStripMenuItem.Visible = false;
             this.UsePilotNumbersToolStripMenuItem.Click += new System.EventHandler(this.UsePilotNumbersToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
@@ -451,7 +468,9 @@ namespace PylonRacingPointsManager
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ImportContestsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ImportPilotsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem InactiveMembersInLists;
         private System.Windows.Forms.ToolStripMenuItem includeUnpaidMembersInReportsToolStripMenuItem1;
         private System.Windows.Forms.DataGridViewTextBoxColumn locationDataGridViewTextBoxColumn;

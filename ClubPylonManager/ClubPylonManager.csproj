@@ -115,6 +115,7 @@
     <Compile Include="src\Contest.cs" />
     <Compile Include="src\AbstractReport.cs" />
     <Compile Include="src\ContestImporter.cs" />
+    <Compile Include="src\PilotImporter.cs" />
     <Compile Include="src\SeasonSummaryReport.cs" />
     <Compile Include="src\ContestSummaryReport.cs" />
     <Compile Include="src\PilotSelection.cs" />

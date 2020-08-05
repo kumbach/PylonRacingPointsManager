@@ -116,7 +116,7 @@
             // contestBindingSource
             // 
             this.contestBindingSource.AllowNew = true;
-            this.contestBindingSource.DataSource = typeof(Contest);
+            this.contestBindingSource.DataSource = typeof(PylonRacingPointsManager.Contest);
             // 
             // label3
             // 

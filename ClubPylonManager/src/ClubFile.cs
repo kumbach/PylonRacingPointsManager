@@ -69,26 +69,43 @@ namespace PylonRacingPointsManager {
             }
         }
 
-        public void AddMissingPilots(Contest contest) {
-                foreach (var row in contest.Scoreboard) {
-                    var addPilot = true;
-
-                    foreach (var pilot in ClubRoster) {
-                        if (pilot.Name.ToLower().Equals(row.Pilot.ToLower())) {
-                            addPilot = false;
-                            break;
-                        }
-                    }
-
-                    if (addPilot) {
-                        ClubRoster.Add(new Pilot() {
-                            Name =  row.Pilot,
-                            Active =  true
-                        });
-                    }
+        public void AddMissingPilotsInContest(Contest contest) {
+            foreach (var row in contest.Scoreboard) {
+                if (!PilotExists(row.Pilot, "")) {
+                    ClubRoster.Add(new Pilot() {
+                        Name = row.Pilot,
+                        Active = true
+                    });
                 }
-            ClubRoster = ClubRoster.OrderBy(o => o.Name).ToList();
+            }
 
+            ClubRoster = ClubRoster.OrderBy(o => o.Name).ToList();
+        }
+
+        public int AddMissingPilots(List<Pilot>pilots) {
+            var numAdded = 0;
+            foreach (var row in pilots) {
+                var addPilot = true;
+
+                if (!PilotExists(row.Name, row.PilotNumber)) {
+                    ClubRoster.Add(row);
+                    ++numAdded;
+                }
+            }
+
+            ClubRoster = ClubRoster.OrderBy(o => o.Name).ToList();
+            return numAdded;
+        }
+
+        private bool PilotExists(string name, string number) {
+            foreach (var pilot in ClubRoster) {
+                if (pilot.Name.ToLower().Equals(name.ToLower()) &&
+                    pilot.PilotNumber.ToLower().Equals(number.ToLower())) {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
