@@ -37,5 +37,30 @@ namespace PylonRacingPointsManager {
         private void button2_Click(object sender, EventArgs e) {
             this.Close();
         }
+
+        private void rosterGridView_SelectionChanged(object sender, EventArgs e) {
+            if (rosterGridView.SelectedCells.Count == 0) {
+                RemoveRowButton.Enabled = false;
+                return;
+            }
+
+            int row = rosterGridView.SelectedCells[0].RowIndex;
+            bool enabled = row < rosterGridView.RowCount - 1;
+            RemoveRowButton.Enabled = enabled;
+        }
+
+        private void RemoveRowButton_Click(object sender, EventArgs e) {
+            if (rosterGridView.SelectedCells.Count == 0) {
+                return;
+            }
+
+            if (rosterGridView.Rows.Count == 1) {
+                RemoveRowButton_Click(sender, e);
+                return;
+            }
+
+            int row = rosterGridView.SelectedCells[0].RowIndex;
+            rosterGridView.Rows.RemoveAt(row);
+        }
     }
 }

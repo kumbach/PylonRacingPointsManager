@@ -61,6 +61,7 @@ namespace PylonRacingPointsManager
             this.optionsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.includeUnpaidMembersInReportsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.InactiveMembersInLists = new System.Windows.Forms.ToolStripMenuItem();
+            this.UsePilotNumbersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contestGridView = new System.Windows.Forms.DataGridView();
@@ -271,7 +272,7 @@ namespace PylonRacingPointsManager
             // 
             this.optionsMenu.Checked = true;
             this.optionsMenu.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.optionsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.includeUnpaidMembersInReportsToolStripMenuItem1, this.InactiveMembersInLists});
+            this.optionsMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {this.includeUnpaidMembersInReportsToolStripMenuItem1, this.InactiveMembersInLists, this.UsePilotNumbersToolStripMenuItem});
             this.optionsMenu.Name = "optionsMenu";
             this.optionsMenu.Size = new System.Drawing.Size(73, 24);
             this.optionsMenu.Text = "Options";
@@ -293,6 +294,13 @@ namespace PylonRacingPointsManager
             this.InactiveMembersInLists.Size = new System.Drawing.Size(324, 26);
             this.InactiveMembersInLists.Text = "Show Inactive Members in Lists";
             this.InactiveMembersInLists.Click += new System.EventHandler(this.showUnpaidMembersInListsToolStripMenuItem_Click);
+            // 
+            // UsePilotNumbersToolStripMenuItem
+            // 
+            this.UsePilotNumbersToolStripMenuItem.Name = "UsePilotNumbersToolStripMenuItem";
+            this.UsePilotNumbersToolStripMenuItem.Size = new System.Drawing.Size(324, 26);
+            this.UsePilotNumbersToolStripMenuItem.Text = "Use Pilot Numbers";
+            this.UsePilotNumbersToolStripMenuItem.Click += new System.EventHandler(this.UsePilotNumbersToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -391,7 +399,7 @@ namespace PylonRacingPointsManager
             // 
             // contestBindingSource
             // 
-            this.contestBindingSource.DataSource = typeof(Contest);
+            this.contestBindingSource.DataSource = typeof(PylonRacingPointsManager.Contest);
             // 
             // flowLayoutPanel1
             // 
@@ -466,6 +474,7 @@ namespace PylonRacingPointsManager
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem UsePilotNumbersToolStripMenuItem;
 
         #endregion
     }

@@ -10,6 +10,7 @@ namespace PylonRacingPointsManager {
         public const string AppName = "Pylon Racing Points Manager";
         public const string ShowInactiveInListsKey = "ShowInactiveInLists";
         public const string ShowInactiveInReportsKey = "ShowInactiveInReports";
+        public const string UsePilotNumbersKey = "UsePilotNumbers";
 
         private ClubFile clubFile;
 
@@ -169,7 +170,6 @@ namespace PylonRacingPointsManager {
             string json = File.ReadAllText(filename);
             clubFile = JsonConvert.DeserializeObject<ClubFile>(json);
             clubFile.Filename = filename;
-            clubFile.AddMissingPilots();
             SetOpenFileState();
         }
 
@@ -352,6 +352,7 @@ namespace PylonRacingPointsManager {
 
             InactiveMembersInLists.Checked = GetSetting(Form1.ShowInactiveInListsKey).Equals("True");
             includeUnpaidMembersInReportsToolStripMenuItem1.Checked = GetSetting(Form1.ShowInactiveInReportsKey).Equals("True");
+            UsePilotNumbersToolStripMenuItem.Checked = GetSetting(Form1.UsePilotNumbersKey).Equals("True");
         }
 
         public static string GetSetting(string settingName) {
@@ -393,6 +394,12 @@ namespace PylonRacingPointsManager {
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
             new About().ShowDialog();
+        }
+
+        private void UsePilotNumbersToolStripMenuItem_Click(object sender, EventArgs e) {
+            UsePilotNumbersToolStripMenuItem.Checked ^= true;
+            SetSetting(Form1.UsePilotNumbersKey, UsePilotNumbersToolStripMenuItem.Checked.ToString());
+            
         }
     }
 }

@@ -69,8 +69,7 @@ namespace PylonRacingPointsManager {
             }
         }
 
-        public void AddMissingPilots() {
-            foreach (var contest in Contests) {
+        public void AddMissingPilots(Contest contest) {
                 foreach (var row in contest.Scoreboard) {
                     var addPilot = true;
 
@@ -84,11 +83,12 @@ namespace PylonRacingPointsManager {
                     if (addPilot) {
                         ClubRoster.Add(new Pilot() {
                             Name =  row.Pilot,
-                            Active =  false
+                            Active =  true
                         });
                     }
                 }
-            }
+            ClubRoster = ClubRoster.OrderBy(o => o.Name).ToList();
+
         }
     }
 }

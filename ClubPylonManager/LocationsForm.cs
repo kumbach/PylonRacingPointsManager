@@ -26,6 +26,7 @@ namespace PylonRacingPointsManager {
                 if (string.IsNullOrEmpty(location.Name)) {
                     continue;
                 }
+
                 clubFile.Locations.Add(location);
             }
 
@@ -37,6 +38,31 @@ namespace PylonRacingPointsManager {
 
         private void button2_Click(object sender, EventArgs e) {
             this.Close();
+        }
+
+        private void rosterGridView_SelectionChanged(object sender, EventArgs e) {
+            if (rosterGridView.SelectedCells.Count == 0) {
+                RemoveLocationButton.Enabled = false;
+                return;
+            }
+
+            int row = rosterGridView.SelectedCells[0].RowIndex;
+            bool enabled = row < rosterGridView.RowCount - 1;
+            RemoveLocationButton.Enabled = enabled;
+        }
+
+        private void RemoveLocationButton_Click(object sender, EventArgs e) {
+            if (rosterGridView.SelectedCells.Count == 0) {
+                return;
+            }
+
+            if (rosterGridView.Rows.Count == 1) {
+                RemoveLocationButton_Click(sender, e);
+                return;
+            }
+
+            int row = rosterGridView.SelectedCells[0].RowIndex;
+            rosterGridView.Rows.RemoveAt(row);
         }
     }
 }

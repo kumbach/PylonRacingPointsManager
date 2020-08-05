@@ -33,6 +33,7 @@
             this.dataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.RemoveRowButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize) (this.rosterGridView)).BeginInit();
@@ -56,6 +57,7 @@
             this.rosterGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.rosterGridView.Size = new System.Drawing.Size(637, 502);
             this.rosterGridView.TabIndex = 0;
+            this.rosterGridView.SelectionChanged += new System.EventHandler(this.rosterGridView_SelectionChanged);
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -65,7 +67,7 @@
             // 
             // dataBindingSource
             // 
-            this.dataBindingSource.DataSource = typeof(RaceClass);
+            this.dataBindingSource.DataSource = typeof(PylonRacingPointsManager.RaceClass);
             // 
             // tableLayoutPanel1
             // 
@@ -86,6 +88,7 @@
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.RemoveRowButton);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.saveButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -94,6 +97,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(637, 36);
             this.panel1.TabIndex = 1;
+            // 
+            // RemoveRowButton
+            // 
+            this.RemoveRowButton.AutoSize = true;
+            this.RemoveRowButton.Location = new System.Drawing.Point(268, 4);
+            this.RemoveRowButton.Margin = new System.Windows.Forms.Padding(4);
+            this.RemoveRowButton.Name = "RemoveRowButton";
+            this.RemoveRowButton.Size = new System.Drawing.Size(106, 28);
+            this.RemoveRowButton.TabIndex = 2;
+            this.RemoveRowButton.Text = "Remove Class";
+            this.RemoveRowButton.UseVisualStyleBackColor = true;
+            this.RemoveRowButton.Click += new System.EventHandler(this.RemoveRowButton_Click);
             // 
             // button2
             // 
@@ -134,6 +149,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
         }
 
@@ -141,6 +157,7 @@
         private System.Windows.Forms.BindingSource dataBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button RemoveRowButton;
         private System.Windows.Forms.DataGridView rosterGridView;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;

@@ -30,7 +30,7 @@ namespace PylonRacingPointsManager {
                 if (string.IsNullOrEmpty(pilot.Name)) {
                     continue;
                 }
-        
+
                 clubFile.ClubRoster.Add(pilot);
             }
 
@@ -56,6 +56,31 @@ namespace PylonRacingPointsManager {
             //         e.Cancel = true;
             //     }
             // }
+        }
+
+        private void DeleteRowButton_Click(object sender, EventArgs e) {
+            if (rosterGridView.SelectedCells.Count == 0) {
+                return;
+            }
+
+            if (rosterGridView.Rows.Count == 1) {
+                DeleteRowButton_Click(sender, e);
+                return;
+            }
+
+            int row = rosterGridView.SelectedCells[0].RowIndex;
+            rosterGridView.Rows.RemoveAt(row);
+        }
+
+        private void rosterGridView_SelectionChanged(object sender, EventArgs e) {
+            if (rosterGridView.SelectedCells.Count == 0) {
+                DeleteRowButton.Enabled = false;
+                return;
+            }
+
+            int row = rosterGridView.SelectedCells[0].RowIndex;
+            bool enabled = row < rosterGridView.RowCount - 1;
+            DeleteRowButton.Enabled = enabled;
         }
     }
 }

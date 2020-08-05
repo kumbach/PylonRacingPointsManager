@@ -12,22 +12,12 @@
       "Active": false
     },
     {
-      "Name": "Bob Johnson",
-      "PilotNumber": "",
-      "Active": false
-    },
-    {
       "Name": "Bryan Batch",
       "PilotNumber": "",
       "Active": false
     },
     {
       "Name": "Cecil Graval",
-      "PilotNumber": "",
-      "Active": true
-    },
-    {
-      "Name": "Chris Metlewski",
       "PilotNumber": "",
       "Active": true
     },
@@ -174,10 +164,7 @@
   ],
   "RaceClasses": [
     {
-      "Name": "Q40 (AMA 422)"
-    },
-    {
-      "Name": "Q500 (AMA 426)"
+      "Name": "asdf"
     }
   ],
   "Locations": [
@@ -201,7 +188,7 @@
       "RaceClass": "Q40 (AMA 422)",
       "Status": "OK",
       "Rounds": 1,
-      "Pilots": 3,
+      "Pilots": 11,
       "Notes": "",
       "Scoreboard": [
         {
@@ -223,6 +210,62 @@
           "Pilot": "Kevin Moorehouse",
           "HeatTimes": [
             "DC"
+          ]
+        },
+        {
+          "Place": "4",
+          "Pilot": "andy baker",
+          "HeatTimes": [
+            "NT"
+          ]
+        },
+        {
+          "Place": "5",
+          "Pilot": "joe user",
+          "HeatTimes": [
+            "1:01.09"
+          ]
+        },
+        {
+          "Place": "6",
+          "Pilot": "astro walker",
+          "HeatTimes": [
+            "1:09.19"
+          ]
+        },
+        {
+          "Place": "7",
+          "Pilot": "zulu zulu",
+          "HeatTimes": [
+            "1:10.99"
+          ]
+        },
+        {
+          "Place": "8",
+          "Pilot": "a user",
+          "HeatTimes": [
+            "1:12.44"
+          ]
+        },
+        {
+          "Place": "9",
+          "Pilot": "sadie doggie",
+          "HeatTimes": [
+            "1:05.07"
+          ]
+        },
+        {
+          "Place": "10",
+          "Pilot": "my cat is annoying",
+          "HeatTimes": [
+            "1:22.76"
+          ]
+        },
+        {
+          "Place": "11",
+          "Pilot": "this has no place",
+          "HeatTimes": [
+            "DNS"
           ]
         }
       ]

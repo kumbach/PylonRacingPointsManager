@@ -10,8 +10,8 @@ namespace PylonRacingPointsManager {
         private readonly ClubFile clubFile;
         private readonly string[] heatCodes = {"NT", "DC", "DNS", "DNF", "MA", "CRA"};
         private readonly Regex regex = new Regex("^[0-2]:[0-5][0-9]\\.[0-9][0-9]$");
-        private bool Dirty { get; set; }
-        private bool IgnoreCloseDirtyCheck;
+        private bool dirty;
+        private bool ignoreCloseDirtyCheck;
 
         public ContestForm(ClubFile clubFile, Contest contest) {
             this.clubFile = clubFile;
@@ -50,7 +50,7 @@ namespace PylonRacingPointsManager {
             scoreboardGrid.Columns.AddRange(columns);
         }
 
-        public AutoCompleteStringCollection LoadPilotAutoComplete() {
+        private AutoCompleteStringCollection LoadPilotAutoComplete() {
             AutoCompleteStringCollection str = new AutoCompleteStringCollection();
             foreach (Pilot pilot in clubFile.ClubRoster) {
                 if (Form1.GetSetting(Form1.ShowInactiveInListsKey).Equals("True") || pilot.Active) {
@@ -61,7 +61,7 @@ namespace PylonRacingPointsManager {
             return str;
         }
 
-        public AutoCompleteStringCollection LoadHeatCodeAutoComplete() {
+        private AutoCompleteStringCollection LoadHeatCodeAutoComplete() {
             AutoCompleteStringCollection str = new AutoCompleteStringCollection();
 
             str.Add("NT");
@@ -84,7 +84,7 @@ namespace PylonRacingPointsManager {
         }
 
         private bool DiscardChanges() {
-            if (!Dirty) {
+            if (!dirty) {
                 return true;
             }
 
@@ -113,9 +113,9 @@ namespace PylonRacingPointsManager {
                                              "Save it?", Form1.AppName, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Exclamation);
                 if (result == DialogResult.Yes) {
                     contest.Status = Contest.InvalidStatus;
-                    
+
                     // need to skip dirty file check in window closing event 
-                    IgnoreCloseDirtyCheck = true;
+                    ignoreCloseDirtyCheck = true;
                 }
                 else if (result == DialogResult.Cancel) {
                     return;
@@ -135,7 +135,7 @@ namespace PylonRacingPointsManager {
                 var scoreboard = new Scoreboard();
                 int.TryParse((string) scoreboardGrid.Rows[i].Cells[0].Value, out var placeValue);
                 scoreboard.Place = placeValue.ToString();
-                scoreboard.Pilot = (string) scoreboardGrid.Rows[i].Cells[1].Value;
+                scoreboard.Pilot = ((string) scoreboardGrid.Rows[i].Cells[1].Value ?? "").Trim();
                 for (int cell = 2; cell < scoreboardGrid.ColumnCount; ++cell) {
                     scoreboard.HeatTimes.Add(((string) scoreboardGrid.Rows[i].Cells[cell].Value ?? "").Trim()
                         .ToUpper());
@@ -144,8 +144,12 @@ namespace PylonRacingPointsManager {
                 contest.Scoreboard.Add(scoreboard);
             }
 
+            if (contest.Status == Contest.ValidStatus) {
+                clubFile.AddMissingPilots(contest);
+            }
+
             DialogResult = DialogResult.OK;
-            Dirty = false;
+            dirty = false;
             clubFile.SetDirty();
             this.Close();
         }
@@ -359,12 +363,23 @@ namespace PylonRacingPointsManager {
                     scoreboardGrid.Rows[row].Cells[col].ToolTipText = "";
                 }
             }
+
+            raceClassCombo.BackColor = Color.White;
+            locationCombo.BackColor = Color.White;
         }
 
         private void ShowValidationErrors(List<CellValidationDetail> errors) {
             foreach (CellValidationDetail detail in errors) {
                 scoreboardGrid.Rows[detail.Row].Cells[detail.Col].Style.BackColor = Color.Salmon;
                 scoreboardGrid.Rows[detail.Row].Cells[detail.Col].ToolTipText = detail.message;
+            }
+
+            if (string.IsNullOrEmpty(locationCombo.Text)) {
+                locationCombo.BackColor = Color.Salmon;
+            }
+
+            if (string.IsNullOrEmpty(raceClassCombo.Text)) {
+                raceClassCombo.BackColor = Color.Salmon;
             }
         }
 
@@ -433,13 +448,13 @@ namespace PylonRacingPointsManager {
 
         protected override void OnFormClosing(FormClosingEventArgs e) {
             base.OnFormClosing(e);
-            if (!IgnoreCloseDirtyCheck) {
+            if (!ignoreCloseDirtyCheck) {
                 e.Cancel = !DiscardChanges();
             }
         }
 
         private void scoreboardGrid_CurrentCellDirtyStateChanged(object sender, EventArgs e) {
-            Dirty = true;
+            dirty = true;
         }
     }
 }

@@ -35,6 +35,7 @@
             this.membershipPaidDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.pilotBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.DeleteRowButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
@@ -76,6 +77,7 @@
             this.rosterGridView.Size = new System.Drawing.Size(637, 638);
             this.rosterGridView.TabIndex = 0;
             this.rosterGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.rosterGridView_CellContentClick);
+            this.rosterGridView.SelectionChanged += new System.EventHandler(this.rosterGridView_SelectionChanged);
             this.rosterGridView.Validating += new System.ComponentModel.CancelEventHandler(this.ValidateInput);
             // 
             // Column1
@@ -102,12 +104,13 @@
             // 
             // pilotBindingSource
             // 
-            this.pilotBindingSource.DataSource = typeof(Pilot);
+            this.pilotBindingSource.DataSource = typeof(PylonRacingPointsManager.Pilot);
             this.pilotBindingSource.CurrentChanged += new System.EventHandler(this.pilotBindingSource_CurrentChanged);
             // 
             // panel1
             // 
             this.panel1.AutoSize = true;
+            this.panel1.Controls.Add(this.DeleteRowButton);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.saveButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -116,6 +119,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(637, 36);
             this.panel1.TabIndex = 1;
+            // 
+            // DeleteRowButton
+            // 
+            this.DeleteRowButton.AutoSize = true;
+            this.DeleteRowButton.Location = new System.Drawing.Point(268, 4);
+            this.DeleteRowButton.Margin = new System.Windows.Forms.Padding(4);
+            this.DeleteRowButton.Name = "DeleteRowButton";
+            this.DeleteRowButton.Size = new System.Drawing.Size(100, 28);
+            this.DeleteRowButton.TabIndex = 2;
+            this.DeleteRowButton.Text = "Remove Pilot";
+            this.DeleteRowButton.UseVisualStyleBackColor = true;
+            this.DeleteRowButton.Click += new System.EventHandler(this.DeleteRowButton_Click);
             // 
             // button2
             // 
@@ -156,11 +171,13 @@
             ((System.ComponentModel.ISupportInitialize) (this.rosterGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.pilotBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
         }
 
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.Button DeleteRowButton;
         private System.Windows.Forms.DataGridViewCheckBoxColumn membershipPaidDataGridViewCheckBoxColumn;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.BindingSource pilotBindingSource;
