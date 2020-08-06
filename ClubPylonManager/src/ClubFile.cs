@@ -48,6 +48,12 @@ namespace PylonRacingPointsManager {
             return ClubRoster.Count == 0;
         }
 
+        public void SortAll() {
+            Contests = Contests.OrderByDescending(o => o.ContestDate).ToList();
+            Locations = Locations.OrderBy(o => o.Name).ToList();
+            RaceClasses = RaceClasses.OrderBy(o => o.Name).ToList();
+        }
+
         private void SortByDate() {
             Contests = Contests.OrderByDescending(o => o.ContestDate).ToList();
         }
@@ -82,7 +88,7 @@ namespace PylonRacingPointsManager {
             ClubRoster = ClubRoster.OrderBy(o => o.Name).ToList();
         }
 
-        public int AddMissingPilots(List<Pilot>pilots) {
+        public int AddMissingPilots(List<Pilot> pilots) {
             var numAdded = 0;
             foreach (var row in pilots) {
                 var addPilot = true;
@@ -97,10 +103,44 @@ namespace PylonRacingPointsManager {
             return numAdded;
         }
 
+        public void AddMissingLocation(string location) {
+            foreach (var loc in Locations) {
+                if ((loc.Name ?? "").ToUpper().Equals(location.ToUpper())) {
+                    return;
+                }
+            }
+
+            Locations.Add(new Location(location));
+        }
+
+        public void AddMissingRaceClass(string name) {
+            foreach (var raceClass in RaceClasses) {
+                if ((raceClass.Name ?? "").ToUpper().Equals(name.ToUpper())) {
+                    return;
+                }
+            }
+
+            RaceClasses.Add(new RaceClass(name));
+        }
+
         private bool PilotExists(string name, string number) {
             foreach (var pilot in ClubRoster) {
-                if (pilot.Name.ToLower().Equals(name.ToLower()) &&
-                    pilot.PilotNumber.ToLower().Equals(number.ToLower())) {
+                if ((pilot.Name ?? "").ToLower().Equals(name.ToLower()) &&
+                    (pilot.PilotNumber ?? "").ToLower().Equals(number.ToLower())) {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool ContestExists(Contest contest) {
+            var location = contest.Location.ToUpper();
+            var raceClass = contest.RaceClass.ToUpper();
+            foreach (var con in Contests) {
+                if (con.ContestDate == contest.ContestDate &&
+                    con.RaceClass.ToUpper().Equals(raceClass) &&
+                    con.Location.ToUpper().Equals(location)) {
                     return true;
                 }
             }

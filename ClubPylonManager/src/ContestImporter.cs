@@ -7,7 +7,7 @@ namespace PylonRacingPointsManager {
   public class ContestImporter {
     private StreamReader file;
 
-    public List<Contest> Import(string filename) {
+    public List<Contest> Import(string filename, ClubFile clubFile) {
       file = new StreamReader(filename);
 
       var contests = new List<Contest>();
@@ -32,7 +32,10 @@ namespace PylonRacingPointsManager {
         }
 
         contest.Pilots = contest.Scoreboard.Count;
-        contests.Add(contest);
+
+        if (!clubFile.ContestExists(contest)) {
+          contests.Add(contest);
+        }
 
         line = NextLine();
       }
@@ -44,30 +47,34 @@ namespace PylonRacingPointsManager {
 
     private void ExtractPilotDetails(string line, out string place, out string pilot, out List<string> heatTimes) {
       string[] fields = line.Split(',');
+
+      if (fields.Length < 3) {
+        throw new Exception("Expected a record with format:\n\nplace,name,heat time 1,...,heat time n.");
+
+      }
       place = fields[0];
       pilot = fields[1].Trim();
       heatTimes = new List<string>();
 
       for (int i = 2; i < fields.Length; ++i) {
-        heatTimes.Add(convertFieldCode(fields[i]));
+        heatTimes.Add(fields[i].ToUpper());
       }
     }
-
-    private string convertFieldCode(string code) {
-      if (code != null && code.ToUpper().Equals("OUT")) {
-        return "DNS";
-      }
-
-      return code;
-    }
-
 
     private void ExtractContestDetails(string line, out DateTime dateTime, out string raceClass, out string location) {
       string[] fields = line.Split(',');
+      if (fields.Length != 3) {
+        throw new Exception("Expected contest header with format:\n\ndate,race class,location.");
+      }
 
-      DateTime.TryParseExact(fields[0], "yyyy-MM-dd", null, DateTimeStyles.None, out dateTime);
-      raceClass = fields[1].Trim();
-      location = fields[2].Trim();
+      try {
+        DateTime.TryParseExact(fields[0], "yyyy-MM-dd", null, DateTimeStyles.None, out dateTime);
+        raceClass = fields[1].Trim();
+        location = fields[2].Trim();
+      }
+      catch (Exception e) {
+        throw new Exception("Invalid contest header record. Expected contest date,race class,location.");
+      }
     }
 
     private string NextLine() {

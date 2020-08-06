@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -8,6 +9,7 @@ using Newtonsoft.Json;
 namespace PylonRacingPointsManager {
     public partial class Form1 : Form {
         public const string AppName = "Pylon Racing Points Manager";
+        public const string LastFileKey = "LastFile";
         public const string ShowInactiveInListsKey = "ShowInactiveInLists";
         public const string ShowInactiveInReportsKey = "ShowInactiveInReports";
         public const string UsePilotNumbersKey = "UsePilotNumbers";
@@ -82,6 +84,7 @@ namespace PylonRacingPointsManager {
 
             clubFile = new ClubFile();
             SetOpenFileState();
+            SetSetting(LastFileKey, "");
         }
 
         private bool DirtyFileSaved(string saveMessageSuffix) {
@@ -163,7 +166,7 @@ namespace PylonRacingPointsManager {
                 var filename = openFileDialog1.FileName;
                 OpenFile(filename);
 
-                SetSetting("LastFile", filename);
+                SetSetting(LastFileKey, filename);
             }
         }
 
@@ -204,7 +207,7 @@ namespace PylonRacingPointsManager {
                 clubFile.Filename = filename;
                 if (clubFile.Save()) {
                     Text = $"{AppName} - {filename}";
-                    SetSetting("LastFile", filename);
+                    SetSetting(LastFileKey, filename);
                 }
                 else {
                     MessageBox.Show(clubFile.LastError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -231,7 +234,7 @@ namespace PylonRacingPointsManager {
                 return;
             }
 
-            SetSetting("LastFile", "");
+            SetSetting(LastFileKey, "");
             SetClosedFileState();
         }
 
@@ -326,7 +329,7 @@ namespace PylonRacingPointsManager {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            var lastFile = GetSetting("LastFile");
+            var lastFile = GetSetting(LastFileKey);
             if (!string.IsNullOrEmpty(lastFile) && File.Exists(lastFile)) {
                 OpenFile(lastFile);
             }
@@ -383,7 +386,6 @@ namespace PylonRacingPointsManager {
         private void UsePilotNumbersToolStripMenuItem_Click(object sender, EventArgs e) {
             UsePilotNumbersToolStripMenuItem.Checked ^= true;
             SetSetting(Form1.UsePilotNumbersKey, UsePilotNumbersToolStripMenuItem.Checked.ToString());
-            
         }
 
         private void pilotsToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -396,6 +398,9 @@ namespace PylonRacingPointsManager {
                 var importer = new PilotImporter();
                 var pilots = importer.Import(filename);
                 var count = clubFile.AddMissingPilots(pilots);
+                if (count > 0) {
+                    clubFile.SetDirty();
+                }
                 var result = count == 0 ? "No pilots were" : count == 1 ? "1 pilot was" : $"{count} pilots were";
                 MessageBox.Show($"{result} imported.", "Import Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -408,14 +413,31 @@ namespace PylonRacingPointsManager {
             };
             if (openFileDialog1.ShowDialog() == DialogResult.OK) {
                 var filename = openFileDialog1.FileName;
-                var importer = new ContestImporter();
-                var contests = importer.Import(filename);
-                clubFile.Contests.AddRange(contests);
-                foreach (var contest in contests) {
-                    contestBindingSource.Add(contest);
-                }
-            }
+                try {
+                    var importer = new ContestImporter();
+                    var contests = importer.Import(filename, clubFile);
+                    if (contests.Count > 0) {
+                        clubFile.Contests.AddRange(contests);
+                        clubFile.Contests = clubFile.Contests.OrderByDescending(o => o.ContestDate).ToList();
+                        clubFile.Contests.ForEach(contest => {
+                            clubFile.AddMissingLocation(contest.Location);
+                            clubFile.AddMissingRaceClass(contest.RaceClass);
+                            clubFile.AddMissingPilotsInContest(contest);
+                        });
+                        clubFile.SortAll();
+                        clubFile.SetDirty();
+                        contestBindingSource.DataSource = clubFile.Contests;
+                    }
 
+                    var result = contests.Count == 0 ? "No contests were" :
+                        contests.Count == 1 ? "1 contest was" : $"{contests.Count} contests were";
+                    MessageBox.Show($"{result} imported.", "Import Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ee) {
+                    MessageBox.Show($"The import failed.\n\n{ee.Message}", "Import Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
         }
     }
 }
