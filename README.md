@@ -30,6 +30,10 @@ On the Windows Start Menu, look for a folder named 'Pylon Racing Points Manager'
 
 ![Main Window](UserGuide/start-menu-folder.png)
 
+### Application Support
+If you encounter a bug or want a feature added, use the [Issues](issues) feature
+to log an issue.  
+
 ## Typical Points Tracking Workflow
 These next sections outline how the CPPRA uses the application to show contest results, the season points race status, and display historical pilot details.
 
@@ -91,6 +95,13 @@ list. The Status column will indicate 'OK' if there are no entry errors,
 or 'Errors' if something is wrong. If the status is 'Errors', the contest
 will not be included in any reports until the errors are corrected.
 ![Main Window](UserGuide/main-saved-record.png)
+
+### Active & Inactive Pilots
+Sometimes pilots become inactive and you may not want to include them in 
+reports anymore.
+
+Use the menu items under the Options menu to select whether you want to
+see inactive pilots in reports or in the contest entry screen.
 
 ### Contest Summary Report
 After the contest details have been entered, the contest summary report 
