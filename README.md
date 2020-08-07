@@ -30,8 +30,8 @@ On the Windows Start Menu, look for a folder named 'Pylon Racing Points Manager'
 
 ![Main Window](UserGuide/start-menu-folder.png)
 
-### Application Support
-If you encounter a bug or want a feature added, use the [Issues](issues) feature
+## Application Support
+If you encounter a bug or want a feature added, use the [Issues](/issues) feature
 to log an issue.  
 
 ## Typical Points Tracking Workflow
