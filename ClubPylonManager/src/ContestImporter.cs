@@ -28,11 +28,11 @@ namespace PylonRacingPointsManager {
 
           row.HeatTimes.AddRange(heatTimes);
           contest.Scoreboard.Add(row);
+          contest.Rounds = heatTimes.Count;
           line = file.ReadLine();
         }
 
         contest.Pilots = contest.Scoreboard.Count;
-
         if (!clubFile.ContestExists(contest)) {
           contests.Add(contest);
         }
