@@ -77,7 +77,7 @@ namespace PylonRacingPointsManager {
             this.linkLabel1.Size = new System.Drawing.Size(410, 23);
             this.linkLabel1.TabIndex = 5;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Visit the webpage for user guide and updates.";
+            this.linkLabel1.Text = "Visit the project website on GitHub for user guide and updates.";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // About

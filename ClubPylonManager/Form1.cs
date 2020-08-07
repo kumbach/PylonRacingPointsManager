@@ -439,5 +439,9 @@ namespace PylonRacingPointsManager {
 
             }
         }
+
+        private void userGuideToolStripMenuItem_Click(object sender, EventArgs e) {
+            System.Diagnostics.Process.Start("https://github.com/kumbach/PylonRacingPointsManager");
+        }
     }
 }
