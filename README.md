@@ -32,7 +32,8 @@ On the Windows Start Menu, look for a folder named 'Pylon Racing Points Manager'
 
 ## Typical Points Tracking Workflow
 These next sections outline how the CPPRA uses the application to show contest results, the season points race status, and display historical pilot details.
-###Create a new Document File
+
+### Create a new Document File
 To start off using the application, the first step is to create a new document file by selecting the File / New menu item. A document contains the contest results, and the pilot, race class, and location lists.
 
 ### Save the Document File
