@@ -12,13 +12,13 @@ To see what it can be used to produce, see these examples on the CPPRA website:
 
 ![Main Window](UserGuide/main-saved-record.png)
 
-##Requirements
+## Requirements
 Windows 7 or higher and .NET Framework 4.5.2 or higher. Typically .NET 
 will already be installed on your system but if not you can 
 download and install the .NET framework from Microsoft's website:
 https://dotnet.microsoft.com/download/dotnet-framework
 
-##Installation
+## Installation
 Download and run the installer from GitHub: https://github.com/kumbach/PylonRacingPointsManager/releases
 
 The installer will add a folder named 'Pylon Racing Points Manager' to your Start Menu containing these items:
@@ -35,12 +35,12 @@ These next sections outline how the CPPRA uses the application to show contest r
 ###Create a new Document File
 To start off using the application, the first step is to create a new document file by selecting the File / New menu item. A document contains the contest results, and the pilot, race class, and location lists.
 
-###Save the Document File
+### Save the Document File
 Save the document by selecting File / Save and giving the document a filename. 
 
 Saving a document will overwrite the previous file contents so be careful and be sure to back up the document file frequently. 
 
-###Pre-populating List Data
+### Pre-populating List Data
 You can use the various list entry screens to pre-add pilots, race classes, and race locations for data entry convenience. See the Lists menu options.
 
 Pre-populating the pilots list will provide autocomplete in the pilot name column to speed up entry and help avoid typos. When saving a valid contest, pilots are automatically added to the pilot list. 
@@ -49,7 +49,7 @@ Adding race classes and locations makes them available via drop-down lists on th
 
 Note: Changes made to a pilot in the Pilot List will be NOT reflected in contest records.
  
-###Contest Scoreboard Entry
+### Contest Scoreboard Entry
 After a contest is over, the scoreboard results are entered into the 
 application. The final pilot placings are determined by the Contest 
 Director and are not calculated by the application. It is helpful 
@@ -91,7 +91,7 @@ or 'Errors' if something is wrong. If the status is 'Errors', the contest
 will not be included in any reports until the errors are corrected.
 ![Main Window](UserGuide/main-saved-record.png)
 
-###Contest Summary Report
+### Contest Summary Report
 After the contest details have been entered, the contest summary report 
 can be generated. This report summarizes a contest to show the placings, 
 pilot name, NMPRA points earned, and summary of heat results. 
@@ -101,7 +101,7 @@ select Reports / Contest Summary. The report details can be copy and
 pasted into a web page for viewing.
 ![Contest Summary Report](UserGuide/contest-summary-report.png)
 
-###Season Points Race
+### Season Points Race
 To show the overall points for the season, first highlight all the
  records in the season. Then select the Reports / Season Summary menu 
  option. In this example, all the contests for Q500 and Q40 in 2019 have 
@@ -119,11 +119,11 @@ select Reports / Historical Pilot Summary.
 ![Pilot History Report](UserGuide/pilot-history-report.png)
 If you don't back-fill your contest results, this report may not be useful to you.
 
-# Importing Data
+## Importing Data
 
 Note: Importing is experimental. Check your import results before 
 saving the document file.
-## Pilots
+### Pilots
 * File format is CSV with 1-3 fields.
     * Field 1: Pilot Name
     * Field 2: Pilot Number
@@ -138,7 +138,7 @@ Allan Umbach,31x,yes
 * Column 1 is required, the others are optional.
 * If 'active' column is not specified, default value is 'yes'.
 
-## Contests
+### Contests
 * File format is CSV with a specially formatted contest header record.
 
 Example file contests.csv:
