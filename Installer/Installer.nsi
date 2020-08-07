@@ -51,14 +51,14 @@ Section "Dummy Section" SecDummy
   SetOverwrite on
 
   ;ADD YOUR OWN FILES HERE...
-  File /r "C:\Users\Kevin\workspace\clubpylonmanager\ClubPylonManager\bin\Release\*"
+  File /r "d:\workspace\clubpylonmanager\ClubPylonManager\bin\Release\*"
 
   ;Store installation folder
   WriteRegStr HKCU "Software\Pylon Racing Points Manager" "" $INSTDIR
 
   ; create start menu items
     CreateDirectory "$SMPROGRAMS\Pylon Racing Points Manager"
-	CreateShortCut "$SMPROGRAMS\Pylon Racing Points Manager\PylonRacingPointsManager.lnk" "$INSTDIR\PylonRacingPointsManager.exe"
+	CreateShortCut "$SMPROGRAMS\Pylon Racing Points Manager\Pylon Racing Points Manager.lnk" "$INSTDIR\PylonRacingPointsManager.exe"
 	CreateShortCut "$SMPROGRAMS\Pylon Racing Points Manager\Uninstall.lnk" "$INSTDIR\uninstall.exe"
 
   ;Create uninstaller
@@ -73,7 +73,7 @@ Section "Uninstall"
 
   ;ADD YOUR OWN FILES HERE...
 	rmdir /r "$INSTDIR"
-	Delete "$SMPROGRAMS\Pylon Racing Points Manager\PylonRacingPointsManager.lnk"
+	Delete "$SMPROGRAMS\Pylon Racing Points Manager\Pylon Racing Points Manager.lnk"
 	Delete "$SMPROGRAMS\Pylon Racing Points Manager\Uninstall.lnk"
 	rmdir "$SMPROGRAMS\Pylon Racing Points Manager"
 

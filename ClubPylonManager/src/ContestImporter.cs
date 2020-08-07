@@ -72,7 +72,7 @@ namespace PylonRacingPointsManager {
         raceClass = fields[1].Trim();
         location = fields[2].Trim();
       }
-      catch (Exception e) {
+      catch (Exception) {
         throw new Exception("Invalid contest header record. Expected contest date,race class,location.");
       }
     }

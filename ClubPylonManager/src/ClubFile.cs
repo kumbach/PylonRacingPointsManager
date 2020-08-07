@@ -91,8 +91,6 @@ namespace PylonRacingPointsManager {
         public int AddMissingPilots(List<Pilot> pilots) {
             var numAdded = 0;
             foreach (var row in pilots) {
-                var addPilot = true;
-
                 if (!PilotExists(row.Name, row.PilotNumber)) {
                     ClubRoster.Add(row);
                     ++numAdded;

@@ -19,7 +19,7 @@ namespace PylonRacingPointsManager {
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start("http://cppra.org/race-tools");
+            System.Diagnostics.Process.Start("http://www.cppra.org/race-tools/points-manager");
         }
     }
 }
