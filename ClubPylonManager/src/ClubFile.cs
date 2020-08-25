@@ -27,14 +27,14 @@ namespace PylonRacingPointsManager {
             Contests = new List<Contest>();
         }
 
-        public Contest NewContest() {
-            Contest contest = new Contest();
-            return contest;
-        }
-
-        public void AddContest(Contest contest) {
-            Contests.Add(contest);
-        }
+        // public Contest NewContest() {
+        //     Contest contest = new Contest();
+        //     return contest;
+        // }
+        //
+        // public void AddContest(Contest contest) {
+        //     Contests.Add(contest);
+        // }
 
         public void SetDirty() {
             Dirty = true;

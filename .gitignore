@@ -91,3 +91,5 @@ AppPackages/
 
 # Backup File are automatically generated
 *.bak
+
+*.exe

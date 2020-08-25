@@ -22,7 +22,7 @@ namespace PylonRacingPointsManager {
                 contestBindingSource.AddNew();
             }
             else {
-                contestBindingSource.Add(contest.Clone());
+                contestBindingSource.Add(contest);
             }
 
             SetupScoreboardColumns();
