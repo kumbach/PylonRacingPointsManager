@@ -86,7 +86,7 @@
             this.tableLayoutPanel1.Controls.Add(this.roundsNumeric, 3, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.tableLayoutPanel1.RowCount = 8;
@@ -110,7 +110,7 @@
             this.raceClassCombo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.raceClassCombo.FormattingEnabled = true;
             this.raceClassCombo.Location = new System.Drawing.Point(396, 26);
-            this.raceClassCombo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.raceClassCombo.Margin = new System.Windows.Forms.Padding(2);
             this.raceClassCombo.Name = "raceClassCombo";
             this.raceClassCombo.Size = new System.Drawing.Size(148, 23);
             this.raceClassCombo.TabIndex = 7;
@@ -160,7 +160,7 @@
             this.contestDatePicker.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contestDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.contestDatePicker.Location = new System.Drawing.Point(11, 26);
-            this.contestDatePicker.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.contestDatePicker.Margin = new System.Windows.Forms.Padding(2);
             this.contestDatePicker.MaxDate = new System.DateTime(2050, 12, 31, 0, 0, 0, 0);
             this.contestDatePicker.MinDate = new System.DateTime(1965, 1, 1, 0, 0, 0, 0);
             this.contestDatePicker.Name = "contestDatePicker";
@@ -177,7 +177,7 @@
             this.locationCombo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.locationCombo.FormattingEnabled = true;
             this.locationCombo.Location = new System.Drawing.Point(139, 26);
-            this.locationCombo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.locationCombo.Margin = new System.Windows.Forms.Padding(2);
             this.locationCombo.MaxLength = 40;
             this.locationCombo.Name = "locationCombo";
             this.locationCombo.Size = new System.Drawing.Size(253, 23);
@@ -202,7 +202,7 @@
                 System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.noteTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.noteTextBox.Location = new System.Drawing.Point(11, 77);
-            this.noteTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.noteTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.noteTextBox.Name = "noteTextBox";
             this.noteTextBox.Size = new System.Drawing.Size(939, 23);
             this.noteTextBox.TabIndex = 9;
@@ -236,7 +236,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.scoreboardGrid, 5);
             this.scoreboardGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scoreboardGrid.Location = new System.Drawing.Point(11, 128);
-            this.scoreboardGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.scoreboardGrid.Margin = new System.Windows.Forms.Padding(2);
             this.scoreboardGrid.MultiSelect = false;
             this.scoreboardGrid.Name = "scoreboardGrid";
             this.scoreboardGrid.RowHeadersVisible = false;
@@ -279,7 +279,7 @@
             this.panel1.Controls.Add(this.cancelButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(11, 490);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(939, 32);
             this.panel1.TabIndex = 12;
@@ -287,7 +287,7 @@
             // validateButton
             // 
             this.validateButton.Location = new System.Drawing.Point(212, 2);
-            this.validateButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.validateButton.Margin = new System.Windows.Forms.Padding(2);
             this.validateButton.Name = "validateButton";
             this.validateButton.Size = new System.Drawing.Size(86, 28);
             this.validateButton.TabIndex = 5;
@@ -309,7 +309,7 @@
             // deleteRowButton
             // 
             this.deleteRowButton.Location = new System.Drawing.Point(419, 2);
-            this.deleteRowButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.deleteRowButton.Margin = new System.Windows.Forms.Padding(2);
             this.deleteRowButton.Name = "deleteRowButton";
             this.deleteRowButton.Size = new System.Drawing.Size(86, 28);
             this.deleteRowButton.TabIndex = 3;
@@ -320,7 +320,7 @@
             // clearRowButton
             // 
             this.clearRowButton.Location = new System.Drawing.Point(327, 2);
-            this.clearRowButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.clearRowButton.Margin = new System.Windows.Forms.Padding(2);
             this.clearRowButton.Name = "clearRowButton";
             this.clearRowButton.Size = new System.Drawing.Size(86, 28);
             this.clearRowButton.TabIndex = 2;
@@ -331,7 +331,7 @@
             // saveButton
             // 
             this.saveButton.Location = new System.Drawing.Point(2, 2);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(2);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(86, 28);
             this.saveButton.TabIndex = 1;
@@ -342,7 +342,7 @@
             // cancelButton
             // 
             this.cancelButton.Location = new System.Drawing.Point(98, 2);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(2);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(86, 28);
             this.cancelButton.TabIndex = 0;
@@ -366,7 +366,7 @@
                 System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N0"));
             this.roundsNumeric.Dock = System.Windows.Forms.DockStyle.Fill;
             this.roundsNumeric.Location = new System.Drawing.Point(548, 26);
-            this.roundsNumeric.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.roundsNumeric.Margin = new System.Windows.Forms.Padding(2);
             this.roundsNumeric.Maximum = new decimal(new int[] {20, 0, 0, 0});
             this.roundsNumeric.Minimum = new decimal(new int[] {1, 0, 0, 0});
             this.roundsNumeric.Name = "roundsNumeric";
@@ -386,7 +386,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(961, 533);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(931, 571);
             this.Name = "ContestForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

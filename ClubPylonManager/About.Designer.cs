@@ -36,17 +36,19 @@ namespace PylonRacingPointsManager {
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(10, 8);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(410, 41);
+            this.label1.Size = new System.Drawing.Size(359, 38);
             this.label1.TabIndex = 0;
             this.label1.Text = "A contest points manager used by miniature pylon racing organizations.";
             // 
             // CloseButton
             // 
-            this.CloseButton.Location = new System.Drawing.Point(172, 174);
+            this.CloseButton.Location = new System.Drawing.Point(150, 163);
+            this.CloseButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(75, 23);
+            this.CloseButton.Size = new System.Drawing.Size(65, 22);
             this.CloseButton.TabIndex = 2;
             this.CloseButton.Text = "OK";
             this.CloseButton.UseVisualStyleBackColor = true;
@@ -55,26 +57,29 @@ namespace PylonRacingPointsManager {
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label3.Location = new System.Drawing.Point(12, 131);
+            this.label3.Location = new System.Drawing.Point(10, 122);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(410, 28);
+            this.label3.Size = new System.Drawing.Size(359, 27);
             this.label3.TabIndex = 3;
             this.label3.Text = "Copyright (c) 2020 by Kevin Umbach. All rights reserved.";
             // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label4.Location = new System.Drawing.Point(12, 60);
+            this.label4.Location = new System.Drawing.Point(10, 57);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(370, 22);
+            this.label4.Size = new System.Drawing.Size(324, 21);
             this.label4.TabIndex = 4;
             this.label4.Text = "Version 1.0.0";
             // 
             // linkLabel1
             // 
-            this.linkLabel1.Location = new System.Drawing.Point(12, 93);
+            this.linkLabel1.Location = new System.Drawing.Point(10, 88);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(410, 23);
+            this.linkLabel1.Size = new System.Drawing.Size(359, 22);
             this.linkLabel1.TabIndex = 5;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Visit the project website on GitHub for user guide and updates.";
@@ -82,17 +87,18 @@ namespace PylonRacingPointsManager {
             // 
             // About
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(434, 215);
+            this.ClientSize = new System.Drawing.Size(380, 202);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "About";

@@ -80,7 +80,8 @@ namespace PylonRacingPointsManager {
                 if (!PilotExists(row.Pilot, "")) {
                     ClubRoster.Add(new Pilot() {
                         Name = row.Pilot,
-                        Active = true
+                        Active = true,
+                        InDistrict = false
                     });
                 }
             }

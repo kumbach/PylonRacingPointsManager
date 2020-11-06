@@ -12,7 +12,7 @@ namespace PylonRacingPointsManager {
         public const string LastFileKey = "LastFile";
         public const string ShowInactiveInListsKey = "ShowInactiveInLists";
         public const string ShowInactiveInReportsKey = "ShowInactiveInReports";
-        public const string UsePilotNumbersKey = "UsePilotNumbers";
+        public const string ShowOutOfDistrictInReportsKey = "ShowOutOfDistrictInReports";
 
         private ClubFile clubFile;
 
@@ -328,6 +328,29 @@ namespace PylonRacingPointsManager {
             form.ShowDialog();
         }
 
+        private void seasonTotalPointsReportMenuItem_Click(object sender, EventArgs e) {
+            if (contestGridView.SelectedRows.Count <= 1) {
+                MessageBox.Show(
+                    "Tip: You have only highlighted a single contest. If there are more contests in the season, highlight them too before creating the report.",
+                    "Tip",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+
+            List<Contest> contests = new List<Contest>();
+
+            foreach (DataGridViewRow row in contestGridView.SelectedRows) {
+                var contest = (Contest) contestBindingSource.List[row.Index];
+                if (contest.IsValid()) {
+                    contests.Add(contest);
+                }
+            }
+
+            var report = new TotalPointsReport(contests, clubFile);
+            var form = new ReportViewerForm("Total Points in All Race Classes", report.GenerateReport());
+            form.ShowDialog();
+        }
+
         private void Form1_Load(object sender, EventArgs e) {
             var lastFile = GetSetting(LastFileKey);
             if (!string.IsNullOrEmpty(lastFile) && File.Exists(lastFile)) {
@@ -338,8 +361,8 @@ namespace PylonRacingPointsManager {
             }
 
             InactiveMembersInLists.Checked = GetSetting(Form1.ShowInactiveInListsKey).Equals("True");
-            includeUnpaidMembersInReportsToolStripMenuItem1.Checked = GetSetting(Form1.ShowInactiveInReportsKey).Equals("True");
-            UsePilotNumbersToolStripMenuItem.Checked = GetSetting(Form1.UsePilotNumbersKey).Equals("True");
+            includeInactiveMembersInReportsToolStripMenuItem1.Checked = GetSetting(Form1.ShowInactiveInReportsKey).Equals("True");
+            includeNonmembersInReportsToolStripMenuItem.Checked = GetSetting(Form1.ShowOutOfDistrictInReportsKey).Equals("True");
         }
 
         public static string GetSetting(string settingName) {
@@ -369,23 +392,18 @@ namespace PylonRacingPointsManager {
             form.ShowDialog();
         }
 
-        private void includeUnpaidMembersInReportsToolStripMenuItem1_Click(object sender, EventArgs e) {
-            includeUnpaidMembersInReportsToolStripMenuItem1.Checked ^= true;
-            SetSetting(Form1.ShowInactiveInReportsKey, includeUnpaidMembersInReportsToolStripMenuItem1.Checked.ToString());
+        private void includeInactiveMembersInReportsToolStripMenuItem1_Click(object sender, EventArgs e) {
+            includeInactiveMembersInReportsToolStripMenuItem1.Checked ^= true;
+            SetSetting(Form1.ShowInactiveInReportsKey, includeInactiveMembersInReportsToolStripMenuItem1.Checked.ToString());
         }
 
-        private void showUnpaidMembersInListsToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void showInactiveMembersInListsToolStripMenuItem_Click(object sender, EventArgs e) {
             InactiveMembersInLists.Checked ^= true;
             SetSetting(Form1.ShowInactiveInListsKey, InactiveMembersInLists.Checked.ToString());
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
             new About().ShowDialog();
-        }
-
-        private void UsePilotNumbersToolStripMenuItem_Click(object sender, EventArgs e) {
-            UsePilotNumbersToolStripMenuItem.Checked ^= true;
-            SetSetting(Form1.UsePilotNumbersKey, UsePilotNumbersToolStripMenuItem.Checked.ToString());
         }
 
         private void pilotsToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -442,6 +460,12 @@ namespace PylonRacingPointsManager {
 
         private void userGuideToolStripMenuItem_Click(object sender, EventArgs e) {
             System.Diagnostics.Process.Start("https://github.com/kumbach/PylonRacingPointsManager");
+        }
+
+        private void includeNonmembersInReportsToolStripMenuItem_Click(object sender, EventArgs e) {
+            includeNonmembersInReportsToolStripMenuItem.Checked ^= true;
+            SetSetting(Form1.ShowOutOfDistrictInReportsKey, includeNonmembersInReportsToolStripMenuItem.Checked.ToString());
+
         }
     }
 }

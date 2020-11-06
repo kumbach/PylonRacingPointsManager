@@ -126,6 +126,7 @@
     <Compile Include="src\Tests\NmpraPointsCalcTest.cs" />
     <Compile Include="src\Tests\ScoreboardTests.cs" />
     <Compile Include="src\TimeUtils.cs" />
+    <Compile Include="src\TotalPointsReport.cs" />
     <EmbeddedResource Include="About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace PylonRacingPointsManager {
-    public class SeasonSummaryReport : AbstractReport {
+    public class TotalPointsReport : AbstractReport {
         private readonly List<Contest> contests;
         private readonly ClubFile clubFile;
 
-        public SeasonSummaryReport(List<Contest> contests, ClubFile clubFile) {
+        public TotalPointsReport(List<Contest> contests, ClubFile clubFile) {
             this.contests = contests;
             this.clubFile = clubFile;
         }
@@ -15,6 +15,9 @@ namespace PylonRacingPointsManager {
         public override string GenerateReport() {
             Dictionary<string, LineItem> dict = null;
 
+            GetRaceClasses(out var raceClasses, out var pilots);
+            var pilotDict = MakePilotDict(raceClasses, pilots);
+            
             string currentClass = "";
             foreach (var contest in contests.OrderBy(c => c.RaceClass)) {
                 if (contest.HasErrors()) {
@@ -71,6 +74,29 @@ namespace PylonRacingPointsManager {
             return ReportData.ToString();
         }
 
+        private Dictionary<string, TotalPointsLineItem> MakePilotDict(List<string> raceClasses, List<string> pilots) {
+            return null;
+        }
+
+        private void GetRaceClasses(out List<string>raceClasses, out List<string>pilots) {
+            raceClasses = new List<string>();
+            pilots = new List<string>();
+            
+            foreach (var contest in contests) {
+                var raceClass = contest.RaceClass.ToUpper();
+                if (!raceClasses.Contains(raceClass)) {
+                    raceClasses.Add(raceClass);
+                }
+
+                foreach (var row in contest.Scoreboard) {
+                    var pilot = row.Pilot;
+                    if (!pilot.Contains(pilot)) {
+                        pilots.Add(row.Pilot);
+                    }
+                }
+            }
+        }
+
         private string MakeTimeRangeString(string currentClass, List<Contest> contests) {
             DateTime lowDate = DateTime.MaxValue;
             DateTime highDate = DateTime.MinValue;
@@ -90,12 +116,12 @@ namespace PylonRacingPointsManager {
         }
 
         private bool PilotIsMember(string pilotKey) {
-            var activeOnly = Form1.GetSetting(Form1.ShowInactiveInReportsKey).Equals("False");
-            var inDistrictOnly = Form1.GetSetting(Form1.ShowOutOfDistrictInReportsKey).Equals("False");
+            if (Form1.GetSetting(Form1.ShowInactiveInReportsKey).Equals("True")) {
+                return true;
+            }
 
             foreach (var pilot in clubFile.ClubRoster) {
-                if (pilotKey.ToLower().Equals(pilot.Name.ToLower()) && 
-                    (!activeOnly || pilot.Active) && (!inDistrictOnly || pilot.InDistrict)) {
+                if (pilotKey.ToLower().Equals(pilot.Name.ToLower()) && pilot.Active) {
                     return true;
                 }
             }
@@ -183,6 +209,10 @@ namespace PylonRacingPointsManager {
             return dict;
         }
 
+        private class TotalPointsLineItem {
+            public Dictionary<string, double> classToPoints = new Dictionary<string, double>();
+        }
+        
         private class LineItem {
             public string Pilot { get; set; }
             public int NumContests { get; set; }

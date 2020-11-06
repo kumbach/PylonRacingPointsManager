@@ -18,7 +18,8 @@ namespace PylonRacingPointsManager {
                     pilots.Add(new Pilot() {
                         Name = name,
                         PilotNumber = number,
-                        Active = active.Equals("yes")
+                        Active = active.Equals("yes"),
+                        InDistrict = false
                     });
                 }
 
